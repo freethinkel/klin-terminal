@@ -1,0 +1,27 @@
+name: "Solarized dark"
+selection: 0xffffffff
+primary: 0xff002b36
+colors:
+  cursor: 0xAAAEAFAD
+  selection: 0xAAAEAFAD
+  foreground: 0xff839496
+  background: 0xff002b36
+  black: 0xff073642
+  red: 0xffdc322f
+  green: 0xff859900
+  yellow: 0xffb58900
+  blue: 0xff268bd2
+  magenta: 0xffd33682
+  cyan: 0xff2aa198
+  white: 0xffeee8d5
+  bright_black: 0xff002b36
+  bright_red: 0xffcb4b16
+  bright_green: 0xff586e75
+  bright_yellow: 0xff657b83
+  bright_blue: 0xff839496
+  bright_magenta: 0xff6c71c4
+  bright_cyan: 0xff93a1a1
+  bright_white: 0xfffdf6e3
+  search_hit_background: 0xFFFFFF2B
+  search_hit_background_current: 0xFF31FF26
+  search_hit_foreground: 0xFF000000

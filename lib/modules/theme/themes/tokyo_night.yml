@@ -1,0 +1,27 @@
+name: "Tokyo night"
+selection: 0xff7aa2f7
+primary: 0xff1a1b26
+colors:
+  cursor: 0xAAAEAFAD
+  selection: 0xAAAEAFAD
+  foreground: 0xffa9b1d6
+  background: 0xff1a1b26
+  black: 0xff32344a
+  red: 0xfff7768e
+  green: 0xff9ece6a
+  yellow: 0xffe0af68
+  blue: 0xff7aa2f7
+  magenta: 0xffad8ee6
+  cyan: 0xff449dab
+  white: 0xff787c99
+  bright_black: 0xff444b6a
+  bright_red: 0xffff7a93
+  bright_green: 0xffb9f27c
+  bright_yellow: 0xffff9e64
+  bright_blue: 0xff7da6ff
+  bright_magenta: 0xffbb9af7
+  bright_cyan: 0xff0db9d7
+  bright_white: 0xffacb0d0
+  search_hit_background: 0xFFFFFF2B
+  search_hit_background_current: 0xFF31FF26
+  search_hit_foreground: 0xFF000000

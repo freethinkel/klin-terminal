@@ -1,0 +1,27 @@
+name: "Default dark"
+selection: 0xFFCCCCCC
+primary: 0xFF000000
+colors:
+  cursor: 0xAAAEAFAD
+  selection: 0xAAAEAFAD
+  foreground: 0xFFCCCCCC
+  background: 0xFF1E1E1E
+  black: 0xFF000000
+  red: 0xFFCD3131
+  green: 0xFF0DBC79
+  yellow: 0xFFE5E510
+  blue: 0xFF2472C8
+  magenta: 0xFFBC3FBC
+  cyan: 0xFF11A8CD
+  white: 0xFFE5E5E5
+  bright_black: 0xFF666666
+  bright_red: 0xFFF14C4C
+  bright_green: 0xFF23D18B
+  bright_yellow: 0xFFF5F543
+  bright_blue: 0xFF3B8EEA
+  bright_magenta: 0xFFD670D6
+  bright_cyan: 0xFF29B8DB
+  bright_white: 0xFFFFFFFF
+  search_hit_background: 0xFFFFFF2B
+  search_hit_background_current: 0xFF31FF26
+  search_hit_foreground: 0xFF000000
