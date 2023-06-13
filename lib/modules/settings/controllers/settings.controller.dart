@@ -22,19 +22,18 @@ class SettingsController extends IController {
     SettingsTab(
       title: "Keymaps",
       icon: TablerIcons.keyboard,
-      view: Text("keymaps"),
+      view: const Text("keymaps"),
     ),
     SettingsTab(
       title: "Advanced",
       icon: TablerIcons.tools,
-      view: Text("advanced"),
+      view: const Text("advanced"),
     ),
   ];
   late final currentTab$ = RxState<SettingsTab>(tabs.first);
 
   final opacity$ = RxStateStorage<double>(
       "opacity", (value) => double.tryParse(value)?.clamp(0, 1), 1.0);
-
   final padding$ =
       RxStateStorage<int>("terminalPadding", (value) => int.tryParse(value), 0);
   final fontFamily$ = RxStateStorage("fontFamily", (value) => value, "Menlo");

@@ -1,0 +1,13 @@
+{
+  "title": "Cheber Terminal",
+  "icon": "./macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png",
+  "contents": [
+    { "x": 448, "y": 200, "type": "link", "path": "/Applications" },
+    {
+      "x": 192,
+      "y": 200,
+      "type": "file",
+      "path": "./build/macos/Cheber Terminal.app"
+    }
+  ]
+}
