@@ -13,9 +13,13 @@ import 'package:xterm/xterm.dart';
 class CheberTerminalView extends StatefulWidget {
   const CheberTerminalView({
     this.onChangeTitle,
+    this.onExit,
+    this.focusNode,
     super.key,
   });
   final Function(String)? onChangeTitle;
+  final Function()? onExit;
+  final FocusNode? focusNode;
 
   @override
   State<CheberTerminalView> createState() => _CheberTerminalViewState();
@@ -53,6 +57,9 @@ class _CheberTerminalViewState extends State<CheberTerminalView> {
 
     pty.exitCode.then((code) {
       terminal.write('the process exited with exit code $code');
+      Future.delayed(Duration.zero).then((value) {
+        widget.onExit?.call();
+      });
     });
 
     terminal.onOutput = (data) {
@@ -87,6 +94,7 @@ class _CheberTerminalViewState extends State<CheberTerminalView> {
                                   scrollType: TerminalScrollType.perRow,
                                   cursorType: TerminalCursorType.block,
                                   autofocus: true,
+                                  focusNode: widget.focusNode,
                                   backgroundOpacity: opacity ?? 1,
                                   padding:
                                       EdgeInsets.all(padding?.toDouble() ?? 0),

@@ -1,4 +1,4 @@
-import 'package:cheber_terminal/modules/tabs/components/tab_bar.dart';
+import 'package:cheber_terminal/modules/tabs/screens/tab_bar.dart';
 import 'package:flutter/material.dart';
 
 class CheberTerminalAppView extends StatefulWidget {

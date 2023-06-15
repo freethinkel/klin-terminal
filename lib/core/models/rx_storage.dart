@@ -2,12 +2,15 @@ import 'package:cheber_terminal/core/models/rx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RxStateStorage<T> extends RxState<T> {
-  String key;
-  T? Function(String value) mapper;
-  RxStateStorage(this.key, this.mapper, [T? initialValue])
-      : super(initialValue) {
+  RxStateStorage(
+    this.key, {
+    required this.mapper,
+    T? initialValue,
+  }) : super(initialValue) {
     _init();
   }
+  String key;
+  T? Function(String value) mapper;
 
   _init() async {
     var instance = await SharedPreferences.getInstance();

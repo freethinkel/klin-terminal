@@ -6,20 +6,24 @@ class DraggableWindow extends StatelessWidget {
   const DraggableWindow({
     required this.child,
     this.ignoreDoubleTap = false,
+    this.disabled = false,
     super.key,
   });
   final Widget child;
   final bool ignoreDoubleTap;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
     return ControllerConnector<ChannelController>(
       builder: (context, controller) => GestureDetector(
         behavior: HitTestBehavior.translucent,
-        onPanStart: (details) {
-          controller.startDragging();
-        },
-        onDoubleTap: ignoreDoubleTap
+        onPanStart: disabled
+            ? null
+            : (details) {
+                controller.startDragging();
+              },
+        onDoubleTap: ignoreDoubleTap || disabled
             ? null
             : () async {
                 bool isMaximized = await controller.isMaximized();

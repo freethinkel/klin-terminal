@@ -23,7 +23,7 @@ class __ModalState extends State<_Modal> {
             borderRadius: BorderRadius.circular(10),
             child: Container(
               decoration: BoxDecoration(
-                color: AppTheme.of(context).primary.withOpacity(1),
+                color: AppTheme.of(context).primary,
               ),
               child: widget.child,
             ),

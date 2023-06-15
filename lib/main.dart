@@ -10,12 +10,8 @@ void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   locator.setup();
-  for (var controller in [
-    ControllerConnector.of<ChannelController>(),
-  ]) {
-    controller.init();
-  }
 
+  ControllerConnector.of<ChannelController>().init();
   await ControllerConnector.of<ThemeController>().init();
 
   runApp(const App());

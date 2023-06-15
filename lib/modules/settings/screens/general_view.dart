@@ -1,12 +1,8 @@
-import 'package:cheber_terminal/core/models/rx.dart';
 import 'package:cheber_terminal/core/widgets/controller_connector.dart';
 import 'package:cheber_terminal/modules/settings/components/settings_page.dart';
 import 'package:cheber_terminal/modules/settings/controllers/settings.controller.dart';
-import 'package:cheber_terminal/shared/components/input/input.dart';
-import 'package:cheber_terminal/shared/components/input/number_input.dart';
 import 'package:cheber_terminal/shared/components/input/rx_input.dart';
 import 'package:cheber_terminal/shared/components/slider/rx_slider.dart';
-import 'package:cheber_terminal/shared/components/slider/slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -16,7 +16,9 @@ final _definedThemes = [
 class ThemeController extends IController {
   final theme$ = RxStateStorage<CheberAppTheme>(
     "currentAppTheme",
-    (value) => CheberAppTheme.fromMap(json.decode(value)),
+    mapper: (value) => CheberAppTheme.fromMap(
+      json.decode(value),
+    ),
   );
   final themes$ = RxState<List<CheberAppTheme>>([]);
 

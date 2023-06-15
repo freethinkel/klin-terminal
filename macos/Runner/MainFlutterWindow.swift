@@ -18,7 +18,7 @@ class BlurryContainerViewController: NSViewController {
     blurView.blendingMode = .behindWindow
     blurView.state = .active
     if #available(macOS 10.14, *) {
-        blurView.material = .sidebar
+        blurView.material = .popover
     }
     self.view = blurView
   }
@@ -124,6 +124,7 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
     self.isOpaque = false
     self.backgroundColor = .windowBackgroundColor
     self.hasShadow = true
+    self.appearance = NSAppearance.init(named: NSAppearance.Name.vibrantDark)
     _initHandler();
     UserDefaults.standard.set(false, forKey: "ApplePressAndHoldEnabled");
 
