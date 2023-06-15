@@ -1,0 +1,31 @@
+name: "Gruvbox"
+selection: 0xffdfbf8e
+primary: 0xff282828
+colors:
+  background: 0xff282828
+  foreground: 0xffdfbf8e
+
+  cursor: 0xaadfbf8e
+  selection: 0xaadfbf8e
+
+  black: 0xff665c54
+  red: 0xffea6962
+  green: 0xffa9b665
+  yellow: 0xffe78a4e
+  blue: 0xff7daea3
+  magenta: 0xffd3869b
+  cyan: 0xff89b482
+  white: 0xffdfbf8e
+
+  bright_black: 0xff928374
+  bright_red: 0xffea6962
+  bright_green: 0xffa9b665
+  bright_yellow: 0xffe3a84e
+  bright_blue: 0xff7daea3
+  bright_magenta: 0xffd3869b
+  bright_cyan: 0xff89b482
+  bright_white: 0xffdfbf8e
+
+  search_hit_background: 0xFF434c5e
+  search_hit_background_current: 0xFF88c0d0
+  search_hit_foreground: 0xff2e3440

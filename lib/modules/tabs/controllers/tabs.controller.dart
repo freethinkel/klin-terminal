@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:cheber_terminal/core/models/controller.dart';
 import 'package:cheber_terminal/core/models/rx.dart';
 import 'package:cheber_terminal/modules/tabs/models/tab.dart';
-import 'package:cheber_terminal/modules/terminal/screens/terminal_view.dart';
+import 'package:cheber_terminal/modules/terminal/screens/terminal.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-import 'package:xterm/ui.dart';
 
 class TabsController extends IController {
   late final tabs$ = RxState<List<TabNode>>(

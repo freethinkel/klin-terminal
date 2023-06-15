@@ -27,8 +27,28 @@ class _CheberTabState extends State<CheberTab> {
   var isHover = false;
   var isHoverAddBtn = false;
 
+  Widget _buildText() {
+    return DefaultTextStyle(
+      style: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        overflow: TextOverflow.ellipsis,
+        color: DefaultTextStyle.of(context).style.color?.withOpacity(
+            isHover || widget.isActive || !widget.isAllowClose ? 1 : 0.8),
+      ),
+      child: widget.child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var bgColor = AppTheme.of(context).selection.withOpacity(
+          (isHover || widget.isActive) && widget.isAllowClose ? 0.12 : 0,
+        );
+    var closeBtnBgColor = AppTheme.of(context).selection.withOpacity(
+          isHoverAddBtn ? 0.5 : 0,
+        );
+
     return DraggableWindow(
       disabled: widget.isAllowClose,
       child: FractionallySizedBox(
@@ -36,13 +56,12 @@ class _CheberTabState extends State<CheberTab> {
         child: Tappable(
           onTap: widget.onTap,
           onHover: (state) => setState(() => isHover = state),
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 50),
+            curve: Curves.easeInOut,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
             decoration: BoxDecoration(
-              color: AppTheme.of(context).selection.withOpacity(
-                  (isHover || widget.isActive) && widget.isAllowClose
-                      ? 0.12
-                      : 0),
+              color: bgColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,35 +69,20 @@ class _CheberTabState extends State<CheberTab> {
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
-                    child: DefaultTextStyle(
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        overflow: TextOverflow.ellipsis,
-                        color: DefaultTextStyle.of(context)
-                            .style
-                            .color
-                            ?.withOpacity(isHover ||
-                                    widget.isActive ||
-                                    !widget.isAllowClose
-                                ? 1
-                                : 0.8),
-                      ),
-                      child: widget.child,
-                    ),
+                    child: _buildText(),
                   ),
                 ),
                 if (widget.isAllowClose)
                   Tappable(
                     onTap: widget.onClose,
                     onHover: (state) => setState(() => isHoverAddBtn = state),
-                    child: Container(
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 50),
+                      curve: Curves.easeInOut,
                       padding: const EdgeInsets.all(3),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
-                        color: AppTheme.of(context).selection.withOpacity(
-                              isHoverAddBtn ? 0.5 : 0,
-                            ),
+                        color: closeBtnBgColor,
                       ),
                       child: const CheberIcon(
                         TablerIcons.x,

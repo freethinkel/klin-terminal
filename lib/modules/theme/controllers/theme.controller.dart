@@ -11,6 +11,8 @@ final _definedThemes = [
   'default_dark',
   'solarized_dark',
   'tokyo_night',
+  'nord_dark',
+  'gruvbox',
 ];
 
 class ThemeController extends IController {

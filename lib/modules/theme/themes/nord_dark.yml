@@ -1,0 +1,27 @@
+name: "Nord"
+selection: 0xff7e8ba7
+primary: 0xff2e3440
+colors:
+  background: 0xff2e3440
+  foreground: 0xffd8dee9
+  cursor: 0x77d8dee9
+  selection: 0xAA4c566a
+  black: 0xff3b4252
+  red: 0xffbf616a
+  green: 0xffa3be8c
+  yellow: 0xffebcb8b
+  blue: 0xff81a1c1
+  magenta: 0xffb48ead
+  cyan: 0xff88c0d0
+  white: 0xffe5e9f0
+  bright_black: 0xff4c566a
+  bright_red: 0xffbf616a
+  bright_green: 0xffa3be8c
+  bright_yellow: 0xffebcb8b
+  bright_blue: 0xff81a1c1
+  bright_magenta: 0xffb48ead
+  bright_cyan: 0xff8fbcbb
+  bright_white: 0xffeceff4
+  search_hit_background: 0xFF434c5e
+  search_hit_background_current: 0xFF88c0d0
+  search_hit_foreground: 0xff2e3440
