@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.17
-      - run: ./build.sh
+      - run: mv ./build/macos/Build/Products/Release/cheber_terminal.app ./build/macos/Cheber\ Terminal.app && npx appdmg ./create_dmg.json ./CheberTerminal.dmg
 
       - name: Create Version Number
         id: versions
