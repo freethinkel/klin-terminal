@@ -43,6 +43,7 @@ class _CheberTerminalViewState extends State<CheberTerminalView> {
       arguments: shell.args,
       columns: terminal.viewWidth,
       rows: terminal.viewHeight,
+      environment: Platform.environment,
     );
 
     pty.output

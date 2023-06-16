@@ -1,5 +1,3 @@
-import 'package:cheber_terminal/core/widgets/controller_connector.dart';
-import 'package:cheber_terminal/core/widgets/rx_builder.dart';
 import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
 import 'package:cheber_terminal/modules/settings/components/settings_page.dart';
 import 'package:cheber_terminal/modules/settings/components/theme_preview.dart';

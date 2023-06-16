@@ -72,7 +72,7 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
     channel!.setMethodCallHandler({
       (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
       let methodName: String = call.method
-      let args: [String: Any] = call.arguments as? [String: Any] ?? [:]
+      let _: [String: Any] = call.arguments as? [String: Any] ?? [:]
 
       switch (methodName) {
         case "start_dragging":
@@ -153,18 +153,6 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
     
   func windowDidMove(_ notification: Notification) {
     _emitEvent("moved")
-  }
-    
-  func windowDidBecomeKey(_ notification: Notification) {
-    if (self is NSPanel) {
-      _emitEvent("focus");
-    }
-  }
-    
-  func windowDidResignKey(_ notification: Notification) {
-    if (self is NSPanel) {
-        _emitEvent("blur");
-    }
   }
     
   func windowDidBecomeMain(_ notification: Notification) {
