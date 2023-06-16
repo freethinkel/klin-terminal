@@ -76,17 +76,22 @@ class _CheberTabState extends State<CheberTab> {
                   Tappable(
                     onTap: widget.onClose,
                     onHover: (state) => setState(() => isHoverAddBtn = state),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 50),
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 100),
                       curve: Curves.easeInOut,
-                      padding: const EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: closeBtnBgColor,
-                      ),
-                      child: const CheberIcon(
-                        TablerIcons.x,
-                        size: 16,
+                      opacity: isHover ? 1 : 0,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 50),
+                        curve: Curves.easeInOut,
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: closeBtnBgColor,
+                        ),
+                        child: const CheberIcon(
+                          TablerIcons.x,
+                          size: 16,
+                        ),
                       ),
                     ),
                   ),
