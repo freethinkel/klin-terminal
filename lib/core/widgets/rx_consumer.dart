@@ -40,6 +40,9 @@ class _ConsumerState extends State<RxConsumer> {
   final Set<RxState> _states = Set<RxState>();
   List<StreamSubscription> _subscriptions = [];
   late final watcher = StateWatcherImpl(onRegisterState: (state) {
+    if (_states.contains(state)) {
+      return;
+    }
     _states.add(state);
     _onUpdate();
   });
