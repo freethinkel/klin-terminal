@@ -13,6 +13,7 @@ dependencies:
   get_it: ^7.6.0
   super_drag_and_drop: ^0.4.0
   xterm:
+    # path: ../test/xterm.dart
     git:
       url: https://github.com/cheber-org/xterm.dart.git
       ref: master
