@@ -25,8 +25,14 @@ class MappingsConnector extends RxConsumer {
 
     return Shortcuts(
       shortcuts: shortcuts,
-      child: ActionsConnector(
-        child: child,
+      child: Focus(
+        onKey: (node, event) {
+          // print(RawKeyboard.instance.keysPressed);
+          return KeyEventResult.ignored;
+        },
+        child: ActionsConnector(
+          child: child,
+        ),
       ),
     );
   }

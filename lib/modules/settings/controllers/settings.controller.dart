@@ -6,7 +6,6 @@ import 'package:cheber_terminal/modules/settings/screens/advanced_view.dart';
 import 'package:cheber_terminal/modules/settings/screens/general_view.dart';
 import 'package:cheber_terminal/modules/settings/screens/themes_view.dart';
 import 'package:cheber_terminal/shared/components/icon/icon.dart';
-import 'package:flutter/widgets.dart';
 
 class SettingsController extends IController {
   final tabs = [

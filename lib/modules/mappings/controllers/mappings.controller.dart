@@ -156,6 +156,50 @@ class MappingsController extends IController {
         meta: true,
       ),
       intent: CloseTerminalMappingAction(),
-    )
+    ),
+    Mapping(
+      key: "focus_up",
+      activator: SingleActivator(
+        LogicalKeyboardKey.keyK,
+        meta: true,
+        includeRepeats: false,
+      ),
+      intent: FocusTerminalPaneMappingAction(
+        direction: AxisDirection.up,
+      ),
+    ),
+    Mapping(
+      key: "focus_down",
+      activator: SingleActivator(
+        LogicalKeyboardKey.keyJ,
+        meta: true,
+        includeRepeats: false,
+      ),
+      intent: FocusTerminalPaneMappingAction(
+        direction: AxisDirection.down,
+      ),
+    ),
+    Mapping(
+      key: "focus_left",
+      activator: SingleActivator(
+        LogicalKeyboardKey.keyH,
+        meta: true,
+        includeRepeats: false,
+      ),
+      intent: FocusTerminalPaneMappingAction(
+        direction: AxisDirection.left,
+      ),
+    ),
+    Mapping(
+      key: "focus_right",
+      activator: SingleActivator(
+        LogicalKeyboardKey.keyL,
+        meta: true,
+        includeRepeats: false,
+      ),
+      intent: FocusTerminalPaneMappingAction(
+        direction: AxisDirection.right,
+      ),
+    ),
   ];
 }

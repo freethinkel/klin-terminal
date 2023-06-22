@@ -32,3 +32,10 @@ class SplitRightMappingAction extends Intent {
 class CloseTerminalMappingAction extends Intent {
   const CloseTerminalMappingAction();
 }
+
+class FocusTerminalPaneMappingAction extends Intent {
+  const FocusTerminalPaneMappingAction({
+    required this.direction,
+  });
+  final AxisDirection direction;
+}

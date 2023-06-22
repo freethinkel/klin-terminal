@@ -2,6 +2,7 @@ import 'package:cheber_terminal/modules/settings/screens/settings_view.dart';
 import 'package:cheber_terminal/shared/components/modal/modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MenuBar extends StatelessWidget {
   const MenuBar({
@@ -26,9 +27,13 @@ class MenuBar extends StatelessWidget {
             const PlatformMenuItem(label: "About"),
             const PlatformProvidedMenuItem(
               type: PlatformProvidedMenuItemType.quit,
-            )
+            ),
           ],
         ),
+        const PlatformMenu(
+          label: "View",
+          menus: [],
+        )
       ],
       child: child,
     );

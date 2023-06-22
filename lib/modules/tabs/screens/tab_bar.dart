@@ -1,4 +1,3 @@
-import 'package:cheber_terminal/core/models/rx.dart';
 import 'package:cheber_terminal/core/widgets/rx_builder.dart';
 import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
 import 'package:cheber_terminal/modules/channel/controllers/channel.controller.dart';

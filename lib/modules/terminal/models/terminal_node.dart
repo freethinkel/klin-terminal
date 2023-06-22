@@ -1,4 +1,5 @@
 import 'package:cheber_terminal/modules/terminal/models/terminal_node_pty.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 
 class TerminalNode extends TerminalNodePty {
@@ -11,4 +12,26 @@ class TerminalNode extends TerminalNodePty {
   Axis splitAxis;
   TerminalNode? parent;
   List<TerminalNode> children;
+
+  void focusPane(AxisDirection direction) {
+    TerminalNode? getParent(TerminalNode? node, Axis axis) {
+      if (node == null) {
+        return null;
+      }
+      return node.splitAxis == axis ? node : getParent(node.parent, axis);
+    }
+
+    var axis = AxisDirection.down == direction || AxisDirection.up == direction
+        ? Axis.vertical
+        : Axis.horizontal;
+    var parent = getParent(this.parent, axis);
+
+    if (parent == null) {
+      return;
+    }
+    var isPrev =
+        direction == AxisDirection.up || direction == AxisDirection.left;
+    var node = parent.children[isPrev ? 0 : 1];
+    node.focusNode.requestFocus();
+  }
 }

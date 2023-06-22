@@ -130,7 +130,12 @@ class _TabViewTreeState extends State<TabViewTree> {
         CloseTerminalMappingAction: CallbackAction(onInvoke: (_) {
           widget.onClose(terminalNode);
           return null;
-        })
+        }),
+        FocusTerminalPaneMappingAction:
+            CallbackAction<FocusTerminalPaneMappingAction>(onInvoke: (intent) {
+          terminalNode.focusPane(intent.direction);
+          return null;
+        }),
       },
       child: ContextMenuConnector(
         terminalNode: terminalNode,

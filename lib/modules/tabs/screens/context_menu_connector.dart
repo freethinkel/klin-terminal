@@ -1,6 +1,5 @@
 import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
 import 'package:cheber_terminal/modules/mappings/controllers/mappings.controller.dart';
-import 'package:cheber_terminal/modules/tabs/controllers/tabs.controller.dart';
 import 'package:cheber_terminal/modules/terminal/models/terminal_node.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +21,7 @@ class ContextMenuConnector extends RxConsumer {
 
   @override
   Widget build(BuildContext context, watcher) {
-    final mappingsController = watcher.controller<MappingsController>();
+    final _ = watcher.controller<MappingsController>();
 
     return ContextMenuWidget(
       child: child,
