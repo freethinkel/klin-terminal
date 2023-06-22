@@ -570,10 +570,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: c6c251af29322f3e64a751c4300ea774842a752e
+      resolved-ref: "59c10da9fb894d78cf70d1093391e77f61247be0"
       url: "https://github.com/cheber-org/xterm.dart.git"
     source: git
-    version: "3.6.1-pre"
+    version: "3.6.2"
   yaml:
     dependency: "direct main"
     description:
