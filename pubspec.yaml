@@ -12,15 +12,19 @@ dependencies:
   flutter_pty: ^0.4.0
   get_it: ^7.6.0
   super_drag_and_drop: ^0.4.0
+  gesture_x_detector: ^1.1.1
+  super_context_menu: ^0.1.0
   xterm:
-    # path: ../test/xterm.dart
-    git:
-      url: https://github.com/cheber-org/xterm.dart.git
-      ref: master
+    path: ../test/xterm.dart
+    # git:
+    #   url: https://github.com/cheber-org/xterm.dart.git
+    #   ref: master
   rxdart: ^0.27.7
   yaml: ^3.1.2
   shared_preferences: ^2.1.2
   uuid: ^3.0.7
+  collection: ^1.17.1
+  multi_split_view: ^2.4.0
 
 dev_dependencies:
   flutter_test:

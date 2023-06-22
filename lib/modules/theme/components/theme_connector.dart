@@ -18,6 +18,12 @@ class AppTheme extends InheritedWidget {
     return true;
   }
 
+  static Color colorWithLightness(Color color, double lightness) {
+    var hslColor = HSLColor.fromColor(color);
+
+    return hslColor.withLightness(hslColor.lightness + lightness).toColor();
+  }
+
   static CheberAppTheme of(BuildContext context) {
     var appTheme = context.dependOnInheritedWidgetOfExactType<AppTheme>();
 

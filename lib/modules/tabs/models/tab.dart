@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:cheber_terminal/core/models/rx.dart';
+import 'package:cheber_terminal/modules/terminal/models/terminal_node.dart';
 
 class TabNode {
   TabNode({
-    required this.title,
-    required this.child,
     required this.uuid,
   });
+  RxState<String> title = RxState("");
   String uuid;
-  String title;
-  Widget child;
+
+  TerminalNode? lastFocusedNode;
 }

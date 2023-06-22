@@ -129,5 +129,33 @@ class MappingsController extends IController {
       ),
       intent: SetTabMappingAction(9),
     ),
+    Mapping(
+      key: "split_down",
+      activator: SingleActivator(
+        LogicalKeyboardKey.underscore,
+        shift: true,
+        meta: true,
+        includeRepeats: false,
+      ),
+      intent: SplitDownMappingAction(),
+    ),
+    Mapping(
+      key: "split_right",
+      activator: SingleActivator(
+        LogicalKeyboardKey.bar,
+        shift: true,
+        meta: true,
+        includeRepeats: false,
+      ),
+      intent: SplitRightMappingAction(),
+    ),
+    Mapping(
+      key: "close_terminal",
+      activator: SingleActivator(
+        LogicalKeyboardKey.keyX,
+        meta: true,
+      ),
+      intent: CloseTerminalMappingAction(),
+    )
   ];
 }

@@ -19,7 +19,6 @@ class _SettingsTabsState extends State<SettingsTabs> {
   @override
   Widget build(BuildContext context) {
     return DraggableWindow(
-      ignoreDoubleTap: true,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(

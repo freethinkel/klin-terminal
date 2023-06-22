@@ -11,6 +11,7 @@ class CheberTab extends StatefulWidget {
     this.isAllowClose = true,
     this.onTap,
     this.onClose,
+    this.focusNode,
     super.key,
   });
   final bool isActive;
@@ -18,6 +19,7 @@ class CheberTab extends StatefulWidget {
   final Widget child;
   final Function()? onTap;
   final Function()? onClose;
+  final FocusNode? focusNode;
 
   @override
   State<CheberTab> createState() => _CheberTabState();
@@ -27,15 +29,15 @@ class _CheberTabState extends State<CheberTab> {
   var isHover = false;
   var isHoverAddBtn = false;
 
-  Widget _buildText() {
+  Widget _buildText(BuildContext context) {
     return DefaultTextStyle(
-      style: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        overflow: TextOverflow.ellipsis,
-        color: DefaultTextStyle.of(context).style.color?.withOpacity(
-            isHover || widget.isActive || !widget.isAllowClose ? 1 : 0.8),
-      ),
+      style: DefaultTextStyle.of(context).style.copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            overflow: TextOverflow.ellipsis,
+            color: DefaultTextStyle.of(context).style.color?.withOpacity(
+                isHover || widget.isActive || !widget.isAllowClose ? 1 : 0.8),
+          ),
       child: widget.child,
     );
   }
@@ -49,10 +51,10 @@ class _CheberTabState extends State<CheberTab> {
           isHoverAddBtn ? 0.5 : 0,
         );
 
-    return DraggableWindow(
-      disabled: widget.isAllowClose,
-      child: FractionallySizedBox(
-        heightFactor: 1,
+    return FractionallySizedBox(
+      heightFactor: 1,
+      child: Focus(
+        focusNode: widget.focusNode,
         child: Tappable(
           onTap: widget.onTap,
           onHover: (state) => setState(() => isHover = state),
@@ -69,7 +71,7 @@ class _CheberTabState extends State<CheberTab> {
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
-                    child: _buildText(),
+                    child: _buildText(context),
                   ),
                 ),
                 if (widget.isAllowClose)

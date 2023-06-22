@@ -13,6 +13,7 @@ class GeneralSettingsView extends RxConsumer {
   @override
   Widget build(BuildContext context, watcher) {
     final settingsController = watcher.controller<SettingsController>();
+
     return SettingsPage(
       title: "General",
       child: Column(

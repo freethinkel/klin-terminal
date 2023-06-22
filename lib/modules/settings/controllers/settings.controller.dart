@@ -2,9 +2,11 @@ import 'package:cheber_terminal/core/models/controller.dart';
 import 'package:cheber_terminal/core/models/rx.dart';
 import 'package:cheber_terminal/core/models/rx_storage.dart';
 import 'package:cheber_terminal/modules/settings/models/settings.dart';
+import 'package:cheber_terminal/modules/settings/screens/advanced_view.dart';
 import 'package:cheber_terminal/modules/settings/screens/general_view.dart';
 import 'package:cheber_terminal/modules/settings/screens/themes_view.dart';
 import 'package:cheber_terminal/shared/components/icon/icon.dart';
+import 'package:flutter/widgets.dart';
 
 class SettingsController extends IController {
   final tabs = [
@@ -23,11 +25,11 @@ class SettingsController extends IController {
     //   icon: TablerIcons.keyboard,
     //   view: const Text("keymaps"),
     // ),
-    // SettingsTab(
-    //   title: "Advanced",
-    //   icon: TablerIcons.tools,
-    //   view: const Text("advanced"),
-    // ),
+    SettingsTab(
+      title: "Advanced",
+      icon: TablerIcons.tools,
+      view: const AdvancedSettingsView(),
+    ),
   ];
   late final currentTab$ = RxState<SettingsTab>(tabs.first);
 
@@ -55,5 +57,16 @@ class SettingsController extends IController {
     "lineHeight",
     mapper: (value) => double.tryParse(value),
     initialValue: 1.4,
+  );
+
+  final customVerticalLineOffset$ = RxStateStorage(
+    "customVerticalLineOffset",
+    mapper: (value) => double.tryParse(value),
+    initialValue: 0.0,
+  );
+  final enableCustomGlyphs$ = RxStateStorage(
+    "enableCustomGlyphs",
+    mapper: (value) => value == "true",
+    initialValue: true,
   );
 }
