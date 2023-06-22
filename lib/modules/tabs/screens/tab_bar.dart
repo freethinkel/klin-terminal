@@ -29,6 +29,7 @@ class CheberTabBar extends RxConsumer {
     final bgColor = AppTheme.of(context).primary.withOpacity(opacity ?? 1);
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Column(
         children: [
           DraggableWindow(
