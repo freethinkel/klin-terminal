@@ -568,9 +568,11 @@ packages:
   xterm:
     dependency: "direct main"
     description:
-      path: "../test/xterm.dart"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: c6c251af29322f3e64a751c4300ea774842a752e
+      url: "https://github.com/cheber-org/xterm.dart.git"
+    source: git
     version: "3.6.1-pre"
   yaml:
     dependency: "direct main"

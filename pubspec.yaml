@@ -1,7 +1,7 @@
 name: cheber_terminal
 description: Cheber terminal
 publish_to: "none"
-version: 1.0.1+1
+version: 1.1.0+1
 
 environment:
   sdk: ">=3.0.1 <4.0.0"
@@ -15,10 +15,10 @@ dependencies:
   gesture_x_detector: ^1.1.1
   super_context_menu: ^0.1.0
   xterm:
-    path: ../test/xterm.dart
-    # git:
-    #   url: https://github.com/cheber-org/xterm.dart.git
-    #   ref: master
+    # path: ../test/xterm.dart
+    git:
+      url: https://github.com/cheber-org/xterm.dart.git
+      ref: master
   rxdart: ^0.27.7
   yaml: ^3.1.2
   shared_preferences: ^2.1.2
