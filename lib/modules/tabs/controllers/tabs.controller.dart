@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:cheber_terminal/core/models/controller.dart';
-import 'package:cheber_terminal/core/models/rx.dart';
-import 'package:cheber_terminal/modules/tabs/models/tab.dart';
+import 'package:oshmes_terminal/core/models/controller.dart';
+import 'package:oshmes_terminal/core/models/rx.dart';
+import 'package:oshmes_terminal/modules/tabs/models/tab.dart';
 
 import 'package:uuid/uuid.dart';
 

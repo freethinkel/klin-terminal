@@ -1,4 +1,4 @@
-import 'package:cheber_terminal/core/models/rx.dart';
+import 'package:oshmes_terminal/core/models/rx.dart';
 import 'package:flutter/material.dart';
 
 class RxStateBuilder<T> extends StatelessWidget {

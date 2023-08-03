@@ -1,4 +1,4 @@
-package com.example.cheber_terminal
+package com.example.oshmes_terminal
 
 import io.flutter.embedding.android.FlutterActivity
 

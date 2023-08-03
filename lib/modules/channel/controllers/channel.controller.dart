@@ -1,9 +1,9 @@
-import 'package:cheber_terminal/core/models/controller.dart';
-import 'package:cheber_terminal/core/models/rx.dart';
+import 'package:oshmes_terminal/core/models/controller.dart';
+import 'package:oshmes_terminal/core/models/rx.dart';
 import 'package:flutter/services.dart';
 
 class ChannelController extends IController {
-  final _channelName = 'ru.cheber.terminal/channel';
+  final _channelName = 'ru.freethinkel.oshmesterminal/channel';
   late final channel = MethodChannel(_channelName);
 
   final maximized$ = RxState(false);

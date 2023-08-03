@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:cheber_terminal/modules/terminal/models/shell.dart';
+import 'package:oshmes_terminal/modules/terminal/models/shell.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pty/flutter_pty.dart';
 import 'package:uuid/uuid.dart';
@@ -24,7 +24,10 @@ class TerminalNodePty {
     arguments: _shell.args,
     columns: terminal.viewWidth,
     rows: terminal.viewHeight,
-    environment: Platform.environment,
+    environment: {
+      ...Platform.environment,
+      "TERM": "xterm-256color",
+    },
   );
 
   Pty get pty => _pty;
@@ -58,6 +61,7 @@ class TerminalNodePty {
     terminal.onResize = (w, h, pw, ph) {
       pty.resize(h, w);
     };
+
     terminal.onTitleChange = (newTitle) {
       title = newTitle;
       onChangeTitle?.call(newTitle);

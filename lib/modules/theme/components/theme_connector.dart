@@ -1,11 +1,11 @@
-import 'package:cheber_terminal/core/widgets/controller_connector.dart';
-import 'package:cheber_terminal/core/widgets/rx_builder.dart';
-import 'package:cheber_terminal/modules/theme/controllers/theme.controller.dart';
-import 'package:cheber_terminal/modules/theme/models/theme.dart';
+import 'package:oshmes_terminal/core/widgets/controller_connector.dart';
+import 'package:oshmes_terminal/core/widgets/rx_builder.dart';
+import 'package:oshmes_terminal/modules/theme/controllers/theme.controller.dart';
+import 'package:oshmes_terminal/modules/theme/models/theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme extends InheritedWidget {
-  final CheberAppTheme theme;
+  final OshmesAppTheme theme;
 
   const AppTheme({
     required this.theme,
@@ -24,7 +24,7 @@ class AppTheme extends InheritedWidget {
     return hslColor.withLightness(hslColor.lightness + lightness).toColor();
   }
 
-  static CheberAppTheme of(BuildContext context) {
+  static OshmesAppTheme of(BuildContext context) {
     var appTheme = context.dependOnInheritedWidgetOfExactType<AppTheme>();
 
     return appTheme!.theme;

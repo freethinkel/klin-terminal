@@ -1,21 +1,21 @@
-import 'package:cheber_terminal/modules/tabs/screens/tab_bar.dart';
+import 'package:oshmes_terminal/modules/tabs/screens/tab_bar.dart';
 import 'package:flutter/material.dart';
 
-class CheberTerminalAppView extends StatefulWidget {
-  const CheberTerminalAppView({super.key});
+class OshmesTerminalAppView extends StatefulWidget {
+  const OshmesTerminalAppView({super.key});
 
   @override
-  State<CheberTerminalAppView> createState() => _CheberTerminalAppViewState();
+  State<OshmesTerminalAppView> createState() => _OshmesTerminalAppViewState();
 }
 
-class _CheberTerminalAppViewState extends State<CheberTerminalAppView> {
+class _OshmesTerminalAppViewState extends State<OshmesTerminalAppView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.transparent,
       body: FractionallySizedBox(
         widthFactor: 1,
-        child: CheberTabBar(),
+        child: OshmesTabBar(),
       ),
     );
   }

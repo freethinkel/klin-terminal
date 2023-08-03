@@ -1,4 +1,4 @@
-import 'package:cheber_terminal/core/models/rx.dart';
+import 'package:oshmes_terminal/core/models/rx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RxStateStorage<T> extends RxState<T> {

@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:cheber_terminal/core/models/controller.dart';
-import 'package:cheber_terminal/core/models/rx.dart';
-import 'package:cheber_terminal/core/widgets/controller_connector.dart';
+import 'package:oshmes_terminal/core/models/controller.dart';
+import 'package:oshmes_terminal/core/models/rx.dart';
+import 'package:oshmes_terminal/core/widgets/controller_connector.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class StateWatcher {
@@ -31,13 +31,15 @@ abstract class RxConsumer extends StatefulWidget {
   const RxConsumer({super.key});
   Widget build(BuildContext context, StateWatcher watcher);
 
+  void onInit() {}
+
   @override
   // ignore: library_private_types_in_public_api
   _ConsumerState createState() => _ConsumerState();
 }
 
 class _ConsumerState extends State<RxConsumer> {
-  final Set<RxState> _states = Set<RxState>();
+  final Set<RxState> _states = {};
   List<StreamSubscription> _subscriptions = [];
   late final watcher = StateWatcherImpl(onRegisterState: (state) {
     if (_states.contains(state)) {
@@ -61,6 +63,12 @@ class _ConsumerState extends State<RxConsumer> {
       subscription.cancel();
     }
     _subscriptions = [];
+  }
+
+  @override
+  void initState() {
+    widget.onInit();
+    super.initState();
   }
 
   @override

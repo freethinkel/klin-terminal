@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.17
-      - run: mv ./build/macos/Build/Products/Release/cheber_terminal.app ./build/macos/Cheber\ Terminal.app && npx appdmg ./create_dmg.json ./CheberTerminal.dmg
+      - run: mv ./build/macos/Build/Products/Release/oshmes_terminal.app ./build/macos/Oshmes\ Terminal.app && npx appdmg ./create_dmg.json ./OshmesTerminal.dmg
 
       - name: Create Version Number
         id: versions
@@ -56,6 +56,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./CheberTerminal.dmg
-          asset_name: CheberTerminal.dmg
+          asset_path: ./OshmesTerminal.dmg
+          asset_name: OshmesTerminal.dmg
           asset_content_type: application/octet-stream

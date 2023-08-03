@@ -1,6 +1,6 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
-import 'package:cheber_terminal/shared/components/icon/icon.dart';
-import 'package:cheber_terminal/shared/components/tappable/tappable.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/shared/components/icon/icon.dart';
+import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
 import 'package:flutter/material.dart';
 
 class AddNewTabButton extends StatefulWidget {
@@ -21,16 +21,24 @@ class _AddNewTabButtonState extends State<AddNewTabButton> {
   Widget build(BuildContext context) {
     return FractionallySizedBox(
       heightFactor: 1,
-      child: Tappable(
-        onTapUp: widget.onTap,
-        onHover: (state) => setState(() => isHover = state),
-        child: Container(
-          decoration: BoxDecoration(
+      child: Container(
+        padding: EdgeInsets.all(4),
+        alignment: Alignment.center,
+        child: Tappable(
+          onTapUp: widget.onTap,
+          onHover: (state) => setState(() => isHover = state),
+          child: Container(
+            height: 30,
+            width: 30,
+            decoration: BoxDecoration(
               color: AppTheme.of(context)
                   .selection
-                  .withOpacity(isHover ? 0.12 : 0)),
-          padding: const EdgeInsets.all(4),
-          child: const CheberIcon(TablerIcons.plus, size: 16),
+                  .withOpacity(isHover ? 0.12 : 0),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            padding: const EdgeInsets.all(4),
+            child: const OshmesIcon(TablerIcons.plus, size: 16),
+          ),
         ),
       ),
     );

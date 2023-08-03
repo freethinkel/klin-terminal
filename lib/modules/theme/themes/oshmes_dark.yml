@@ -1,0 +1,27 @@
+name: "Oshmes"
+selection: 0xffbbbbbb
+primary: 0xff1f1f1f
+colors:
+  background: 0xff1f1f1f
+  foreground: 0xffbbbbbb
+  cursor: 0x77d8dee9
+  selection: 0xAA4c566a
+  black: 0xff3a3a3a
+  red: 0xffF97583
+  green: 0xff71efb3
+  yellow: 0xffFFAB70
+  blue: 0xff9bcaff
+  magenta: 0xffB392F0
+  cyan: 0xffa0fff8
+  white: 0xffbbbbbb
+  bright_black: 0xff3a3a3a
+  bright_red: 0xffF97583
+  bright_green: 0xff71efb3
+  bright_yellow: 0xffFFAB70
+  bright_blue: 0xff9bcaff
+  bright_magenta: 0xffB392F0
+  bright_cyan: 0xffa0fff8
+  bright_white: 0xffbbbbbb
+  search_hit_background: 0xFF434c5e
+  search_hit_background_current: 0xFF88c0d0
+  search_hit_foreground: 0xff1f1f1f

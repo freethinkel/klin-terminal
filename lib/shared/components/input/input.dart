@@ -1,9 +1,9 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CheberInput extends StatefulWidget {
-  const CheberInput({
+class OshmesInput extends StatefulWidget {
+  const OshmesInput({
     this.label,
     this.placeholder,
     this.controller,
@@ -20,10 +20,10 @@ class CheberInput extends StatefulWidget {
   final TextEditingController? controller;
 
   @override
-  State<CheberInput> createState() => _CheberInputState();
+  State<OshmesInput> createState() => _OshmesInputState();
 }
 
-class _CheberInputState extends State<CheberInput> {
+class _OshmesInputState extends State<OshmesInput> {
   late final _focusNode = widget.focusNode ?? FocusNode();
   var isFocus = false;
 

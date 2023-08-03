@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CheberTitle extends StatelessWidget {
-  const CheberTitle(
+class OshmesTitle extends StatelessWidget {
+  const OshmesTitle(
     this.text, {
     super.key,
   });

@@ -1,7 +1,7 @@
-import 'package:cheber_terminal/core/widgets/rx_builder.dart';
-import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
-import 'package:cheber_terminal/modules/settings/components/settings_tab.dart';
-import 'package:cheber_terminal/modules/settings/controllers/settings.controller.dart';
+import 'package:oshmes_terminal/core/widgets/rx_builder.dart';
+import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
+import 'package:oshmes_terminal/modules/settings/components/settings_tab.dart';
+import 'package:oshmes_terminal/modules/settings/controllers/settings.controller.dart';
 import 'package:flutter/material.dart';
 
 class SettingsView extends RxConsumer {

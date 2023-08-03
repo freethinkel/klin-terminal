@@ -1,5 +1,5 @@
-import 'package:cheber_terminal/modules/settings/screens/settings_view.dart';
-import 'package:cheber_terminal/shared/components/modal/modal.dart';
+import 'package:oshmes_terminal/modules/settings/screens/settings_view.dart';
+import 'package:oshmes_terminal/shared/components/modal/modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +17,7 @@ class MenuBar extends StatelessWidget {
     return PlatformMenuBar(
       menus: [
         PlatformMenu(
-          label: "Cheber Terminal",
+          label: "Oshmes Terminal",
           menus: [
             PlatformMenuItem(
                 label: "Settings",

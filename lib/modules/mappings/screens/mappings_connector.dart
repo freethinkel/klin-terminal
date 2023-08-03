@@ -1,8 +1,7 @@
-import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
-import 'package:cheber_terminal/modules/mappings/controllers/mappings.controller.dart';
-import 'package:cheber_terminal/modules/mappings/screens/actions_connector.dart';
+import 'package:oshmes_terminal/core/widgets/controller_connector.dart';
+import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
+import 'package:oshmes_terminal/modules/mappings/controllers/mappings.controller.dart';
 
 class MappingsConnector extends RxConsumer {
   const MappingsConnector({
@@ -12,36 +11,23 @@ class MappingsConnector extends RxConsumer {
   final Widget child;
 
   @override
-  Widget build(BuildContext context, watcher) {
-    final mappingsController = watcher.controller<MappingsController>();
-    final shortcuts = Map.fromEntries(
-      mappingsController.mappings.map(
-        (item) => MapEntry(
-          item.activator,
-          item.intent,
-        ),
-      ),
-    );
-
-    return Shortcuts(
-      shortcuts: shortcuts,
-      child: Focus(
-        onKey: (node, event) {
-          // print(RawKeyboard.instance.keysPressed);
-          return KeyEventResult.ignored;
-        },
-        child: ActionsConnector(
-          child: child,
-        ),
-      ),
-    );
+  void onInit() {
+    ControllerConnector.of<MappingController>().init();
   }
-}
 
-class LogManager extends ShortcutManager {
   @override
-  KeyEventResult handleKeypress(BuildContext context, RawKeyEvent event) {
-    print(event);
-    return super.handleKeypress(context, event);
+  Widget build(BuildContext context, watcher) {
+    final mappingController = watcher.controller<MappingController>();
+
+    return RawKeyboardListener(
+      focusNode: FocusNode(),
+      onKey: mappingController.onKey,
+      child: Focus(
+        onKey: (node, event) => mappingController.handled
+            ? KeyEventResult.handled
+            : KeyEventResult.ignored,
+        child: child,
+      ),
+    );
   }
 }

@@ -1,7 +1,7 @@
-import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
-import 'package:cheber_terminal/modules/settings/components/settings_page.dart';
-import 'package:cheber_terminal/modules/settings/components/theme_preview.dart';
-import 'package:cheber_terminal/modules/theme/controllers/theme.controller.dart';
+import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
+import 'package:oshmes_terminal/modules/settings/components/settings_page.dart';
+import 'package:oshmes_terminal/modules/settings/components/theme_preview.dart';
+import 'package:oshmes_terminal/modules/theme/controllers/theme.controller.dart';
 import 'package:flutter/material.dart';
 
 class ThemesSettingsView extends RxConsumer {
@@ -29,7 +29,7 @@ class ThemesSettingsView extends RxConsumer {
                           child: ThemePreview(
                             theme: theme,
                             isActive: theme == currentTheme,
-                            onSelect: () => themeController.theme$.next(theme),
+                            onSelect: () => themeController.setTheme(theme),
                           ),
                         ),
                       )

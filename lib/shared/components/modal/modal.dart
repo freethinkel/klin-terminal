@@ -1,11 +1,11 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 
 Future<void> openModa(BuildContext context, Widget child) async {
   showDialog(
     context: context,
     barrierDismissible: true,
-    barrierLabel: "CheberModal",
+    barrierLabel: "OshmesModal",
     useRootNavigator: false,
     barrierColor: Colors.transparent,
     builder: (context) => _Modal(child: child),

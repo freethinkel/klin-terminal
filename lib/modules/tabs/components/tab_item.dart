@@ -1,10 +1,10 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
-import 'package:cheber_terminal/shared/components/icon/icon.dart';
-import 'package:cheber_terminal/shared/components/tappable/tappable.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/shared/components/icon/icon.dart';
+import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
 import 'package:flutter/material.dart';
 
-class CheberTab extends StatefulWidget {
-  const CheberTab({
+class OshmesTab extends StatefulWidget {
+  const OshmesTab({
     required this.child,
     this.isActive = false,
     this.isAllowClose = true,
@@ -21,10 +21,10 @@ class CheberTab extends StatefulWidget {
   final FocusNode? focusNode;
 
   @override
-  State<CheberTab> createState() => _CheberTabState();
+  State<OshmesTab> createState() => _OshmesTabState();
 }
 
-class _CheberTabState extends State<CheberTab> {
+class _OshmesTabState extends State<OshmesTab> {
   var isHover = false;
   var isHoverAddBtn = false;
 
@@ -63,13 +63,14 @@ class _CheberTabState extends State<CheberTab> {
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
             decoration: BoxDecoration(
               color: bgColor,
+              borderRadius: BorderRadius.circular(6),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Container(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: _buildText(context),
                   ),
                 ),
@@ -80,7 +81,7 @@ class _CheberTabState extends State<CheberTab> {
                     child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 100),
                       curve: Curves.easeInOut,
-                      opacity: isHover ? 1 : 0,
+                      opacity: isHover || widget.isActive ? 1 : 0,
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 50),
                         curve: Curves.easeInOut,
@@ -89,7 +90,7 @@ class _CheberTabState extends State<CheberTab> {
                           borderRadius: BorderRadius.circular(4),
                           color: closeBtnBgColor,
                         ),
-                        child: const CheberIcon(
+                        child: const OshmesIcon(
                           TablerIcons.x,
                           size: 16,
                         ),

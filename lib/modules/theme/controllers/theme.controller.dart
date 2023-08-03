@@ -1,13 +1,16 @@
 import 'dart:convert';
 
-import 'package:cheber_terminal/core/models/controller.dart';
-import 'package:cheber_terminal/core/models/rx.dart';
-import 'package:cheber_terminal/core/models/rx_storage.dart';
-import 'package:cheber_terminal/modules/theme/models/theme.dart';
+import 'package:collection/collection.dart';
+import 'package:oshmes_terminal/core/models/controller.dart';
+import 'package:oshmes_terminal/core/models/rx.dart';
+import 'package:oshmes_terminal/core/models/rx_storage.dart';
+import 'package:oshmes_terminal/modules/theme/models/theme.dart';
 import 'package:flutter/services.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:yaml/yaml.dart';
 
 final _definedThemes = [
+  'oshmes_dark',
   'default_dark',
   'solarized_dark',
   'tokyo_night',
@@ -16,13 +19,21 @@ final _definedThemes = [
 ];
 
 class ThemeController extends IController {
-  final theme$ = RxStateStorage<CheberAppTheme>(
-    "currentAppTheme",
-    mapper: (value) => CheberAppTheme.fromMap(
-      json.decode(value),
-    ),
-  );
-  final themes$ = RxState<List<CheberAppTheme>>([]);
+  final currentThemeName$ = RxStateStorage<String>("currentThemeName",
+      mapper: (name) => name.toString(), initialValue: "Oshmes");
+  late final theme$ = RxState.fromSubject<OshmesAppTheme?>(BehaviorSubject()
+    ..addStream(
+      Rx.combineLatest2(
+        themes$.stream,
+        currentThemeName$.stream,
+        (themes, currentTheme) =>
+            themes.firstWhereOrNull((theme) => theme.name == currentTheme),
+      ),
+    ));
+  // currentThemeName$.map(
+  //   (name) => themes$.value?.firstWhereOrNull((theme) => theme.name == name),
+  // );
+  final themes$ = RxState<List<OshmesAppTheme>>([]);
 
   @override
   Future<void> init() async {
@@ -32,13 +43,19 @@ class ThemeController extends IController {
             .loadString('lib/modules/theme/themes/$theme.yml')
             .then(loadYaml)
             .then(
-              (yaml) => CheberAppTheme.fromMap(yaml),
+              (yaml) => OshmesAppTheme.fromMap(yaml),
             ),
       ),
     );
     themes$.next(themes);
-    if (theme$.value == null) {
-      theme$.next(themes.first);
-    }
+    // final themeName = await currentThemeName$.stream.first;
+    // final theme = themes.firstWhereOrNull((theme) => theme.name == themeName);
+    // if (theme$.value == null && theme != null) {
+    // theme$.next(theme);
+    // }
+  }
+
+  void setTheme(OshmesAppTheme theme) {
+    currentThemeName$.next(theme.name);
   }
 }

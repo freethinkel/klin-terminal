@@ -1,6 +1,6 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
-import 'package:cheber_terminal/modules/theme/models/theme.dart';
-import 'package:cheber_terminal/shared/components/tappable/tappable.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/modules/theme/models/theme.dart';
+import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
 import 'package:flutter/material.dart';
 
 class ThemePreview extends StatefulWidget {
@@ -11,7 +11,7 @@ class ThemePreview extends StatefulWidget {
     super.key,
   });
   final Function()? onSelect;
-  final CheberAppTheme theme;
+  final OshmesAppTheme theme;
   final bool isActive;
 
   @override

@@ -4,15 +4,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:xterm/ui.dart';
 
-class CheberThemeProvider {}
+class OshmesThemeProvider {}
 
-class CheberAppTheme {
+class OshmesAppTheme {
   String name;
   Color primary;
   Color selection;
   TerminalTheme terminalTheme;
 
-  CheberAppTheme({
+  OshmesAppTheme({
     this.name = "Unknown",
     required this.primary,
     required this.selection,
@@ -53,11 +53,11 @@ class CheberAppTheme {
     };
   }
 
-  static CheberAppTheme fromMap(Map data) {
+  static OshmesAppTheme fromMap(Map data) {
     Map colors = (data['colors'] as Map)
         .map((key, value) => MapEntry(key, Color(value)));
 
-    return CheberAppTheme(
+    return OshmesAppTheme(
       name: data['name'],
       primary: Color(data['primary']),
       selection: Color(data['selection']),

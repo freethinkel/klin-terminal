@@ -1,7 +1,7 @@
-import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
-import 'package:cheber_terminal/modules/settings/controllers/settings.controller.dart';
-import 'package:cheber_terminal/modules/terminal/components/terminal.dart';
-import 'package:cheber_terminal/modules/terminal/models/terminal_node.dart';
+import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
+import 'package:oshmes_terminal/modules/settings/controllers/settings.controller.dart';
+import 'package:oshmes_terminal/modules/terminal/components/terminal.dart';
+import 'package:oshmes_terminal/modules/terminal/models/terminal_node.dart';
 
 import 'package:flutter/material.dart';
 
@@ -52,7 +52,7 @@ class AttachedTerminalView extends RxConsumer {
     final enableCustomGlyphs =
         watcher.watch(settingsController.enableCustomGlyphs$) == true;
 
-    return CheberTerminalView(
+    return OshmesTerminalView(
       terminal: terminalNode.terminal,
       controller: terminalNode.terminalController,
       focusNode: terminalNode.focusNode,

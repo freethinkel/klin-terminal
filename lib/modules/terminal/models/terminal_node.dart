@@ -1,4 +1,4 @@
-import 'package:cheber_terminal/modules/terminal/models/terminal_node_pty.dart';
+import 'package:oshmes_terminal/modules/terminal/models/terminal_node_pty.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 

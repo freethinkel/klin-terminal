@@ -1,7 +1,5 @@
-import 'dart:async';
-
-import 'package:cheber_terminal/core/widgets/controller_connector.dart';
-import 'package:cheber_terminal/modules/channel/controllers/channel.controller.dart';
+import 'package:oshmes_terminal/core/widgets/controller_connector.dart';
+import 'package:oshmes_terminal/modules/channel/controllers/channel.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_x_detector/gesture_x_detector.dart';
 

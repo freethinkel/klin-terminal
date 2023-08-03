@@ -1,10 +1,12 @@
 import 'dart:ui';
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/modules/terminal/components/glow_effect.dart';
+import 'package:oshmes_terminal/modules/terminal/components/shader_wrapper.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:xterm/xterm.dart';
 
-class CheberTerminalView extends StatelessWidget {
-  const CheberTerminalView({
+class OshmesTerminalView extends StatelessWidget {
+  const OshmesTerminalView({
     required this.terminal,
     this.controller,
     this.fontSize,

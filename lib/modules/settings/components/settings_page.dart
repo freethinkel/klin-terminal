@@ -1,4 +1,4 @@
-import 'package:cheber_terminal/shared/components/title/title.dart';
+import 'package:oshmes_terminal/shared/components/title/title.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -20,7 +20,7 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CheberTitle(
+              OshmesTitle(
                 title,
               ),
               child

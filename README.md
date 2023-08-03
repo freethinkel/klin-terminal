@@ -1,4 +1,4 @@
-# cheber_terminal
+# oshmes_terminal
 
 A new Flutter project.
 

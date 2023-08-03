@@ -1,8 +1,8 @@
-import 'package:cheber_terminal/core/widgets/rx_consumer.dart';
-import 'package:cheber_terminal/modules/settings/components/settings_page.dart';
-import 'package:cheber_terminal/modules/settings/controllers/settings.controller.dart';
-import 'package:cheber_terminal/shared/components/checkbox/checkbox.dart';
-import 'package:cheber_terminal/shared/components/input/rx_input.dart';
+import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
+import 'package:oshmes_terminal/modules/settings/components/settings_page.dart';
+import 'package:oshmes_terminal/modules/settings/controllers/settings.controller.dart';
+import 'package:oshmes_terminal/shared/components/checkbox/checkbox.dart';
+import 'package:oshmes_terminal/shared/components/input/rx_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -35,7 +35,7 @@ class AdvancedSettingsView extends RxConsumer {
               state: settingsController.customVerticalLineOffset$,
             ),
           ),
-          CheberCheckBox(
+          OshmesCheckBox(
             description: "Enabled custom glyphs render",
             checked: enableCustomGlyphs,
             onChanged: (checked) {

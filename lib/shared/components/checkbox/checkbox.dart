@@ -1,11 +1,11 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
-import 'package:cheber_terminal/shared/components/icon/icon.dart';
-import 'package:cheber_terminal/shared/components/tappable/tappable.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/shared/components/icon/icon.dart';
+import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CheberCheckBox extends StatefulWidget {
-  const CheberCheckBox({
+class OshmesCheckBox extends StatefulWidget {
+  const OshmesCheckBox({
     required this.checked,
     this.onChanged,
     this.description,
@@ -16,10 +16,10 @@ class CheberCheckBox extends StatefulWidget {
   final Function(bool)? onChanged;
 
   @override
-  State<CheberCheckBox> createState() => _CheberCheckBoxState();
+  State<OshmesCheckBox> createState() => _OshmesCheckBoxState();
 }
 
-class _CheberCheckBoxState extends State<CheberCheckBox> {
+class _OshmesCheckBoxState extends State<OshmesCheckBox> {
   @override
   Widget build(BuildContext context) {
     return Tappable(
@@ -45,7 +45,7 @@ class _CheberCheckBoxState extends State<CheberCheckBox> {
               ),
               alignment: Alignment.center,
               child: widget.checked
-                  ? CheberIcon(
+                  ? OshmesIcon(
                       TablerIcons.check,
                       size: 16,
                       color: DefaultTextStyle.of(context).style.color,

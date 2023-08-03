@@ -1,7 +1,7 @@
-import 'package:cheber_terminal/modules/theme/components/theme_connector.dart';
-import 'package:cheber_terminal/shared/components/draggable_window/draggable_window.dart';
-import 'package:cheber_terminal/shared/components/icon/icon.dart';
-import 'package:cheber_terminal/shared/components/tappable/tappable.dart';
+import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:oshmes_terminal/shared/components/draggable_window/draggable_window.dart';
+import 'package:oshmes_terminal/shared/components/icon/icon.dart';
+import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
 import 'package:flutter/material.dart';
 
 class SettingsTabs extends StatefulWidget {
@@ -86,7 +86,7 @@ class _CloseBtnState extends State<CloseBtn> {
               color: Colors.white.withOpacity(isHover ? 0.12 : 0),
               borderRadius: BorderRadius.circular(4),
             ),
-            child: const CheberIcon(TablerIcons.x, size: 18),
+            child: const OshmesIcon(TablerIcons.x, size: 18),
           )),
     );
   }
@@ -128,7 +128,7 @@ class _SettingsTabButtonState extends State<SettingsTabButton> {
             ),
             child: Column(
               children: [
-                CheberIcon(widget.icon, size: 24),
+                OshmesIcon(widget.icon, size: 24),
                 const SizedBox(height: 2),
                 Text(
                   widget.text,

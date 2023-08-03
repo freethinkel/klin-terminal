@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CheberIcon extends StatelessWidget {
-  const CheberIcon(
+class OshmesIcon extends StatelessWidget {
+  const OshmesIcon(
     this.icon, {
     this.size = 20,
     this.color,
