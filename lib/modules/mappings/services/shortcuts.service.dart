@@ -51,9 +51,13 @@ class ShortcutsService extends IService {
     }
 
     var found = _shortcuts.firstWhereOrNull(
-      (shortcut) => accepts(event, shortcut.activator),
+      (shortcut) => shortcut.activator == null
+          ? false
+          : accepts(event, shortcut.activator!),
     );
-    if (found != null) {
+    if (found != null &&
+        event is RawKeyDownEvent &&
+        found.activator?.includeRepeats == event.repeat) {
       onHandled?.call(found);
     }
 

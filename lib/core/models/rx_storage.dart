@@ -25,3 +25,30 @@ class RxStateStorage<T> extends RxState<T> {
     });
   }
 }
+
+class RxListStorage<T> extends RxState<List<T>> {
+  RxListStorage(
+    this.key, {
+    required this.mapper,
+    List<T>? initialValue,
+  }) : super(initialValue) {
+    _init();
+  }
+
+  String key;
+  List<T>? Function(List<String> value) mapper;
+
+  void _init() async {
+    var instance = await SharedPreferences.getInstance();
+    var cachedValue = instance.getStringList(key);
+    List<T>? value =
+        cachedValue != null ? mapper(cachedValue) ?? this.value : this.value;
+    if (value != null) {
+      next(value);
+    }
+    stream.listen((event) async {
+      await instance.setStringList(
+          key, event.map((item) => item.toString()).toList());
+    });
+  }
+}

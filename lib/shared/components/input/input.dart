@@ -10,6 +10,8 @@ class OshmesInput extends StatefulWidget {
     this.inputFormatters,
     this.keyboardType,
     this.focusNode,
+    this.onChanged,
+    this.value,
     super.key,
   });
   final String? label;
@@ -18,6 +20,8 @@ class OshmesInput extends StatefulWidget {
   final TextInputType? keyboardType;
   final FocusNode? focusNode;
   final TextEditingController? controller;
+  final Function(String)? onChanged;
+  final String? value;
 
   @override
   State<OshmesInput> createState() => _OshmesInputState();
@@ -71,9 +75,11 @@ class _OshmesInputState extends State<OshmesInput> {
           ),
           child: TextField(
             focusNode: _focusNode,
-            controller: widget.controller,
+            controller:
+                widget.controller ?? TextEditingController(text: widget.value),
             inputFormatters: widget.inputFormatters,
             keyboardType: widget.keyboardType,
+            onChanged: widget.onChanged,
             decoration:
                 InputDecoration.collapsed(hintText: widget.placeholder ?? "")
                     .copyWith(

@@ -1,0 +1,109 @@
+import 'package:flutter/widgets.dart';
+import 'package:oshmes_terminal/modules/mappings/models/intents.dart';
+import 'package:oshmes_terminal/modules/mappings/models/shortcuts.dart';
+import 'package:oshmes_terminal/modules/settings/components/settings_page.dart';
+import 'package:oshmes_terminal/shared/components/button/button.dart';
+import 'package:oshmes_terminal/shared/components/hotkey_recorder/hotkey_recorder.dart';
+import 'package:oshmes_terminal/shared/components/icon/icon.dart';
+import 'package:oshmes_terminal/shared/components/select/select.dart';
+import 'package:oshmes_terminal/shared/components/table/table.dart';
+import 'package:super_context_menu/super_context_menu.dart';
+
+class MappingsView extends StatefulWidget {
+  const MappingsView({super.key});
+
+  @override
+  State<MappingsView> createState() => _MappingsViewState();
+}
+
+class _MappingsViewState extends State<MappingsView> {
+  SingleActivator? selectedActivator;
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingsPage(
+      title: "Mappings",
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          OshmesButton(
+              child: Wrap(
+            spacing: 2,
+            children: [Text("Add mapping"), OshmesIcon(TablerIcons.plus)],
+          )),
+          OshmesTable(
+            columnWidth: const {
+              3: FixedColumnWidth(80),
+              2: FixedColumnWidth(130),
+            },
+            headers: const [
+              Text("Type"),
+              Text("Action"),
+              Text("Hotkey"),
+              SizedBox()
+            ],
+            rows: [
+              ...List.generate(
+                  10,
+                  (index) => [
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: Select(
+                            placeholder: "Test",
+                            width: 200,
+                            value: TerminalAction.action,
+                            items: TerminalAction.values
+                                .map(
+                                  (item) => SelectItem(
+                                    child: Text(item.description),
+                                    value: item,
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: Select(
+                            placeholder: "Select action",
+                            width: 200,
+                            value: AppMappingActions.closeTab,
+                            items: AppMappingActions.values
+                                .map(
+                                  (item) => SelectItem(
+                                    child: Text(item.description),
+                                    value: item,
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: HotKeyRecorder(
+                              activator: selectedActivator,
+                              onAccept: (activator) {
+                                setState(() {
+                                  selectedActivator = activator;
+                                });
+                              }),
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: const OshmesButton(
+                            child: OshmesIcon(
+                              TablerIcons.trash,
+                              size: 16,
+                            ),
+                          ),
+                        )
+                      ])
+            ],
+          ),
+          const SizedBox(height: 40),
+          const Text("fsdafasdf"),
+        ],
+      ),
+    );
+  }
+}

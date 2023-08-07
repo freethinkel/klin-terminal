@@ -67,6 +67,7 @@ class _TabViewTreeState extends State<TabViewTree> {
     terminalNode.onExit = () => widget.onClose(terminalNode);
     terminalNode.focusNode.removeListener(_onChangeFocus);
     terminalNode.focusNode.addListener(_onChangeFocus);
+    terminalNode.splitPane = _onSplit;
   }
 
   _onChangeFocus() {

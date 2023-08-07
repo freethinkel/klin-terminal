@@ -39,7 +39,7 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_pty: 3e25fcff5505e553bbcad3b80220275997ddb9bc
   irondash_engine_context: 3458bf979b90d616ffb8ae03a150bafe2e860cc9
-  shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   super_native_extensions: a31bf7ed9468a4f5d27e251be52753937e10e96a
 
 PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189

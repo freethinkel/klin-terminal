@@ -13,6 +13,12 @@ class TerminalNode extends TerminalNodePty {
   TerminalNode? parent;
   List<TerminalNode> children;
 
+  Function(Axis direction)? splitPane;
+
+  void sendChars(String chars) {
+    terminal.textInput(chars);
+  }
+
   void focusPane(AxisDirection direction) {
     TerminalNode? getParent(TerminalNode? node, Axis axis) {
       if (node == null) {

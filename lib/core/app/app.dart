@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:oshmes_terminal/core/app/menu_bar.dart';
 import 'package:oshmes_terminal/modules/mappings/screens/mappings_connector.dart';
 import 'package:oshmes_terminal/modules/tabs/screens/tab_bar.dart';
@@ -16,10 +14,15 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return const ThemeConnector(
-      child: MenuBar(
-        child: MappingsConnector(
-          child: OshmesTabBar(),
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: const ThemeConnector(
+        child: MenuBar(
+          child: MappingsConnector(
+            child: OshmesTabBar(),
+          ),
         ),
       ),
     );

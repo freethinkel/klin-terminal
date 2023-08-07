@@ -4,6 +4,7 @@ import 'package:oshmes_terminal/core/models/rx_storage.dart';
 import 'package:oshmes_terminal/modules/settings/models/settings.dart';
 import 'package:oshmes_terminal/modules/settings/screens/advanced_view.dart';
 import 'package:oshmes_terminal/modules/settings/screens/general_view.dart';
+import 'package:oshmes_terminal/modules/settings/screens/mappings_view.dart';
 import 'package:oshmes_terminal/modules/settings/screens/themes_view.dart';
 import 'package:oshmes_terminal/shared/components/icon/icon.dart';
 
@@ -19,11 +20,11 @@ class SettingsController extends IController {
       icon: TablerIcons.brush,
       view: const ThemesSettingsView(),
     ),
-    // SettingsTab(
-    //   title: "Keymaps",
-    //   icon: TablerIcons.keyboard,
-    //   view: const Text("keymaps"),
-    // ),
+    SettingsTab(
+      title: "Keymaps",
+      icon: TablerIcons.keyboard,
+      view: MappingsView(),
+    ),
     SettingsTab(
       title: "Advanced",
       icon: TablerIcons.tools,

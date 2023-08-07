@@ -14,6 +14,7 @@ void setup(GetIt locator) {
     ..registerSingleton(
       MappingController(
         shortcutsService: locator.get(),
+        tabsController: locator.get(),
       ),
     );
 }

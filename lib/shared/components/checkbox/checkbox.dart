@@ -38,9 +38,10 @@ class _OshmesCheckBoxState extends State<OshmesCheckBox> {
               decoration: BoxDecoration(
                 color: AppTheme.of(context)
                     .selection
-                    .withOpacity(widget.checked ? 1 : 0),
-                border:
-                    Border.all(color: AppTheme.of(context).selection, width: 2),
+                    .withOpacity(widget.checked ? 0.2 : 0),
+                border: Border.all(
+                    color: AppTheme.of(context).selection.withOpacity(0.3),
+                    width: 2),
                 borderRadius: BorderRadius.circular(4),
               ),
               alignment: Alignment.center,

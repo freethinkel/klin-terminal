@@ -31,108 +31,105 @@ class OshmesTabBar extends RxConsumer {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: MappingsConnector(
-        child: Column(
-          children: [
-            DraggableWindow(
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(offset: Offset.zero, color: bgColor)],
-                  // border: Border(
-                  //   bottom: BorderSide(
-                  //       color: AppTheme.of(context).selection.withOpacity(0.12)),
-                  // ),
-                ),
-                child: Row(
-                  children: [
-                    Container(
+      body: Column(
+        children: [
+          DraggableWindow(
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [BoxShadow(offset: Offset.zero, color: bgColor)],
+                // border: Border(
+                //   bottom: BorderSide(
+                //       color: AppTheme.of(context).selection.withOpacity(0.12)),
+                // ),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 38,
+                    width: isFullscreen == true ? 0 : 78,
+                    decoration: BoxDecoration(
+                      color: bgColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
                       height: 38,
-                      width: isFullscreen == true ? 0 : 78,
                       decoration: BoxDecoration(
                         color: bgColor,
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 38,
-                        decoration: BoxDecoration(
-                          color: bgColor,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Row(
-                                children: tabs
-                                    .map(
-                                      (tab) => Expanded(
-                                        child: RxStateBuilder(
-                                          state: tab.title,
-                                          builder: (context, title) => Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 2,
-                                              vertical: 4,
-                                            ),
-                                            child: OshmesTab(
-                                              isAllowClose: tabs.length > 1,
-                                              isActive: currentTab == tab &&
-                                                  tabs.length > 1,
-                                              child: title!.isEmpty
-                                                  ? const CupertinoActivityIndicator(
-                                                      radius: 8,
-                                                    )
-                                                  : Text(
-                                                      title,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      softWrap: false,
-                                                    ),
-                                              onTap: () => tabsController
-                                                  .currentTab$
-                                                  .next(tab),
-                                              onClose: () =>
-                                                  tabsController.closeTab(tab),
-                                            ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: tabs
+                                  .map(
+                                    (tab) => Expanded(
+                                      child: RxStateBuilder(
+                                        state: tab.title,
+                                        builder: (context, title) => Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 2,
+                                            vertical: 4,
+                                          ),
+                                          child: OshmesTab(
+                                            isAllowClose: tabs.length > 1,
+                                            isActive: currentTab == tab &&
+                                                tabs.length > 1,
+                                            child: title!.isEmpty
+                                                ? const CupertinoActivityIndicator(
+                                                    radius: 8,
+                                                  )
+                                                : Text(
+                                                    title,
+                                                    textAlign: TextAlign.center,
+                                                    softWrap: false,
+                                                  ),
+                                            onTap: () => tabsController
+                                                .currentTab$
+                                                .next(tab),
+                                            onClose: () =>
+                                                tabsController.closeTab(tab),
                                           ),
                                         ),
                                       ),
-                                    )
-                                    .toList(),
-                              ),
+                                    ),
+                                  )
+                                  .toList(),
                             ),
-                            AddNewTabButton(
-                              onTap: () => tabsController.addNewTab(),
-                            )
-                          ],
-                        ),
+                          ),
+                          AddNewTabButton(
+                            onTap: () => tabsController.addNewTab(),
+                          )
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: Stack(
-                children: tabs
-                    .map(
-                      (tab) => Offstage(
-                        offstage: currentTab != tab,
+          ),
+          Expanded(
+            child: Stack(
+              children: tabs
+                  .map(
+                    (tab) => Offstage(
+                      offstage: currentTab != tab,
+                      key: Key(tab.uuid),
+                      child: TabViewTree(
                         key: Key(tab.uuid),
-                        child: TabViewTree(
-                          key: Key(tab.uuid),
-                          terminalNode: TerminalNode(),
-                          tabNode: tab,
-                          onClose: (node) {
-                            tabsController.closeTab(tab);
-                          },
-                        ),
+                        terminalNode: TerminalNode(),
+                        tabNode: tab,
+                        onClose: (node) {
+                          tabsController.closeTab(tab);
+                        },
                       ),
-                    )
-                    .toList(),
-              ),
-            )
-          ],
-        ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+        ],
       ),
     );
   }
