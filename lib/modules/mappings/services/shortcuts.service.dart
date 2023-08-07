@@ -20,7 +20,6 @@ class ShortcutsService extends IService {
 
   bool accepts(RawKeyEvent event, SingleActivator activator) {
     final Set<LogicalKeyboardKey> pressed = _pressedKeys;
-    final includeRepeats = activator.includeRepeats;
     final control = activator.control;
     final shift = activator.shift;
     final alt = activator.alt;
@@ -28,19 +27,22 @@ class ShortcutsService extends IService {
 
     return event is RawKeyDownEvent &&
         activator.trigger == event.logicalKey &&
-        (includeRepeats || !event.repeat) &&
         (control ==
             (pressed.contains(LogicalKeyboardKey.controlLeft) ||
-                pressed.contains(LogicalKeyboardKey.controlRight))) &&
+                pressed.contains(LogicalKeyboardKey.controlRight) ||
+                pressed.contains(LogicalKeyboardKey.control))) &&
         (shift ==
             (pressed.contains(LogicalKeyboardKey.shiftLeft) ||
-                pressed.contains(LogicalKeyboardKey.shiftRight))) &&
+                pressed.contains(LogicalKeyboardKey.shiftRight) ||
+                pressed.contains(LogicalKeyboardKey.shift))) &&
         (alt ==
             (pressed.contains(LogicalKeyboardKey.altLeft) ||
-                pressed.contains(LogicalKeyboardKey.altRight))) &&
+                pressed.contains(LogicalKeyboardKey.altRight) ||
+                pressed.contains(LogicalKeyboardKey.alt))) &&
         (meta ==
             (pressed.contains(LogicalKeyboardKey.metaLeft) ||
-                pressed.contains(LogicalKeyboardKey.metaRight)));
+                pressed.contains(LogicalKeyboardKey.metaRight) ||
+                pressed.contains(LogicalKeyboardKey.meta)));
   }
 
   void onKey(RawKeyEvent event) {
