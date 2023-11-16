@@ -22,7 +22,7 @@ class _AddNewTabButtonState extends State<AddNewTabButton> {
     return FractionallySizedBox(
       heightFactor: 1,
       child: Container(
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         alignment: Alignment.center,
         child: Tappable(
           onTapUp: widget.onTap,

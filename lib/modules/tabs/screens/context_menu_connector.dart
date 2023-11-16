@@ -3,12 +3,10 @@ import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/mappings/models/intents.dart';
 import 'package:klin/modules/mappings/models/shortcuts.dart';
-import 'package:klin/modules/mappings/screens/mappings_connector.dart';
 import 'package:klin/modules/terminal/models/terminal_node.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:super_context_menu/super_context_menu.dart';
-import 'package:xterm/core.dart';
 import 'package:xterm/xterm.dart';
 
 class ContextMenuConnector extends RxConsumer {

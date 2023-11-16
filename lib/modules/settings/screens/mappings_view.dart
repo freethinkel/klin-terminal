@@ -17,7 +17,7 @@ class MappingsView extends RxConsumer {
   @override
   Widget build(BuildContext context, watcher) {
     final mappingsController = watcher.controller<MappingController>();
-    final keymappings = watcher.watch(mappingsController.mappings) ?? [];
+    final mappings = watcher.watch(mappingsController.mappings) ?? [];
 
     return SettingsPage(
       title: "Mappings",
@@ -52,7 +52,7 @@ class MappingsView extends RxConsumer {
               SizedBox()
             ],
             rows: [
-              ...keymappings.map((mapping) => [
+              ...mappings.map((mapping) => [
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Select(
@@ -93,7 +93,7 @@ class MappingsView extends RxConsumer {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: mapping.sendChars != null
-                          ? Container(
+                          ? SizedBox(
                               width: 200,
                               child: KlinInput(
                                   placeholder: "Send chars",

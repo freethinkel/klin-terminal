@@ -1,6 +1,4 @@
 import 'dart:ui';
-import 'package:klin/modules/terminal/components/glow_effect.dart';
-import 'package:klin/modules/terminal/components/shader_wrapper.dart';
 import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:xterm/xterm.dart';
