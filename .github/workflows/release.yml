@@ -24,7 +24,7 @@ jobs:
       - name: Use Nodejs for create dmg
         uses: actions/setup-node@v3
         with:
-          node-version: 16.17
+          node-version: 20.9
       - run: mv ./build/macos/Build/Products/Release/klin.app ./build/macos/Klin.app && npx appdmg ./create_dmg.json ./Klin.dmg
 
       - name: Create Version Number
