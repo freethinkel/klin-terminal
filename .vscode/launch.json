@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "oshmes_terminal",
+      "name": "klin_terminal",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "oshmes_terminal (profile mode)",
+      "name": "klin_terminal (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "oshmes_terminal (release mode)",
+      "name": "klin_terminal (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
