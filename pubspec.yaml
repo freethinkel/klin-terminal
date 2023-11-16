@@ -15,10 +15,9 @@ dependencies:
   gesture_x_detector: ^1.1.1
   super_context_menu: ^0.7.0-dev.4
   xterm:
-    path: ../xterm.dart
-    # git:
-    #   url: https://github.com/freethinkel/xterm.dart.git
-    #   ref: master
+    git:
+      url: https://github.com/freethinkel/xterm.dart.git
+      ref: master
   rxdart: ^0.27.7
   yaml: ^3.1.2
   shared_preferences: ^2.1.2
