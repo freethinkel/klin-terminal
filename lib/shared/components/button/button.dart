@@ -2,13 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:klin/shared/components/tappable/tappable.dart';
 
+enum KlinButtonKind {
+  raised,
+  delete,
+}
+
+enum KlinButtonSize {
+  small,
+  normal,
+  large,
+}
+
 class KlinButton extends StatefulWidget {
   const KlinButton({
     required this.child,
+    this.kind = KlinButtonKind.raised,
+    this.size = KlinButtonSize.normal,
     this.onTap,
     super.key,
   });
   final Widget child;
+  final KlinButtonKind kind;
+  final KlinButtonSize size;
   final Function()? onTap;
 
   @override
@@ -18,14 +33,24 @@ class KlinButton extends StatefulWidget {
 class _KlinButtonState extends State<KlinButton> {
   @override
   Widget build(BuildContext context) {
+    final color = switch (widget.kind) {
+      KlinButtonKind.raised => AppTheme.of(context).selection.withOpacity(0.1),
+      KlinButtonKind.delete =>
+        AppTheme.of(context).terminalTheme.red.withOpacity(0.8),
+    };
+
     return Tappable(
       onTap: widget.onTap,
       child: Container(
-        padding: const EdgeInsets.all(6),
+        padding: switch (widget.size) {
+          KlinButtonSize.normal => const EdgeInsets.all(6),
+          KlinButtonSize.small => const EdgeInsets.all(3),
+          KlinButtonSize.large => const EdgeInsets.all(8),
+        },
         decoration: BoxDecoration(
-          color: AppTheme.of(context).selection.withOpacity(0.1),
+          color: color,
           border: Border.all(
-            color: AppTheme.of(context).selection.withOpacity(0.1),
+            color: color,
           ),
           borderRadius: BorderRadius.circular(6),
         ),

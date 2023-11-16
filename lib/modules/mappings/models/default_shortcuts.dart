@@ -32,4 +32,71 @@ final List<CustomShortcut> defaultShortcuts = [
       shift: true,
     ),
   ),
+  ..._selectTabsShortcuts,
+];
+
+final _selectTabsShortcuts = [
+  CustomShortcut(
+    action: AppMappingActions.selectTab1,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit1,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab2,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit2,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab3,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit3,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab4,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit4,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab5,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit5,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab6,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit6,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab7,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit7,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab8,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit8,
+      meta: true,
+    ),
+  ),
+  CustomShortcut(
+    action: AppMappingActions.selectTab9,
+    activator: const SingleActivator(
+      LogicalKeyboardKey.digit9,
+      meta: true,
+    ),
+  ),
 ];

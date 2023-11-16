@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:klin/core/models/controller.dart';
 import 'package:klin/core/models/rx.dart';
@@ -17,8 +20,11 @@ final _definedThemes = [
 ];
 
 class ThemeController extends IController {
-  final currentThemeName$ = RxStateStorage<String>("currentThemeName",
-      mapper: (name) => name.toString(), initialValue: "Klin");
+  final currentThemeName$ = RxStateStorage<String>(
+    "currentThemeName",
+    mapper: (name) => name.toString(),
+    initialValue: "Klin",
+  );
   late final theme$ = RxState.fromSubject<KlinAppTheme?>(BehaviorSubject()
     ..addStream(
       Rx.combineLatest2(
@@ -28,10 +34,13 @@ class ThemeController extends IController {
             themes.firstWhereOrNull((theme) => theme.name == currentTheme),
       ),
     ));
-  // currentThemeName$.map(
-  //   (name) => themes$.value?.firstWhereOrNull((theme) => theme.name == name),
-  // );
   final themes$ = RxState<List<KlinAppTheme>>([]);
+  final _backgroundImagePath = RxStateStorage(
+    "theme_background_image_path",
+    mapper: (value) => value,
+  );
+  late final backgroundImage$ =
+      _backgroundImagePath.map((path) => path.isNotEmpty ? File(path) : null);
 
   @override
   Future<void> init() async {
@@ -46,14 +55,13 @@ class ThemeController extends IController {
       ),
     );
     themes$.next(themes);
-    // final themeName = await currentThemeName$.stream.first;
-    // final theme = themes.firstWhereOrNull((theme) => theme.name == themeName);
-    // if (theme$.value == null && theme != null) {
-    // theme$.next(theme);
-    // }
   }
 
   void setTheme(KlinAppTheme theme) {
     currentThemeName$.next(theme.name);
+  }
+
+  void setBackgroundImage(File? file) {
+    _backgroundImagePath.next(file?.path ?? "");
   }
 }

@@ -36,10 +36,6 @@ class KlinTabBar extends RxConsumer {
             child: Container(
               decoration: BoxDecoration(
                 boxShadow: [BoxShadow(offset: Offset.zero, color: bgColor)],
-                // border: Border(
-                //   bottom: BorderSide(
-                //       color: AppTheme.of(context).selection.withOpacity(0.12)),
-                // ),
               ),
               child: Row(
                 children: [
