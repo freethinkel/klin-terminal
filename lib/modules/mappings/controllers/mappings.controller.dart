@@ -66,6 +66,33 @@ class MappingController extends IController {
           _tabsController.currentTab$.value?.lastFocusedNode?.splitPane
               ?.call(Axis.horizontal);
         },
+        AppMappingActions.selectTab1: () {
+          _tabsController.switchToTab(0);
+        },
+        AppMappingActions.selectTab2: () {
+          _tabsController.switchToTab(1);
+        },
+        AppMappingActions.selectTab3: () {
+          _tabsController.switchToTab(2);
+        },
+        AppMappingActions.selectTab4: () {
+          _tabsController.switchToTab(3);
+        },
+        AppMappingActions.selectTab5: () {
+          _tabsController.switchToTab(4);
+        },
+        AppMappingActions.selectTab6: () {
+          _tabsController.switchToTab(5);
+        },
+        AppMappingActions.selectTab7: () {
+          _tabsController.switchToTab(6);
+        },
+        AppMappingActions.selectTab8: () {
+          _tabsController.switchToTab(7);
+        },
+        AppMappingActions.selectTab9: () {
+          _tabsController.switchToTab(8);
+        },
       }[key.action])
           ?.call();
 
