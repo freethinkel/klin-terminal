@@ -48,15 +48,17 @@ class _ThemeConnectorState extends State<ThemeConnector> {
     return ControllerConnector<ThemeController>(
       builder: (context, controller) => RxStateBuilder(
         state: controller.theme$,
-        builder: (context, theme) => AppTheme(
-          theme: theme!,
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: theme.toMaterialLightTheme(),
-            darkTheme: theme.toMaterialDarkTheme(),
-            home: widget.child,
-          ),
-        ),
+        builder: (context, theme) => theme == null
+            ? const SizedBox()
+            : AppTheme(
+                theme: theme,
+                child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: theme.toMaterialLightTheme(),
+                  darkTheme: theme.toMaterialDarkTheme(),
+                  home: widget.child,
+                ),
+              ),
       ),
     );
   }
