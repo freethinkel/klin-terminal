@@ -25,8 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.17
-      - run: npm install -g appdmg
-      - run: mv ./build/macos/Build/Products/Release/klin.app ./build/macos/Klin.app && appdmg ./create_dmg.json ./Klin.dmg
+      - run: mv ./build/macos/Build/Products/Release/klin.app ./build/macos/Klin.app && npx appdmg ./create_dmg.json ./Klin.dmg
 
       - name: Create Version Number
         id: versions
