@@ -1,5 +1,5 @@
-import 'package:oshmes_terminal/core/di/locator.dart';
-import 'package:oshmes_terminal/core/models/controller.dart';
+import 'package:klin/core/di/locator.dart';
+import 'package:klin/core/models/controller.dart';
 import 'package:flutter/widgets.dart';
 
 class ControllerConnector<C extends IController> extends StatefulWidget {

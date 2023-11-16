@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class OshmesSlider extends StatefulWidget {
-  const OshmesSlider({
+class KlinSlider extends StatefulWidget {
+  const KlinSlider({
     required this.value,
     required this.onChanged,
     this.label,
@@ -12,10 +12,10 @@ class OshmesSlider extends StatefulWidget {
   final Function(double value) onChanged;
 
   @override
-  State<OshmesSlider> createState() => _OshmesSliderState();
+  State<KlinSlider> createState() => _KlinSliderState();
 }
 
-class _OshmesSliderState extends State<OshmesSlider> {
+class _KlinSliderState extends State<KlinSlider> {
   @override
   Widget build(BuildContext context) {
     return Column(

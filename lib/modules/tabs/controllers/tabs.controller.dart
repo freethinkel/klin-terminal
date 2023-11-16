@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:oshmes_terminal/core/models/controller.dart';
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/modules/tabs/models/tab.dart';
+import 'package:klin/core/models/controller.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/modules/tabs/models/tab.dart';
 
 import 'package:uuid/uuid.dart';
 

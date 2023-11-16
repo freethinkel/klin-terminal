@@ -1,26 +1,31 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:oshmes_terminal/core/models/controller.dart';
-import 'package:oshmes_terminal/core/models/rx_storage.dart';
-import 'package:oshmes_terminal/modules/mappings/models/intents.dart';
-import 'package:oshmes_terminal/modules/mappings/models/shortcuts.dart';
-import 'package:oshmes_terminal/modules/mappings/services/shortcuts.service.dart';
-import 'package:oshmes_terminal/modules/tabs/controllers/tabs.controller.dart';
+import 'package:klin/core/models/controller.dart';
+import 'package:klin/core/models/rx_storage.dart';
+import 'package:klin/modules/mappings/models/default_shortcuts.dart';
+import 'package:klin/modules/mappings/models/intents.dart';
+import 'package:klin/modules/mappings/models/shortcuts.dart';
+import 'package:klin/modules/mappings/services/shortcuts.service.dart';
+import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
 
 class MappingController extends IController {
   MappingController({
     required ShortcutsService shortcutsService,
     required TabsController tabsController,
+    required SettingsController settingsController,
   })  : _shortcutsService = shortcutsService,
-        _tabsController = tabsController;
+        _tabsController = tabsController,
+        _settingsController = settingsController;
 
   final ShortcutsService _shortcutsService;
   final TabsController _tabsController;
+  final SettingsController _settingsController;
 
   final mappings = RxListStorage<CustomShortcut>(
     "mappings",
-    initialValue: [],
+    initialValue: defaultShortcuts,
     mapper: (items) => items
         .map((decoded) => CustomShortcut.fromMap(json.decode(decoded)))
         .toList(),
@@ -35,11 +40,17 @@ class MappingController extends IController {
 
     _shortcutsService.onHandled = (key) {
       ({
+        AppMappingActions.openSettings: () {
+          _settingsController.openSettings();
+        },
         AppMappingActions.newTab: () {
           _tabsController.addNewTab();
         },
         AppMappingActions.closeTab: () {
           _tabsController.closeTab(_tabsController.currentTab$.value!);
+        },
+        AppMappingActions.closeTerminal: () {
+          _tabsController.currentTab$.value?.lastFocusedNode?.dispose();
         },
         AppMappingActions.focusNextTab: () {
           _tabsController.nextTab();

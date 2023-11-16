@@ -1,7 +1,7 @@
-import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
-import 'package:oshmes_terminal/modules/settings/components/settings_page.dart';
-import 'package:oshmes_terminal/modules/settings/components/theme_preview.dart';
-import 'package:oshmes_terminal/modules/theme/controllers/theme.controller.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/modules/settings/components/settings_page.dart';
+import 'package:klin/modules/settings/components/theme_preview.dart';
+import 'package:klin/modules/theme/controllers/theme.controller.dart';
 import 'package:flutter/material.dart';
 
 class ThemesSettingsView extends RxConsumer {

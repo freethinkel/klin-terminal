@@ -1,4 +1,4 @@
-package com.example.oshmes_terminal
+package com.example.klin
 
 import io.flutter.embedding.android.FlutterActivity
 

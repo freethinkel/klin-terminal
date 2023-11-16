@@ -1,11 +1,11 @@
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 
-Future<void> openModa(BuildContext context, Widget child) async {
-  showDialog(
+Future<void> openModal(BuildContext context, Widget child) async {
+  await showDialog(
     context: context,
     barrierDismissible: true,
-    barrierLabel: "OshmesModal",
+    barrierLabel: "KlinModal",
     useRootNavigator: false,
     barrierColor: Colors.transparent,
     builder: (context) => _Modal(child: child),

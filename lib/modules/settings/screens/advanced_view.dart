@@ -1,8 +1,8 @@
-import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
-import 'package:oshmes_terminal/modules/settings/components/settings_page.dart';
-import 'package:oshmes_terminal/modules/settings/controllers/settings.controller.dart';
-import 'package:oshmes_terminal/shared/components/checkbox/checkbox.dart';
-import 'package:oshmes_terminal/shared/components/input/rx_input.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/modules/settings/components/settings_page.dart';
+import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/shared/components/checkbox/checkbox.dart';
+import 'package:klin/shared/components/input/rx_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,6 +15,8 @@ class AdvancedSettingsView extends RxConsumer {
 
     final enableCustomGlyphs =
         watcher.watch(settingsController.enableCustomGlyphs$) == true;
+    final enableContextMenu =
+        watcher.watch(settingsController.enableContextMenu$) == true;
 
     return SettingsPage(
       title: 'Advanced',
@@ -35,11 +37,18 @@ class AdvancedSettingsView extends RxConsumer {
               state: settingsController.customVerticalLineOffset$,
             ),
           ),
-          OshmesCheckBox(
+          KlinCheckBox(
             description: "Enabled custom glyphs render",
             checked: enableCustomGlyphs,
             onChanged: (checked) {
               settingsController.enableCustomGlyphs$.next(checked);
+            },
+          ),
+          KlinCheckBox(
+            description: "Enabled context menu",
+            checked: enableContextMenu,
+            onChanged: (checked) {
+              settingsController.enableContextMenu$.next(checked);
             },
           ),
         ],

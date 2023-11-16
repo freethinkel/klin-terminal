@@ -1,8 +1,8 @@
-import 'package:oshmes_terminal/modules/channel/controllers/channel.controller.dart';
-import 'package:oshmes_terminal/modules/mappings/controllers/mappings.controller.dart';
-import 'package:oshmes_terminal/modules/settings/controllers/settings.controller.dart';
-import 'package:oshmes_terminal/modules/tabs/controllers/tabs.controller.dart';
-import 'package:oshmes_terminal/modules/theme/controllers/theme.controller.dart';
+import 'package:klin/modules/channel/controllers/channel.controller.dart';
+import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
+import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
+import 'package:klin/modules/theme/controllers/theme.controller.dart';
 import 'package:get_it/get_it.dart';
 
 void setup(GetIt locator) {
@@ -15,6 +15,7 @@ void setup(GetIt locator) {
       MappingController(
         shortcutsService: locator.get(),
         tabsController: locator.get(),
+        settingsController: locator.get(),
       ),
     );
 }

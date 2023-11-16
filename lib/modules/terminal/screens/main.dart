@@ -1,21 +1,21 @@
-import 'package:oshmes_terminal/modules/tabs/screens/tab_bar.dart';
+import 'package:klin/modules/tabs/screens/tab_bar.dart';
 import 'package:flutter/material.dart';
 
-class OshmesTerminalAppView extends StatefulWidget {
-  const OshmesTerminalAppView({super.key});
+class KlinTerminalAppView extends StatefulWidget {
+  const KlinTerminalAppView({super.key});
 
   @override
-  State<OshmesTerminalAppView> createState() => _OshmesTerminalAppViewState();
+  State<KlinTerminalAppView> createState() => _KlinTerminalAppViewState();
 }
 
-class _OshmesTerminalAppViewState extends State<OshmesTerminalAppView> {
+class _KlinTerminalAppViewState extends State<KlinTerminalAppView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.transparent,
       body: FractionallySizedBox(
         widthFactor: 1,
-        child: OshmesTabBar(),
+        child: KlinTabBar(),
       ),
     );
   }

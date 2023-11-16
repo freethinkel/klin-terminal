@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:oshmes_terminal/modules/terminal/models/shell.dart';
+import 'package:klin/modules/terminal/models/shell.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pty/flutter_pty.dart';
 import 'package:uuid/uuid.dart';

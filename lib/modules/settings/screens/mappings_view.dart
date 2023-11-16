@@ -1,16 +1,15 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
-import 'package:oshmes_terminal/modules/mappings/controllers/mappings.controller.dart';
-import 'package:oshmes_terminal/modules/mappings/models/intents.dart';
-import 'package:oshmes_terminal/modules/mappings/models/shortcuts.dart';
-import 'package:oshmes_terminal/modules/settings/components/settings_page.dart';
-import 'package:oshmes_terminal/shared/components/button/button.dart';
-import 'package:oshmes_terminal/shared/components/hotkey_recorder/hotkey_recorder.dart';
-import 'package:oshmes_terminal/shared/components/icon/icon.dart';
-import 'package:oshmes_terminal/shared/components/input/input.dart';
-import 'package:oshmes_terminal/shared/components/select/select.dart';
-import 'package:oshmes_terminal/shared/components/table/table.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
+import 'package:klin/modules/mappings/models/intents.dart';
+import 'package:klin/modules/mappings/models/shortcuts.dart';
+import 'package:klin/modules/settings/components/settings_page.dart';
+import 'package:klin/shared/components/button/button.dart';
+import 'package:klin/shared/components/hotkey_recorder/hotkey_recorder.dart';
+import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/input/input.dart';
+import 'package:klin/shared/components/select/select.dart';
+import 'package:klin/shared/components/table/table.dart';
 
 class MappingsView extends RxConsumer {
   const MappingsView({super.key});
@@ -26,7 +25,7 @@ class MappingsView extends RxConsumer {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-          OshmesButton(
+          KlinButton(
               onTap: () {
                 mappingsController.addKeymap(CustomShortcut());
               },
@@ -34,14 +33,14 @@ class MappingsView extends RxConsumer {
                 spacing: 2,
                 children: [
                   Text("Add mapping"),
-                  OshmesIcon(
+                  KlinIcon(
                     TablerIcons.plus,
                     size: 16,
                   )
                 ],
               )),
           const SizedBox(height: 12),
-          OshmesTable(
+          KlinTable(
             columnWidth: const {
               3: FixedColumnWidth(80),
               2: FixedColumnWidth(130),
@@ -96,7 +95,7 @@ class MappingsView extends RxConsumer {
                       child: mapping.sendChars != null
                           ? Container(
                               width: 200,
-                              child: OshmesInput(
+                              child: KlinInput(
                                   placeholder: "Send chars",
                                   value: mapping.sendChars,
                                   onChanged: (chars) {
@@ -133,11 +132,11 @@ class MappingsView extends RxConsumer {
                     ),
                     Container(
                       alignment: Alignment.centerRight,
-                      child: OshmesButton(
+                      child: KlinButton(
                         onTap: () {
                           mappingsController.removeKeymap(mapping);
                         },
-                        child: const OshmesIcon(
+                        child: const KlinIcon(
                           TablerIcons.trash,
                           size: 16,
                         ),

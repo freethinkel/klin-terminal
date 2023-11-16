@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="oshmes_terminal"
+        android:label="klin"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

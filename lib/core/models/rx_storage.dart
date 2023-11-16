@@ -1,4 +1,4 @@
-import 'package:oshmes_terminal/core/models/rx.dart';
+import 'package:klin/core/models/rx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RxStateStorage<T> extends RxState<T> {

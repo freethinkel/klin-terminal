@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
 
-typedef OshmesTableRow = List<Widget>;
+typedef KlinTableRow = List<Widget>;
 
-class OshmesTable extends StatefulWidget {
-  final OshmesTableRow headers;
-  final List<OshmesTableRow> rows;
+class KlinTable extends StatefulWidget {
+  final KlinTableRow headers;
+  final List<KlinTableRow> rows;
   final Map<int, TableColumnWidth>? columnWidth;
-  const OshmesTable({
+  const KlinTable({
     required this.headers,
     required this.rows,
     this.columnWidth,
@@ -15,10 +15,10 @@ class OshmesTable extends StatefulWidget {
   });
 
   @override
-  State<OshmesTable> createState() => _OshmesTableState();
+  State<KlinTable> createState() => _KlinTableState();
 }
 
-class _OshmesTableState extends State<OshmesTable> {
+class _KlinTableState extends State<KlinTable> {
   @override
   Widget build(BuildContext context) {
     return Container(

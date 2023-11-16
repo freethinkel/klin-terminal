@@ -1,9 +1,9 @@
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class OshmesInput extends StatefulWidget {
-  const OshmesInput({
+class KlinInput extends StatefulWidget {
+  const KlinInput({
     this.label,
     this.placeholder,
     this.controller,
@@ -24,10 +24,10 @@ class OshmesInput extends StatefulWidget {
   final String? value;
 
   @override
-  State<OshmesInput> createState() => _OshmesInputState();
+  State<KlinInput> createState() => _KlinInputState();
 }
 
-class _OshmesInputState extends State<OshmesInput> {
+class _KlinInputState extends State<KlinInput> {
   late final _focusNode = widget.focusNode ?? FocusNode();
   var isFocus = false;
 

@@ -1,8 +1,10 @@
-import 'package:oshmes_terminal/modules/tabs/models/tab.dart';
-import 'package:oshmes_terminal/modules/tabs/screens/context_menu_connector.dart';
-import 'package:oshmes_terminal/modules/terminal/models/terminal_node.dart';
-import 'package:oshmes_terminal/modules/terminal/screens/attached_terminal_view.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:klin/core/widgets/controller_connector.dart';
+import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/tabs/models/tab.dart';
+import 'package:klin/modules/tabs/screens/context_menu_connector.dart';
+import 'package:klin/modules/terminal/models/terminal_node.dart';
+import 'package:klin/modules/terminal/screens/attached_terminal_view.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
@@ -77,9 +79,19 @@ class _TabViewTreeState extends State<TabViewTree> {
     }
   }
 
+  final _settingsController = ControllerConnector.of<SettingsController>();
+  bool enableContextMenu = true;
   @override
   void initState() {
     widget.tabNode.lastFocusedNode = terminalNode;
+    setState(() {
+      enableContextMenu = _settingsController.enableContextMenu$.value == true;
+    });
+    _settingsController.enableContextMenu$.stream.listen((event) {
+      if (event != enableContextMenu) {
+        setState(() => enableContextMenu = event);
+      }
+    });
     _updateListeners();
     super.initState();
   }
@@ -117,14 +129,19 @@ class _TabViewTreeState extends State<TabViewTree> {
       );
     }
 
-    return ContextMenuConnector(
+    Widget child = AttachedTerminal(
+      key: Key(terminalNode.uuid),
       terminalNode: terminalNode,
-      onSplit: _onSplit,
-      onClose: () => widget.onClose(terminalNode),
-      child: AttachedTerminal(
-        key: Key(terminalNode.uuid),
-        terminalNode: terminalNode,
-      ),
     );
+
+    if (enableContextMenu) {
+      child = ContextMenuConnector(
+        terminalNode: terminalNode,
+        onSplit: _onSplit,
+        child: child,
+      );
+    }
+
+    return child;
   }
 }

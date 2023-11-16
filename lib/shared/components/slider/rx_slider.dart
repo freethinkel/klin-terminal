@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/shared/components/slider/slider.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/shared/components/slider/slider.dart';
 import 'package:flutter/material.dart';
 
 class RxSlider extends StatefulWidget {
@@ -42,7 +42,7 @@ class _RxSliderState extends State<RxSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return OshmesSlider(
+    return KlinSlider(
         label: widget.label,
         value: value,
         onChanged: (newValue) {

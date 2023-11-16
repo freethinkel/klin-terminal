@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:oshmes_terminal/modules/mappings/models/intents.dart';
+import 'package:klin/modules/mappings/models/intents.dart';
 
 enum TerminalAction {
   action("Internal action"),

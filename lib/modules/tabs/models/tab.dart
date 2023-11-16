@@ -1,5 +1,5 @@
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/modules/terminal/models/terminal_node.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/modules/terminal/models/terminal_node.dart';
 
 class TabNode {
   TabNode({

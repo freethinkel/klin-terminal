@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 
-class OshmesButton extends StatefulWidget {
-  const OshmesButton({
+class KlinButton extends StatefulWidget {
+  const KlinButton({
     required this.child,
     this.onTap,
     super.key,
@@ -12,10 +12,10 @@ class OshmesButton extends StatefulWidget {
   final Function()? onTap;
 
   @override
-  State<OshmesButton> createState() => _OshmesButtonState();
+  State<KlinButton> createState() => _KlinButtonState();
 }
 
-class _OshmesButtonState extends State<OshmesButton> {
+class _KlinButtonState extends State<KlinButton> {
   @override
   Widget build(BuildContext context) {
     return Tappable(

@@ -1,5 +1,5 @@
-name: oshmes_terminal
-description: Oshmes terminal
+name: klin
+description: Klin terminal
 publish_to: "none"
 version: 1.1.2+1
 
@@ -11,14 +11,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_pty: ^0.4.0
   get_it: ^7.6.0
-  super_drag_and_drop: ^0.4.0
+  super_drag_and_drop: ^0.7.0-dev.4
   gesture_x_detector: ^1.1.1
-  super_context_menu: ^0.1.0
+  super_context_menu: ^0.7.0-dev.4
   xterm:
-    # path: ../xterm.dart
-    git:
-      url: https://github.com/freethinkel/xterm.dart.git
-      ref: master
+    path: ../xterm.dart
+    # git:
+    #   url: https://github.com/freethinkel/xterm.dart.git
+    #   ref: master
   rxdart: ^0.27.7
   yaml: ^3.1.2
   shared_preferences: ^2.1.2
@@ -26,6 +26,7 @@ dependencies:
   collection: ^1.17.1
   multi_split_view: ^2.4.0
   flutter_shaders: ^0.1.2
+  window_manager: ^0.3.7
 
 dev_dependencies:
   flutter_test:

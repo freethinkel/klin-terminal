@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OshmesTitle extends StatelessWidget {
-  const OshmesTitle(
+class KlinTitle extends StatelessWidget {
+  const KlinTitle(
     this.text, {
     super.key,
   });

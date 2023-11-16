@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:oshmes_terminal/core/models/controller.dart';
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/core/widgets/controller_connector.dart';
+import 'package:klin/core/models/controller.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/core/widgets/controller_connector.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class StateWatcher {

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/shared/components/input/input.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/shared/components/input/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -57,7 +57,7 @@ class _RxInputState extends State<RxInput> {
 
   @override
   Widget build(BuildContext context) {
-    return OshmesInput(
+    return KlinInput(
       placeholder: widget.placeholder,
       label: widget.label,
       inputFormatters: widget.inputFormatters,

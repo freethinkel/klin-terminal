@@ -1,9 +1,9 @@
-import 'package:oshmes_terminal/core/models/controller.dart';
-import 'package:oshmes_terminal/core/models/rx.dart';
+import 'package:klin/core/models/controller.dart';
+import 'package:klin/core/models/rx.dart';
 import 'package:flutter/services.dart';
 
 class ChannelController extends IController {
-  final _channelName = 'ru.freethinkel.oshmesterminal/channel';
+  final _channelName = 'ru.freethinkel.klinterminal/channel';
   late final channel = MethodChannel(_channelName);
 
   final maximized$ = RxState(false);

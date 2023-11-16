@@ -1,6 +1,6 @@
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/icon/icon.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 import 'package:flutter/material.dart';
 
 class AddNewTabButton extends StatefulWidget {
@@ -37,7 +37,7 @@ class _AddNewTabButtonState extends State<AddNewTabButton> {
               borderRadius: BorderRadius.circular(6),
             ),
             padding: const EdgeInsets.all(4),
-            child: const OshmesIcon(TablerIcons.plus, size: 16),
+            child: const KlinIcon(TablerIcons.plus, size: 16),
           ),
         ),
       ),

@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:oshmes_terminal/core/models/controller.dart';
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/core/models/rx_storage.dart';
-import 'package:oshmes_terminal/modules/theme/models/theme.dart';
+import 'package:klin/core/models/controller.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/core/models/rx_storage.dart';
+import 'package:klin/modules/theme/models/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:yaml/yaml.dart';
 
 final _definedThemes = [
-  'oshmes_dark',
+  'klin_dark',
   'default_dark',
   'solarized_dark',
   'tokyo_night',
@@ -20,8 +20,8 @@ final _definedThemes = [
 
 class ThemeController extends IController {
   final currentThemeName$ = RxStateStorage<String>("currentThemeName",
-      mapper: (name) => name.toString(), initialValue: "Oshmes");
-  late final theme$ = RxState.fromSubject<OshmesAppTheme?>(BehaviorSubject()
+      mapper: (name) => name.toString(), initialValue: "Klin");
+  late final theme$ = RxState.fromSubject<KlinAppTheme?>(BehaviorSubject()
     ..addStream(
       Rx.combineLatest2(
         themes$.stream,
@@ -33,7 +33,7 @@ class ThemeController extends IController {
   // currentThemeName$.map(
   //   (name) => themes$.value?.firstWhereOrNull((theme) => theme.name == name),
   // );
-  final themes$ = RxState<List<OshmesAppTheme>>([]);
+  final themes$ = RxState<List<KlinAppTheme>>([]);
 
   @override
   Future<void> init() async {
@@ -43,7 +43,7 @@ class ThemeController extends IController {
             .loadString('lib/modules/theme/themes/$theme.yml')
             .then(loadYaml)
             .then(
-              (yaml) => OshmesAppTheme.fromMap(yaml),
+              (yaml) => KlinAppTheme.fromMap(yaml),
             ),
       ),
     );
@@ -55,7 +55,7 @@ class ThemeController extends IController {
     // }
   }
 
-  void setTheme(OshmesAppTheme theme) {
+  void setTheme(KlinAppTheme theme) {
     currentThemeName$.next(theme.name);
   }
 }

@@ -1,12 +1,15 @@
-import 'package:oshmes_terminal/core/models/controller.dart';
-import 'package:oshmes_terminal/core/models/rx.dart';
-import 'package:oshmes_terminal/core/models/rx_storage.dart';
-import 'package:oshmes_terminal/modules/settings/models/settings.dart';
-import 'package:oshmes_terminal/modules/settings/screens/advanced_view.dart';
-import 'package:oshmes_terminal/modules/settings/screens/general_view.dart';
-import 'package:oshmes_terminal/modules/settings/screens/mappings_view.dart';
-import 'package:oshmes_terminal/modules/settings/screens/themes_view.dart';
-import 'package:oshmes_terminal/shared/components/icon/icon.dart';
+import 'package:flutter/material.dart';
+import 'package:klin/core/models/controller.dart';
+import 'package:klin/core/models/rx.dart';
+import 'package:klin/core/models/rx_storage.dart';
+import 'package:klin/modules/settings/models/settings.dart';
+import 'package:klin/modules/settings/screens/advanced_view.dart';
+import 'package:klin/modules/settings/screens/general_view.dart';
+import 'package:klin/modules/settings/screens/mappings_view.dart';
+import 'package:klin/modules/settings/screens/settings_view.dart';
+import 'package:klin/modules/settings/screens/themes_view.dart';
+import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/modal/modal.dart';
 
 class SettingsController extends IController {
   final tabs = [
@@ -23,7 +26,7 @@ class SettingsController extends IController {
     SettingsTab(
       title: "Keymaps",
       icon: TablerIcons.keyboard,
-      view: MappingsView(),
+      view: const MappingsView(),
     ),
     SettingsTab(
       title: "Advanced",
@@ -69,4 +72,27 @@ class SettingsController extends IController {
     mapper: (value) => value == "true",
     initialValue: true,
   );
+  final enableContextMenu$ = RxStateStorage(
+    "enableContextMenu",
+    mapper: (value) => value == "true",
+    initialValue: true,
+  );
+
+  BuildContext? _context;
+  setContext(BuildContext context) {
+    _context = context;
+  }
+
+  BuildContext get context => _context!;
+  bool _isSettingsOpen = false;
+
+  Future<void> openSettings() async {
+    if (_isSettingsOpen) {
+      return;
+    }
+
+    _isSettingsOpen = true;
+    await openModal(context, const SettingsView());
+    _isSettingsOpen = false;
+  }
 }

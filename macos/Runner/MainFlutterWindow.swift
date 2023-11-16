@@ -67,7 +67,7 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
   
   func _initHandler() {
     let controller = (self.contentViewController as! BlurryContainerViewController).flutterViewController;
-    self.channel = FlutterMethodChannel(name: "ru.freethinkel.oshmesterminal/channel",
+    self.channel = FlutterMethodChannel(name: "ru.freethinkel.klinterminal/channel",
                                        binaryMessenger: controller.engine.binaryMessenger);
     channel!.setMethodCallHandler({
       (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in

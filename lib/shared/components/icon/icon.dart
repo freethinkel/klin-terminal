@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OshmesIcon extends StatelessWidget {
-  const OshmesIcon(
+class KlinIcon extends StatelessWidget {
+  const KlinIcon(
     this.icon, {
     this.size = 20,
     this.color,

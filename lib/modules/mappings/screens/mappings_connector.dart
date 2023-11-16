@@ -1,7 +1,7 @@
-import 'package:oshmes_terminal/core/widgets/controller_connector.dart';
-import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
+import 'package:klin/core/widgets/controller_connector.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:oshmes_terminal/modules/mappings/controllers/mappings.controller.dart';
+import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 
 class MappingsConnector extends RxConsumer {
   const MappingsConnector({

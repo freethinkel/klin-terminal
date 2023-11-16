@@ -1,9 +1,14 @@
-import 'package:oshmes_terminal/modules/settings/screens/settings_view.dart';
-import 'package:oshmes_terminal/shared/components/modal/modal.dart';
+import 'package:collection/collection.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
+import 'package:klin/modules/mappings/models/intents.dart';
+import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/settings/screens/settings_view.dart';
+import 'package:klin/shared/components/modal/modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MenuBar extends StatelessWidget {
+class MenuBar extends RxConsumer {
   const MenuBar({
     this.child,
     super.key,
@@ -12,16 +17,26 @@ class MenuBar extends StatelessWidget {
   final Widget? child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, watcher) {
+    final mappingsController = watcher.controller<MappingController>();
+    final settingsController = watcher.controller<SettingsController>();
+
+    final mappings = watcher.watch(mappingsController.mappings) ?? [];
+    final mapping = mappings.firstWhereOrNull(
+        (item) => item.action == AppMappingActions.openSettings);
+
+    settingsController.setContext(context);
+
     return PlatformMenuBar(
       menus: [
         PlatformMenu(
-          label: "Oshmes Terminal",
+          label: "Klin Terminal",
           menus: [
             PlatformMenuItem(
                 label: "Settings",
-                onSelected: () async {
-                  openModa(context, const SettingsView());
+                shortcut: mapping?.activator,
+                onSelected: () {
+                  settingsController.openSettings();
                 }),
             const PlatformMenuItem(label: "About"),
             const PlatformProvidedMenuItem(

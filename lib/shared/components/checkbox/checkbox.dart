@@ -1,11 +1,11 @@
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/icon/icon.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class OshmesCheckBox extends StatefulWidget {
-  const OshmesCheckBox({
+class KlinCheckBox extends StatefulWidget {
+  const KlinCheckBox({
     required this.checked,
     this.onChanged,
     this.description,
@@ -16,10 +16,10 @@ class OshmesCheckBox extends StatefulWidget {
   final Function(bool)? onChanged;
 
   @override
-  State<OshmesCheckBox> createState() => _OshmesCheckBoxState();
+  State<KlinCheckBox> createState() => _KlinCheckBoxState();
 }
 
-class _OshmesCheckBoxState extends State<OshmesCheckBox> {
+class _KlinCheckBoxState extends State<KlinCheckBox> {
   @override
   Widget build(BuildContext context) {
     return Tappable(
@@ -46,7 +46,7 @@ class _OshmesCheckBoxState extends State<OshmesCheckBox> {
               ),
               alignment: Alignment.center,
               child: widget.checked
-                  ? OshmesIcon(
+                  ? KlinIcon(
                       TablerIcons.check,
                       size: 16,
                       color: DefaultTextStyle.of(context).style.color,

@@ -1,10 +1,10 @@
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/icon/icon.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 import 'package:flutter/material.dart';
 
-class OshmesTab extends StatefulWidget {
-  const OshmesTab({
+class KlinTab extends StatefulWidget {
+  const KlinTab({
     required this.child,
     this.isActive = false,
     this.isAllowClose = true,
@@ -21,10 +21,10 @@ class OshmesTab extends StatefulWidget {
   final FocusNode? focusNode;
 
   @override
-  State<OshmesTab> createState() => _OshmesTabState();
+  State<KlinTab> createState() => _KlinTabState();
 }
 
-class _OshmesTabState extends State<OshmesTab> {
+class _KlinTabState extends State<KlinTab> {
   var isHover = false;
   var isHoverAddBtn = false;
 
@@ -90,7 +90,7 @@ class _OshmesTabState extends State<OshmesTab> {
                           borderRadius: BorderRadius.circular(4),
                           color: closeBtnBgColor,
                         ),
-                        child: const OshmesIcon(
+                        child: const KlinIcon(
                           TablerIcons.x,
                           size: 16,
                         ),

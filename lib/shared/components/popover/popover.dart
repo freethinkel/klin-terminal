@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 
 class Popover extends StatefulWidget {
   const Popover({

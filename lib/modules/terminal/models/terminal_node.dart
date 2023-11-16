@@ -1,6 +1,7 @@
-import 'package:oshmes_terminal/modules/terminal/models/terminal_node_pty.dart';
+import 'package:klin/modules/terminal/models/terminal_node_pty.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
+import 'package:xterm/xterm.dart';
 
 class TerminalNode extends TerminalNodePty {
   TerminalNode({
@@ -17,6 +18,10 @@ class TerminalNode extends TerminalNodePty {
 
   void sendChars(String chars) {
     terminal.textInput(chars);
+  }
+
+  void clear() {
+    terminal.keyInput(TerminalKey.keyL, ctrl: true);
   }
 
   void focusPane(AxisDirection direction) {

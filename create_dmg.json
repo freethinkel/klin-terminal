@@ -1,5 +1,5 @@
 {
-  "title": "Oshmes Terminal",
+  "title": "Klin",
   "icon": "./macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png",
   "contents": [
     { "x": 448, "y": 200, "type": "link", "path": "/Applications" },
@@ -7,7 +7,7 @@
       "x": 192,
       "y": 200,
       "type": "file",
-      "path": "./build/macos/Oshmes Terminal.app"
+      "path": "./build/macos/Klin.app"
     }
   ]
 }

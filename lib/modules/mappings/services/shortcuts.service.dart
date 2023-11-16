@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:oshmes_terminal/core/models/service.dart';
-import 'package:oshmes_terminal/modules/mappings/models/shortcuts.dart';
+import 'package:klin/core/models/service.dart';
+import 'package:klin/modules/mappings/models/shortcuts.dart';
 
 class ShortcutsService extends IService {
   final Set<LogicalKeyboardKey> _pressedKeys = {};

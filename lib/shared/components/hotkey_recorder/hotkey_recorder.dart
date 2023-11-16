@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/logical_key_representation/logical_key_representation.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/logical_key_representation/logical_key_representation.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 
 // ignore: constant_identifier_names
 const _MODIFIERS = [
@@ -69,7 +69,6 @@ class _HotKeyRecorderState extends State<HotKeyRecorder> {
         pressed.where((element) => _MODIFIERS.contains(element)).isNotEmpty;
     var hasExceptModifiers =
         pressed.where((element) => !_MODIFIERS.contains(element)).isNotEmpty;
-    print(hasModifier);
     return event is RawKeyDownEvent && hasModifier && hasExceptModifiers;
   }
 

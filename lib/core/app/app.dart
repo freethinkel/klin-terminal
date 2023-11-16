@@ -1,19 +1,15 @@
-import 'package:oshmes_terminal/core/app/menu_bar.dart';
-import 'package:oshmes_terminal/modules/mappings/screens/mappings_connector.dart';
-import 'package:oshmes_terminal/modules/tabs/screens/tab_bar.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
+import 'package:klin/core/app/menu_bar.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/modules/mappings/screens/mappings_connector.dart';
+import 'package:klin/modules/tabs/screens/tab_bar.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart' hide MenuBar;
 
-class App extends StatefulWidget {
+class App extends RxConsumer {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, watcher) {
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -21,7 +17,7 @@ class _AppState extends State<App> {
       child: const ThemeConnector(
         child: MenuBar(
           child: MappingsConnector(
-            child: OshmesTabBar(),
+            child: KlinTabBar(),
           ),
         ),
       ),

@@ -1,13 +1,14 @@
 import 'dart:math';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/icon/icon.dart';
-import 'package:oshmes_terminal/shared/components/popover/popover.dart';
-import 'package:oshmes_terminal/shared/components/tappable/tappable.dart';
-import 'package:oshmes_terminal/shared/models/color.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/popover/popover.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
+import 'package:klin/shared/models/color.dart';
 
 class Select<T> extends StatefulWidget {
   const Select({
@@ -73,7 +74,7 @@ class _SelectState<T> extends State<Select<T>> {
               AnimatedRotation(
                 turns: isOpened ? 0.5 : 0,
                 duration: const Duration(milliseconds: 140),
-                child: const OshmesIcon(TablerIcons.chevronDown, size: 16),
+                child: const KlinIcon(TablerIcons.chevronDown, size: 16),
               ),
             ],
           )),
@@ -116,7 +117,9 @@ class _SelectState<T> extends State<Select<T>> {
                           widget.onSelect?.call(item);
                           Navigator.of(context).maybePop();
                         } catch (err) {
-                          print(err);
+                          if (kDebugMode) {
+                            print(err);
+                          }
                         }
                       },
                     )))

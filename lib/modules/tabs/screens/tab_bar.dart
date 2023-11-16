@@ -1,20 +1,19 @@
-import 'package:oshmes_terminal/core/widgets/rx_builder.dart';
-import 'package:oshmes_terminal/core/widgets/rx_consumer.dart';
-import 'package:oshmes_terminal/modules/channel/controllers/channel.controller.dart';
-import 'package:oshmes_terminal/modules/mappings/screens/mappings_connector.dart';
-import 'package:oshmes_terminal/modules/settings/controllers/settings.controller.dart';
-import 'package:oshmes_terminal/modules/tabs/controllers/tabs.controller.dart';
-import 'package:oshmes_terminal/modules/tabs/screens/view_tree.dart';
-import 'package:oshmes_terminal/modules/terminal/models/terminal_node.dart';
-import 'package:oshmes_terminal/modules/theme/components/theme_connector.dart';
-import 'package:oshmes_terminal/shared/components/draggable_window/draggable_window.dart';
-import 'package:oshmes_terminal/modules/tabs/components/add_new_tab.dart';
-import 'package:oshmes_terminal/modules/tabs/components/tab_item.dart';
+import 'package:klin/core/widgets/rx_builder.dart';
+import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/modules/channel/controllers/channel.controller.dart';
+import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
+import 'package:klin/modules/tabs/screens/view_tree.dart';
+import 'package:klin/modules/terminal/models/terminal_node.dart';
+import 'package:klin/modules/theme/components/theme_connector.dart';
+import 'package:klin/shared/components/draggable_window/draggable_window.dart';
+import 'package:klin/modules/tabs/components/add_new_tab.dart';
+import 'package:klin/modules/tabs/components/tab_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class OshmesTabBar extends RxConsumer {
-  const OshmesTabBar({super.key});
+class KlinTabBar extends RxConsumer {
+  const KlinTabBar({super.key});
 
   @override
   Widget build(BuildContext context, watcher) {
@@ -72,7 +71,7 @@ class OshmesTabBar extends RxConsumer {
                                             horizontal: 2,
                                             vertical: 4,
                                           ),
-                                          child: OshmesTab(
+                                          child: KlinTab(
                                             isAllowClose: tabs.length > 1,
                                             isActive: currentTab == tab &&
                                                 tabs.length > 1,

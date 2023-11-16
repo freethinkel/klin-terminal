@@ -1,18 +1,17 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:xterm/ui.dart';
 
-class OshmesThemeProvider {}
+class KlinThemeProvider {}
 
-class OshmesAppTheme {
+class KlinAppTheme {
   String name;
   Color primary;
   Color selection;
   TerminalTheme terminalTheme;
 
-  OshmesAppTheme({
+  KlinAppTheme({
     this.name = "Unknown",
     required this.primary,
     required this.selection,
@@ -53,11 +52,11 @@ class OshmesAppTheme {
     };
   }
 
-  static OshmesAppTheme fromMap(Map data) {
+  static KlinAppTheme fromMap(Map data) {
     Map colors = (data['colors'] as Map)
         .map((key, value) => MapEntry(key, Color(value)));
 
-    return OshmesAppTheme(
+    return KlinAppTheme(
       name: data['name'],
       primary: Color(data['primary']),
       selection: Color(data['selection']),
