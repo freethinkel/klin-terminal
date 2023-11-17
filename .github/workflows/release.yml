@@ -25,7 +25,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.9
-      - run: rm -rf *.dmg && mv ./build/macos/Build/Products/Release/klin.app ./build/macos/Klin.app && npx appdmg ./create_dmg.json ./Klin.dmg
+      - run: python3 -m pip install setuptools
+      - run: npm install -g appdmg
+      - run: rm -rf *.dmg && mv ./build/macos/Build/Products/Release/klin.app ./build/macos/Klin.app
+      - run: appdmg ./create_dmg.json ./Klin.dmg
 
       - name: Create Version Number
         id: versions
