@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/mappings/models/intents.dart';
 import 'package:klin/modules/mappings/models/shortcuts.dart';
@@ -10,6 +9,7 @@ import 'package:klin/shared/components/icon/icon.dart';
 import 'package:klin/shared/components/input/input.dart';
 import 'package:klin/shared/components/select/select.dart';
 import 'package:klin/shared/components/table/table.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class MappingsView extends RxConsumer {
   const MappingsView({super.key});

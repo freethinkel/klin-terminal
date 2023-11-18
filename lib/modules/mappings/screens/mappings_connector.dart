@@ -1,7 +1,6 @@
-import 'package:klin/core/widgets/controller_connector.dart';
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class MappingsConnector extends RxConsumer {
   const MappingsConnector({
@@ -9,11 +8,6 @@ class MappingsConnector extends RxConsumer {
     super.key,
   });
   final Widget child;
-
-  @override
-  void onInit() {
-    ControllerConnector.of<MappingController>().init();
-  }
 
   @override
   Widget build(BuildContext context, watcher) {

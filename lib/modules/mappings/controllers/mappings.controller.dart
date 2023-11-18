@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:klin/core/models/controller.dart';
-import 'package:klin/core/models/rx_storage.dart';
 import 'package:klin/modules/mappings/models/default_shortcuts.dart';
 import 'package:klin/modules/mappings/models/intents.dart';
 import 'package:klin/modules/mappings/models/shortcuts.dart';
 import 'package:klin/modules/mappings/services/shortcuts.service.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class MappingController extends IController {
   MappingController({

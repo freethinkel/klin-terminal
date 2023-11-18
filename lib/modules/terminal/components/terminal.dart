@@ -14,6 +14,8 @@ class KlinTerminalView extends StatelessWidget {
     this.padding,
     this.verticalLineOffset,
     this.enableCustomGlyphs = true,
+    this.transparentBackgroundCells = false,
+    this.cellBackgroundOpacity = 1,
     this.focusNode,
     super.key,
   });
@@ -27,6 +29,8 @@ class KlinTerminalView extends StatelessWidget {
   final int? padding;
   final double? verticalLineOffset;
   final bool enableCustomGlyphs;
+  final bool transparentBackgroundCells;
+  final double cellBackgroundOpacity;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +46,8 @@ class KlinTerminalView extends StatelessWidget {
       theme: AppTheme.of(context).terminalTheme,
       customGlyphs: enableCustomGlyphs,
       verticalLineOffset: verticalLineOffset ?? 0,
+      transparentBackgroundCells: transparentBackgroundCells,
+      cellBackgroundOpacity: cellBackgroundOpacity,
       textStyle: TerminalStyle.fromTextStyle(
         TextStyle(
           fontFamily: fontFamily,

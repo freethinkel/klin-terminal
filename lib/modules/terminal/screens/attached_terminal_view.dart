@@ -1,9 +1,9 @@
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/terminal/components/terminal.dart';
 import 'package:klin/modules/terminal/models/terminal_node.dart';
 
 import 'package:flutter/material.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class AttachedTerminal extends StatefulWidget {
   const AttachedTerminal({
@@ -52,6 +52,11 @@ class AttachedTerminalView extends RxConsumer {
     final enableCustomGlyphs =
         watcher.watch(settingsController.enableCustomGlyphs$) == true;
 
+    final cellBackgroundOpacity =
+        watcher.watch(settingsController.cellBackgroundOpacity$) ?? 1.0;
+    final transparentBackgroundCells =
+        watcher.watch(settingsController.transparentBackgroundCells$) == true;
+
     return KlinTerminalView(
       terminal: terminalNode.terminal,
       controller: terminalNode.terminalController,
@@ -63,6 +68,8 @@ class AttachedTerminalView extends RxConsumer {
       lineHeight: lineHeight,
       enableCustomGlyphs: enableCustomGlyphs,
       verticalLineOffset: verticalLineOffset,
+      transparentBackgroundCells: transparentBackgroundCells,
+      cellBackgroundOpacity: cellBackgroundOpacity,
     );
   }
 }

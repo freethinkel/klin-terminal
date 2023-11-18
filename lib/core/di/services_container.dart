@@ -1,8 +1,8 @@
-import 'package:get_it/get_it.dart';
 import 'package:klin/modules/mappings/services/shortcuts.service.dart';
+import 'package:rx_flow/rx_flow.dart';
 
-void setup(GetIt locator) {
-  locator.registerSingleton(
+void setup(Locator locator) {
+  locator.register(
     ShortcutsService(),
   );
 }

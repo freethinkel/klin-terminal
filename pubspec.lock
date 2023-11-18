@@ -217,7 +217,7 @@ packages:
     source: hosted
     version: "1.1.1"
   get_it:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get_it
       sha256: "529de303c739fca98cd7ece5fca500d8ff89649f1bb4b4e94fb20954abcd7468"
@@ -384,8 +384,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
-  rxdart:
+  rx_flow:
     dependency: "direct main"
+    description:
+      name: rx_flow
+      sha256: "0d434cda92f2b0a9f8041d261ec985c9809e2eeea7e29c5d2f0a22eb7490ec2d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
+  rxdart:
+    dependency: transitive
     description:
       name: rxdart
       sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
@@ -618,10 +626,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "99f547da450f16eba94395776515aee4957811a3"
+      resolved-ref: "1c98f41ef95d7327036a3689d5ee68e3f710883d"
       url: "https://github.com/freethinkel/xterm.dart.git"
     source: git
-    version: "3.6.3"
+    version: "3.7.0"
   yaml:
     dependency: "direct main"
     description:

@@ -1,8 +1,9 @@
-import 'package:get_it/get_it.dart';
+import 'package:rx_flow/rx_flow.dart';
+
 import 'services_container.dart' as services_container;
 import 'controllers_container.dart' as controllers_container;
 
-final locator = GetIt.asNewInstance();
+final locator = Locator();
 
 void setup() {
   services_container.setup(locator);

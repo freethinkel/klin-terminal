@@ -1,8 +1,7 @@
-import 'package:klin/core/widgets/controller_connector.dart';
-import 'package:klin/core/widgets/rx_builder.dart';
 import 'package:klin/modules/theme/controllers/theme.controller.dart';
 import 'package:klin/modules/theme/models/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class AppTheme extends InheritedWidget {
   final KlinAppTheme theme;

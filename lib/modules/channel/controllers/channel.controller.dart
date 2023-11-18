@@ -1,6 +1,5 @@
-import 'package:klin/core/models/controller.dart';
-import 'package:klin/core/models/rx.dart';
 import 'package:flutter/services.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class ChannelController extends IController {
   final _channelName = 'ru.freethinkel.klinterminal/channel';

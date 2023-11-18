@@ -1,10 +1,11 @@
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/shared/components/checkbox/checkbox.dart';
 import 'package:klin/shared/components/input/rx_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:klin/shared/components/slider/slider.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class AdvancedSettingsView extends RxConsumer {
   const AdvancedSettingsView({super.key});
@@ -17,6 +18,10 @@ class AdvancedSettingsView extends RxConsumer {
         watcher.watch(settingsController.enableCustomGlyphs$) == true;
     final enableContextMenu =
         watcher.watch(settingsController.enableContextMenu$) == true;
+    final cellBackgroundOpacity =
+        watcher.watch(settingsController.cellBackgroundOpacity$) ?? 0;
+    final transparentBackgroundCells =
+        watcher.watch(settingsController.transparentBackgroundCells$) == true;
 
     return SettingsPage(
       title: 'Advanced',
@@ -51,6 +56,21 @@ class AdvancedSettingsView extends RxConsumer {
               settingsController.enableContextMenu$.next(checked);
             },
           ),
+          const SizedBox(height: 12),
+          KlinSlider(
+            label: "Cells background opacity",
+            value: cellBackgroundOpacity,
+            onChanged: (value) {
+              settingsController.cellBackgroundOpacity$.next(value);
+            },
+          ),
+          KlinCheckBox(
+            description: "Transparent background cells",
+            checked: transparentBackgroundCells,
+            onChanged: (checked) {
+              settingsController.transparentBackgroundCells$.next(checked);
+            },
+          )
         ],
       ),
     );
