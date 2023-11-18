@@ -1,9 +1,9 @@
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/shared/components/checkbox/checkbox.dart';
-import 'package:klin/shared/components/input/rx_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:klin/shared/components/input/controlled_input.dart';
 import 'package:klin/shared/components/slider/slider.dart';
 import 'package:rx_flow/rx_flow.dart';
 
@@ -25,6 +25,9 @@ class AdvancedSettingsView extends RxConsumer {
     final autohideToolbar =
         watcher.watch(settingsController.autoHideToolbar$) == true;
 
+    final customVerticalLineOffset =
+        watcher.watch(settingsController.customVerticalLineOffset$) ?? 0.0;
+
     return SettingsPage(
       title: 'Advanced',
       child: Column(
@@ -32,17 +35,15 @@ class AdvancedSettingsView extends RxConsumer {
         children: [
           SizedBox(
             width: 200,
-            child: RxInput(
+            child: ControlledKlinInput(
               label: "Vertical line offset",
               placeholder: "Enter custom vertical line offset",
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp('[0-9]*.[0-9]*'))
               ],
-              valueMap: (value) =>
-                  double.tryParse(value) ??
-                  settingsController.customVerticalLineOffset$.value,
-              state: settingsController.customVerticalLineOffset$
-                  .map((e) => e.toString()),
+              onInput: (value) => settingsController.customVerticalLineOffset$
+                  .next(double.tryParse(value) ?? 0.0),
+              value: customVerticalLineOffset.toString(),
             ),
           ),
           KlinCheckBox(

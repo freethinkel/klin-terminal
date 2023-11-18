@@ -1,7 +1,6 @@
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/shared/components/input/controlled_input.dart';
-import 'package:klin/shared/components/input/rx_input.dart';
 import 'package:klin/shared/components/slider/rx_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
