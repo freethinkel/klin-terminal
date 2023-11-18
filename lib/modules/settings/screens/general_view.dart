@@ -1,5 +1,6 @@
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/shared/components/input/controlled_input.dart';
 import 'package:klin/shared/components/input/rx_input.dart';
 import 'package:klin/shared/components/slider/rx_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +14,11 @@ class GeneralSettingsView extends RxConsumer {
   @override
   Widget build(BuildContext context, watcher) {
     final settingsController = watcher.controller<SettingsController>();
+
+    final fontFamily = watcher.watch(settingsController.fontFamily$) ?? "";
+    final fontSize = watcher.watch(settingsController.fontSize$) ?? 13;
+    final lineHeight = watcher.watch(settingsController.lineHeight$) ?? 1;
+    final padding = watcher.watch(settingsController.padding$) ?? 0;
 
     return SettingsPage(
       title: "General",
@@ -29,51 +35,52 @@ class GeneralSettingsView extends RxConsumer {
                 children: [
                   Container(
                     constraints: const BoxConstraints(maxWidth: 240),
-                    child: RxInput(
-                      state: settingsController.fontFamily$,
+                    child: ControlledKlinInput(
+                      value: fontFamily,
                       label: "Font family",
                       placeholder: "Enter font family",
+                      onInput: (value) =>
+                          settingsController.fontFamily$.next(value),
                     ),
                   ),
                   Container(
                     constraints: const BoxConstraints(maxWidth: 100),
-                    child: RxInput(
-                      state: settingsController.fontSize$,
+                    child: ControlledKlinInput(
+                      value: fontSize.toString(),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp('[0-9]*'))
                       ],
-                      valueMap: (value) =>
+                      onInput: (value) => settingsController.fontSize$.next(
                           int.tryParse(value) ??
-                          settingsController.fontSize$.value,
+                              settingsController.fontSize$.value ??
+                              13),
                       label: "Font size",
                       placeholder: "Enter font size",
                     ),
                   ),
                   Container(
                     constraints: const BoxConstraints(maxWidth: 100),
-                    child: RxInput(
-                      state: settingsController.lineHeight$,
+                    child: ControlledKlinInput(
+                      value: lineHeight.toString(),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
                             RegExp('[0-9]*.[0-9]*'))
                       ],
-                      valueMap: (value) =>
-                          double.tryParse(value) ??
-                          settingsController.lineHeight$.value,
+                      onInput: (value) => settingsController.lineHeight$
+                          .next(double.tryParse(value) ?? 1),
                       label: "Line height",
                       placeholder: "Enter line height",
                     ),
                   ),
                   Container(
                     constraints: const BoxConstraints(maxWidth: 100),
-                    child: RxInput(
-                      state: settingsController.padding$,
+                    child: ControlledKlinInput(
+                      value: padding.toString(),
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp('[0-9]*'))
                       ],
-                      valueMap: (value) =>
-                          int.tryParse(value) ??
-                          settingsController.padding$.value,
+                      onInput: (value) => settingsController.padding$
+                          .next(int.tryParse(value) ?? 0),
                       label: "Padding",
                       placeholder: "Enter terminal inner padding",
                     ),

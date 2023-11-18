@@ -7,9 +7,22 @@ import 'package:klin/modules/settings/screens/settings_view.dart';
 import 'package:klin/modules/settings/screens/themes_view.dart';
 import 'package:klin/shared/components/icon/icon.dart';
 import 'package:klin/shared/components/modal/modal.dart';
+import 'package:klin/shared/controller/window_manager.controller.dart';
 import 'package:rx_flow/rx_flow.dart';
 
 class SettingsController extends IController {
+  SettingsController({required WindowManagerController windowManagerController})
+      : _windowManagerController = windowManagerController {
+    autoHideToolbar$.stream.listen((event) {
+      if (event) {
+        _windowManagerController.hideButtons();
+      } else {
+        _windowManagerController.showButtons();
+      }
+    });
+  }
+  final WindowManagerController _windowManagerController;
+
   final tabs = [
     SettingsTab(
       title: "General",
@@ -85,6 +98,11 @@ class SettingsController extends IController {
     mapper: (value) => value == "true",
     initialValue: false,
   );
+  final autoHideToolbar$ = RxStateStorage(
+    "autohide_toolbar",
+    mapper: (value) => value == "true",
+    initialValue: false,
+  );
 
   BuildContext? _context;
   setContext(BuildContext context) {
@@ -96,6 +114,7 @@ class SettingsController extends IController {
 
   Future<void> openSettings() async {
     if (_isSettingsOpen) {
+      Navigator.of(context).maybePop();
       return;
     }
 

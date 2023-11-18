@@ -1,109 +1,43 @@
-import 'package:klin/modules/channel/controllers/channel.controller.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/tabs/components/tabbar_filers.dart';
 import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
+import 'package:klin/modules/tabs/models/constants.dart';
+import 'package:klin/modules/tabs/screens/toolbar.dart';
 import 'package:klin/modules/tabs/screens/view_tree.dart';
 import 'package:klin/modules/terminal/models/terminal_node.dart';
-import 'package:klin/modules/theme/components/theme_connector.dart';
-import 'package:klin/shared/components/draggable_window/draggable_window.dart';
-import 'package:klin/modules/tabs/components/add_new_tab.dart';
-import 'package:klin/modules/tabs/components/tab_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:klin/shared/components/tappable/tappable.dart';
 import 'package:rx_flow/rx_flow.dart';
 
 class KlinTabBar extends RxConsumer {
-  const KlinTabBar({super.key});
+  KlinTabBar({super.key});
+
+  final RxState<bool> _isHover$ = RxState(false);
 
   @override
   Widget build(BuildContext context, watcher) {
     final tabsController = watcher.controller<TabsController>();
-    final channelController = watcher.controller<ChannelController>();
     final settingsController = watcher.controller<SettingsController>();
 
-    final isFullscreen = watcher.watch(channelController.fullscreened$);
-    final opacity = watcher.watch(settingsController.opacity$);
     final tabs = watcher.watch(tabsController.tabs$) ?? [];
     final currentTab = watcher.watch(tabsController.currentTab$);
 
-    final bgColor = AppTheme.of(context).primary.withOpacity(opacity ?? 1);
+    final isAutoHideToolbar =
+        watcher.watch(settingsController.autoHideToolbar$) == true;
+
+    final isHover = watcher.watch(_isHover$) == true;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Column(
+      body: Stack(
         children: [
-          DraggableWindow(
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [BoxShadow(offset: Offset.zero, color: bgColor)],
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    height: 38,
-                    width: isFullscreen == true ? 0 : 78,
-                    decoration: BoxDecoration(
-                      color: bgColor,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 38,
-                      decoration: BoxDecoration(
-                        color: bgColor,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: tabs
-                                  .map(
-                                    (tab) => Expanded(
-                                      child: RxStateBuilder(
-                                        state: tab.title,
-                                        builder: (context, title) => Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 2,
-                                            vertical: 4,
-                                          ),
-                                          child: KlinTab(
-                                            isAllowClose: tabs.length > 1,
-                                            isActive: currentTab == tab &&
-                                                tabs.length > 1,
-                                            child: title!.isEmpty
-                                                ? const CupertinoActivityIndicator(
-                                                    radius: 8,
-                                                  )
-                                                : Text(
-                                                    title,
-                                                    textAlign: TextAlign.center,
-                                                    softWrap: false,
-                                                  ),
-                                            onTap: () => tabsController
-                                                .currentTab$
-                                                .next(tab),
-                                            onClose: () =>
-                                                tabsController.closeTab(tab),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                          AddNewTabButton(
-                            onTap: () => tabsController.addNewTab(),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
+          AnimatedPositioned(
+            duration: TOOLBAR_ANIMATION_DURATION,
+            curve: TOOLBAR_ANIMATION_CURVE,
+            top: isAutoHideToolbar ? 0 : TOOLBAR_HEIGHT,
+            left: 0,
+            right: 0,
+            bottom: 0,
             child: Stack(
               children: tabs
                   .map(
@@ -122,7 +56,33 @@ class KlinTabBar extends RxConsumer {
                   )
                   .toList(),
             ),
-          )
+          ),
+          if (isAutoHideToolbar)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Tappable(
+                onHover: (state) => _isHover$.next(state),
+                child: const SizedBox(
+                  height: TOOLBAR_HEIGHT,
+                ),
+              ),
+            ),
+          AnimatedPositioned(
+            duration: TOOLBAR_ANIMATION_DURATION,
+            curve: TOOLBAR_ANIMATION_CURVE,
+            top: isAutoHideToolbar && !isHover ? -TOOLBAR_HEIGHT : 0,
+            left: 0,
+            right: 0,
+            child: TabbarFilers(
+              isActive: isAutoHideToolbar,
+              child: Tappable(
+                onHover: (state) => _isHover$.next(state),
+                child: const Toolbar(),
+              ),
+            ),
+          ),
         ],
       ),
     );

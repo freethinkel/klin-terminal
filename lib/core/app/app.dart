@@ -1,5 +1,4 @@
 import 'package:klin/core/app/menu_bar.dart';
-import 'package:klin/core/di/locator.dart';
 import 'package:klin/modules/mappings/screens/mappings_connector.dart';
 import 'package:klin/modules/tabs/screens/tab_bar.dart';
 import 'package:klin/modules/theme/components/background_connector.dart';
@@ -16,7 +15,7 @@ class App extends RxConsumer {
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: const ThemeConnector(
+      child: ThemeConnector(
         child: MenuBar(
           child: MappingsConnector(
             child: BackgroundConnector(

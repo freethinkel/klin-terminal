@@ -22,6 +22,8 @@ class AdvancedSettingsView extends RxConsumer {
         watcher.watch(settingsController.cellBackgroundOpacity$) ?? 0;
     final transparentBackgroundCells =
         watcher.watch(settingsController.transparentBackgroundCells$) == true;
+    final autohideToolbar =
+        watcher.watch(settingsController.autoHideToolbar$) == true;
 
     return SettingsPage(
       title: 'Advanced',
@@ -39,7 +41,8 @@ class AdvancedSettingsView extends RxConsumer {
               valueMap: (value) =>
                   double.tryParse(value) ??
                   settingsController.customVerticalLineOffset$.value,
-              state: settingsController.customVerticalLineOffset$,
+              state: settingsController.customVerticalLineOffset$
+                  .map((e) => e.toString()),
             ),
           ),
           KlinCheckBox(
@@ -69,6 +72,14 @@ class AdvancedSettingsView extends RxConsumer {
             checked: transparentBackgroundCells,
             onChanged: (checked) {
               settingsController.transparentBackgroundCells$.next(checked);
+            },
+          ),
+          const SizedBox(height: 0),
+          KlinCheckBox(
+            description: "Autohide toolbar",
+            checked: autohideToolbar,
+            onChanged: (checked) {
+              settingsController.autoHideToolbar$.next(checked);
             },
           )
         ],

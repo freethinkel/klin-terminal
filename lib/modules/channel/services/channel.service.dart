@@ -1,14 +1,14 @@
 import 'package:flutter/services.dart';
 import 'package:rx_flow/rx_flow.dart';
 
-class ChannelController extends IController {
+class ChannelService extends IService {
   final _channelName = 'ru.freethinkel.klinterminal/channel';
   late final channel = MethodChannel(_channelName);
 
   final maximized$ = RxState(false);
   final fullscreened$ = RxState(false);
+  final focused$ = RxState(false);
 
-  @override
   void init() {
     channel.setMethodCallHandler((call) async {
       var _ = switch (call.method) {
@@ -16,25 +16,35 @@ class ChannelController extends IController {
         'unmaximized' => maximized$.next(false),
         'enter-full-screen' => fullscreened$.next(true),
         'leave-full-screen' => fullscreened$.next(false),
+        'blur' => focused$.next(false),
+        'focus' => focused$.next(true),
         _ => null
       };
     });
   }
 
-  Future<void> startDragging() async {
+  Future<void> startWindowDragging() async {
     await channel.invokeMethod("start_dragging");
   }
 
-  Future<bool> isMaximized() async {
+  Future<bool> isWindowMaximized() async {
     var isMaximized = await channel.invokeMethod("is_maximized");
     return isMaximized == true;
   }
 
-  Future<void> maximize() async {
+  Future<void> maximizeWindow() async {
     await channel.invokeMethod("maximize");
   }
 
-  Future<void> unmaximize() async {
+  Future<void> unmaximizeWindow() async {
     await channel.invokeMethod("unmaximize");
+  }
+
+  Future<void> hideWidowButtons() async {
+    await channel.invokeMethod("hide_buttons");
+  }
+
+  Future<void> showWindowButtons() async {
+    await channel.invokeMethod("show_buttons");
   }
 }

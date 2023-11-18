@@ -109,15 +109,18 @@ class PopoverBody extends StatelessWidget {
         Positioned(
           top: position.dy,
           left: position.dx,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: 0,
-              maxWidth: min(width ?? maxWidth ?? double.infinity,
-                  maxWidth ?? double.infinity),
-              minHeight: 0,
-              maxHeight: maxHeight ?? double.infinity,
+          child: IntrinsicWidth(
+            stepWidth: 0,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: 0,
+                maxWidth: min(width ?? maxWidth ?? double.infinity,
+                    maxWidth ?? double.infinity),
+                minHeight: 0,
+                maxHeight: maxHeight ?? double.infinity,
+              ),
+              child: child,
             ),
-            child: child,
           ),
         ),
       ]),
