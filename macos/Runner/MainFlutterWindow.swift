@@ -90,6 +90,12 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
           self.unmaximize();
           result("");
           break;
+        case "show_buttons":
+          self.showButtons();
+          break;
+        case "hide_buttons":
+          self.hideButtons();
+          break;
         default:
           result(FlutterMethodNotImplemented)
       }
@@ -97,9 +103,7 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
 
   }
   
-  
   override func awakeFromNib() {
-    delegate = self
     let blurryContainerViewController = BlurryContainerViewController()
     let windowFrame = self.frame
     self.contentViewController = blurryContainerViewController
@@ -127,6 +131,7 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
     self.appearance = NSAppearance.init(named: NSAppearance.Name.vibrantDark)
     _initHandler();
     UserDefaults.standard.set(false, forKey: "ApplePressAndHoldEnabled");
+    self.delegate = self;
 
     RegisterGeneratedPlugins(registry: blurryContainerViewController.flutterViewController)
 
@@ -147,7 +152,7 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
     _emitEvent("resized")
   }
   
-    func windowWillMove(_ notification: Notification) {
+  func windowWillMove(_ notification: Notification) {
     _emitEvent("move")
   }
     
@@ -186,4 +191,25 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
       self.toolbar?.isVisible = true;
       _emitEvent("leave-full-screen");
   }
+
+  func hideButtons() {
+    let closeButton = self.standardWindowButton(.closeButton)
+    let minButton = self.standardWindowButton(.miniaturizeButton)
+    let zoomButton = self.standardWindowButton(.zoomButton)
+    
+    [closeButton, minButton, zoomButton].forEach({button in
+      button?.isHidden = true;
+    })
+  }
+
+  func showButtons() {
+    let closeButton = self.standardWindowButton(.closeButton)
+    let minButton = self.standardWindowButton(.miniaturizeButton)
+    let zoomButton = self.standardWindowButton(.zoomButton)
+    
+    [closeButton, minButton, zoomButton].forEach({button in
+      button?.isHidden = false;
+    })
+  }
 }
+

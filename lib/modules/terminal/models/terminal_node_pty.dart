@@ -24,6 +24,7 @@ class TerminalNodePty {
     arguments: _shell.args,
     columns: terminal.viewWidth,
     rows: terminal.viewHeight,
+    workingDirectory: "/",
     environment: {
       ...Platform.environment,
       "TERM": "xterm-256color",

@@ -53,29 +53,36 @@ class _SelectState<T> extends State<Select<T>> {
   Widget build(BuildContext context) {
     return Popover(
       onOpen: (state) => setState(() => isOpened = state),
-      head: Container(
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            border: Border.all(
-                color: AppTheme.of(context).selection.withOpacity(0.1)),
-            color: AppTheme.of(context)
-                .primary
-                .mix(AppTheme.of(context).selection, 0.05),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              widget.value != null ? _buildValue() : _buildPlaceholder(),
-              const SizedBox(width: 8),
-              AnimatedRotation(
-                turns: isOpened ? 0.5 : 0,
-                duration: const Duration(milliseconds: 140),
-                child: const KlinIcon(TablerIcons.chevronDown, size: 16),
-              ),
-            ],
-          )),
+      head: IntrinsicWidth(
+        stepWidth: 0,
+        child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                  color: AppTheme.of(context).selection.withOpacity(0.1)),
+              color: AppTheme.of(context)
+                  .primary
+                  .mix(AppTheme.of(context).selection, 0.05),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: widget.value != null
+                      ? _buildValue()
+                      : _buildPlaceholder(),
+                ),
+                const SizedBox(width: 8),
+                AnimatedRotation(
+                  turns: isOpened ? 0.5 : 0,
+                  duration: const Duration(milliseconds: 140),
+                  child: const KlinIcon(TablerIcons.chevronDown, size: 16),
+                ),
+              ],
+            )),
+      ),
       width: widget.width,
       popover: Container(
         padding: const EdgeInsets.symmetric(vertical: 6),

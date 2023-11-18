@@ -6,6 +6,7 @@ import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/shared/components/button/button.dart';
 import 'package:klin/shared/components/hotkey_recorder/hotkey_recorder.dart';
 import 'package:klin/shared/components/icon/icon.dart';
+import 'package:klin/shared/components/input/controlled_input.dart';
 import 'package:klin/shared/components/input/input.dart';
 import 'package:klin/shared/components/select/select.dart';
 import 'package:klin/shared/components/table/table.dart';
@@ -56,8 +57,7 @@ class MappingsView extends RxConsumer {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Select(
-                        placeholder: "Type",
-                        width: 200,
+                        placeholder: "Type", // width: 200,
                         onSelect: (action) {
                           if (action.value == TerminalAction.action) {
                             mappingsController.replaceShortcut(
@@ -83,7 +83,11 @@ class MappingsView extends RxConsumer {
                         items: TerminalAction.values
                             .map(
                               (item) => SelectItem(
-                                child: Text(item.description),
+                                child: Text(
+                                  item.description,
+                                  softWrap: false,
+                                  overflow: TextOverflow.fade,
+                                ),
                                 value: item,
                               ),
                             )
@@ -95,10 +99,10 @@ class MappingsView extends RxConsumer {
                       child: mapping.sendChars != null
                           ? SizedBox(
                               width: 200,
-                              child: KlinInput(
+                              child: ControlledKlinInput(
                                   placeholder: "Send chars",
-                                  value: mapping.sendChars,
-                                  onChanged: (chars) {
+                                  value: mapping.sendChars ?? "",
+                                  onInput: (chars) {
                                     mappingsController.replaceShortcut(mapping,
                                         mapping.copyWith(sendChars: chars));
                                   }),
@@ -114,7 +118,11 @@ class MappingsView extends RxConsumer {
                               items: AppMappingActions.values
                                   .map(
                                     (item) => SelectItem(
-                                      child: Text(item.description),
+                                      child: Text(
+                                        item.description,
+                                        softWrap: false,
+                                        overflow: TextOverflow.fade,
+                                      ),
                                       value: item,
                                     ),
                                   )

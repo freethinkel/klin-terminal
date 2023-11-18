@@ -1,6 +1,6 @@
-import 'package:klin/modules/channel/controllers/channel.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_x_detector/gesture_x_detector.dart';
+import 'package:klin/shared/controller/window_manager.controller.dart';
 import 'package:rx_flow/rx_flow.dart';
 
 class DraggableWindow extends RxConsumer {
@@ -14,22 +14,23 @@ class DraggableWindow extends RxConsumer {
 
   @override
   Widget build(BuildContext context, watcher) {
-    final channelController = watcher.controller<ChannelController>();
+    final windowManagerController =
+        watcher.controller<WindowManagerController>();
 
     return XGestureDetector(
       onMoveStart: disabled
           ? null
           : (details) {
-              channelController.startDragging();
+              windowManagerController.startDragging();
             },
       onDoubleTap: disabled
           ? null
           : (_) async {
-              bool isMaximized = await channelController.isMaximized();
+              bool isMaximized = await windowManagerController.isMaximized();
               if (!isMaximized) {
-                channelController.maximize();
+                windowManagerController.maximize();
               } else {
-                channelController.unmaximize();
+                windowManagerController.unmaximize();
               }
             },
       child: child,

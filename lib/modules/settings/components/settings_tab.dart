@@ -31,14 +31,19 @@ class _SettingsTabsState extends State<SettingsTabs> {
           children: [
             const SizedBox(width: 80),
             Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: widget.tabs
-                    .map((item) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: item))
-                    .toList(),
+              child: Center(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: widget.tabs
+                        .map((item) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: item))
+                        .toList(),
+                  ),
+                ),
               ),
             ),
             Container(

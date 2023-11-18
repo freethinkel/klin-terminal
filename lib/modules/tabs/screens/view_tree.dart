@@ -1,4 +1,3 @@
-import 'package:klin/core/di/locator.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/models/tab.dart';
 import 'package:klin/modules/tabs/screens/context_menu_connector.dart';
