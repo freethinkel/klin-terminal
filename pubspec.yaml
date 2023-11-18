@@ -10,15 +10,14 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_pty: ^0.4.0
-  get_it: ^7.6.0
   super_drag_and_drop: ^0.7.0-dev.4
   gesture_x_detector: ^1.1.1
   super_context_menu: ^0.7.0-dev.4
   xterm:
+    # path: ../xterm.dart
     git:
       url: https://github.com/freethinkel/xterm.dart.git
       ref: master
-  rxdart: ^0.27.7
   yaml: ^3.1.2
   shared_preferences: ^2.1.2
   uuid: ^3.0.7
@@ -27,6 +26,9 @@ dependencies:
   flutter_shaders: ^0.1.2
   window_manager: ^0.3.7
   file_picker: ^6.1.1
+  rx_flow: ^1.2.2
+  # rx_flow: 
+    # path: ../../../sftpro/rx_flow/
 
 dev_dependencies:
   flutter_test:

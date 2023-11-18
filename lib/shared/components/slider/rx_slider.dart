@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:klin/core/models/rx.dart';
 import 'package:klin/shared/components/slider/slider.dart';
 import 'package:flutter/material.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class RxSlider extends StatefulWidget {
   const RxSlider({

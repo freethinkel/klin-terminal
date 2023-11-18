@@ -1,9 +1,9 @@
-import 'package:klin/core/widgets/controller_connector.dart';
 import 'package:klin/modules/channel/controllers/channel.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_x_detector/gesture_x_detector.dart';
+import 'package:rx_flow/rx_flow.dart';
 
-class DraggableWindow extends StatelessWidget {
+class DraggableWindow extends RxConsumer {
   const DraggableWindow({
     required this.child,
     this.disabled = false,
@@ -13,26 +13,26 @@ class DraggableWindow extends StatelessWidget {
   final bool disabled;
 
   @override
-  Widget build(BuildContext context) {
-    return ControllerConnector<ChannelController>(
-      builder: (context, controller) => XGestureDetector(
-        onMoveStart: disabled
-            ? null
-            : (details) {
-                controller.startDragging();
-              },
-        onDoubleTap: disabled
-            ? null
-            : (_) async {
-                bool isMaximized = await controller.isMaximized();
-                if (!isMaximized) {
-                  controller.maximize();
-                } else {
-                  controller.unmaximize();
-                }
-              },
-        child: child,
-      ),
+  Widget build(BuildContext context, watcher) {
+    final channelController = watcher.controller<ChannelController>();
+
+    return XGestureDetector(
+      onMoveStart: disabled
+          ? null
+          : (details) {
+              channelController.startDragging();
+            },
+      onDoubleTap: disabled
+          ? null
+          : (_) async {
+              bool isMaximized = await channelController.isMaximized();
+              if (!isMaximized) {
+                channelController.maximize();
+              } else {
+                channelController.unmaximize();
+              }
+            },
+      child: child,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:klin/core/widgets/controller_connector.dart';
+import 'package:klin/core/di/locator.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/models/tab.dart';
 import 'package:klin/modules/tabs/screens/context_menu_connector.dart';
@@ -7,6 +7,7 @@ import 'package:klin/modules/terminal/screens/attached_terminal_view.dart';
 import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_split_view/multi_split_view.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class TabViewTree extends StatefulWidget {
   const TabViewTree({
@@ -79,19 +80,23 @@ class _TabViewTreeState extends State<TabViewTree> {
     }
   }
 
-  final _settingsController = ControllerConnector.of<SettingsController>();
   bool enableContextMenu = true;
   @override
   void initState() {
+    ControllerConnector.getAsync<SettingsController>(context)
+        .then((controller) {
+      setState(() {
+        enableContextMenu = controller.enableContextMenu$.value == true;
+      });
+
+      controller.enableContextMenu$.stream.listen((event) {
+        if (event != enableContextMenu) {
+          setState(() => enableContextMenu = event);
+        }
+      });
+    });
+
     widget.tabNode.lastFocusedNode = terminalNode;
-    setState(() {
-      enableContextMenu = _settingsController.enableContextMenu$.value == true;
-    });
-    _settingsController.enableContextMenu$.stream.listen((event) {
-      if (event != enableContextMenu) {
-        setState(() => enableContextMenu = event);
-      }
-    });
     _updateListeners();
     super.initState();
   }

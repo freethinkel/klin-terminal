@@ -1,9 +1,9 @@
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/settings/components/image_picker.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/components/theme_preview.dart';
 import 'package:klin/modules/theme/controllers/theme.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class ThemesSettingsView extends RxConsumer {
   const ThemesSettingsView({super.key});

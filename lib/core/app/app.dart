@@ -1,10 +1,11 @@
 import 'package:klin/core/app/menu_bar.dart';
-import 'package:klin/core/widgets/rx_consumer.dart';
+import 'package:klin/core/di/locator.dart';
 import 'package:klin/modules/mappings/screens/mappings_connector.dart';
 import 'package:klin/modules/tabs/screens/tab_bar.dart';
 import 'package:klin/modules/theme/components/background_connector.dart';
 import 'package:klin/modules/theme/components/theme_connector.dart';
 import 'package:flutter/material.dart' hide MenuBar;
+import 'package:rx_flow/rx_flow.dart';
 
 class App extends RxConsumer {
   const App({super.key});

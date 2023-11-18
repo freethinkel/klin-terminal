@@ -1,5 +1,3 @@
-import 'package:klin/core/widgets/rx_builder.dart';
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/channel/controllers/channel.controller.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
@@ -11,6 +9,7 @@ import 'package:klin/modules/tabs/components/add_new_tab.dart';
 import 'package:klin/modules/tabs/components/tab_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class KlinTabBar extends RxConsumer {
   const KlinTabBar({super.key});

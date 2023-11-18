@@ -3,19 +3,26 @@ import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
 import 'package:klin/modules/theme/controllers/theme.controller.dart';
-import 'package:get_it/get_it.dart';
+import 'package:klin/shared/controller/window_manager.controller.dart';
+import 'package:rx_flow/rx_flow.dart';
 
-void setup(GetIt locator) {
+void setup(Locator locator) {
   locator
-    ..registerSingleton(ChannelController())
-    ..registerSingleton(ThemeController())
-    ..registerSingleton(TabsController())
-    ..registerSingleton(SettingsController())
-    ..registerSingleton(
+    ..register(ChannelController())
+    ..register(ThemeController())
+    ..register(TabsController())
+    ..register(SettingsController())
+    ..register(
       MappingController(
         shortcutsService: locator.get(),
         tabsController: locator.get(),
         settingsController: locator.get(),
+      ),
+    )
+    ..register(
+      WindowManagerListeners(
+        tabsController: locator.get(),
+        shortcutsService: locator.get(),
       ),
     );
 }

@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:klin/core/models/controller.dart';
-import 'package:klin/core/models/rx.dart';
 import 'package:klin/modules/tabs/models/tab.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 import 'package:uuid/uuid.dart';
 

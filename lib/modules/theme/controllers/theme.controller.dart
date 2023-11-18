@@ -2,12 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:klin/core/models/controller.dart';
-import 'package:klin/core/models/rx.dart';
-import 'package:klin/core/models/rx_storage.dart';
 import 'package:klin/modules/theme/models/theme.dart';
 import 'package:flutter/services.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:rx_flow/rx_flow.dart';
 import 'package:yaml/yaml.dart';
 
 final _definedThemes = [
@@ -25,15 +22,9 @@ class ThemeController extends IController {
     mapper: (name) => name.toString(),
     initialValue: "Klin",
   );
-  late final theme$ = RxState.fromSubject<KlinAppTheme?>(BehaviorSubject()
-    ..addStream(
-      Rx.combineLatest2(
-        themes$.stream,
-        currentThemeName$.stream,
-        (themes, currentTheme) =>
-            themes.firstWhereOrNull((theme) => theme.name == currentTheme),
-      ),
-    ));
+  late final theme$ = currentThemeName$.map((themeName) =>
+      themes$.value?.firstWhereOrNull((theme) => theme.name == themeName));
+
   final themes$ = RxState<List<KlinAppTheme>>([]);
   final _backgroundImagePath = RxStateStorage(
     "theme_background_image_path",

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:klin/core/models/controller.dart';
-import 'package:klin/core/models/rx.dart';
-import 'package:klin/core/models/rx_storage.dart';
 import 'package:klin/modules/settings/models/settings.dart';
 import 'package:klin/modules/settings/screens/advanced_view.dart';
 import 'package:klin/modules/settings/screens/general_view.dart';
@@ -10,6 +7,7 @@ import 'package:klin/modules/settings/screens/settings_view.dart';
 import 'package:klin/modules/settings/screens/themes_view.dart';
 import 'package:klin/shared/components/icon/icon.dart';
 import 'package:klin/shared/components/modal/modal.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class SettingsController extends IController {
   final tabs = [
@@ -76,6 +74,16 @@ class SettingsController extends IController {
     "enableContextMenu",
     mapper: (value) => value == "true",
     initialValue: true,
+  );
+  final cellBackgroundOpacity$ = RxStateStorage(
+    "cellBackgroundOpacity",
+    mapper: (value) => double.tryParse(value),
+    initialValue: 1.0,
+  );
+  final transparentBackgroundCells$ = RxStateStorage(
+    "transparentBackgroundCells",
+    mapper: (value) => value == "true",
+    initialValue: false,
   );
 
   BuildContext? _context;

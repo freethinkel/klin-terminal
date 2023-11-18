@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/mappings/models/intents.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class MenuBar extends RxConsumer {
   const MenuBar({

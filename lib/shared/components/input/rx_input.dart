@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:klin/core/models/rx.dart';
 import 'package:klin/shared/components/input/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class RxInput<T> extends StatefulWidget {
   const RxInput({

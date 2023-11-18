@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/theme/controllers/theme.controller.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class BackgroundConnector extends RxConsumer {
   const BackgroundConnector({

@@ -1,4 +1,3 @@
-import 'package:klin/core/widgets/rx_consumer.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/shared/components/input/rx_input.dart';
@@ -6,6 +5,7 @@ import 'package:klin/shared/components/slider/rx_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class GeneralSettingsView extends RxConsumer {
   const GeneralSettingsView({super.key});

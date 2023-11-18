@@ -1,5 +1,5 @@
-import 'package:klin/core/models/rx.dart';
 import 'package:klin/modules/terminal/models/terminal_node.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class TabNode {
   TabNode({

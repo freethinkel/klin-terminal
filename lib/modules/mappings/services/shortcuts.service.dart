@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:klin/core/models/service.dart';
 import 'package:klin/modules/mappings/models/shortcuts.dart';
+import 'package:rx_flow/rx_flow.dart';
 
 class ShortcutsService extends IService {
   final Set<LogicalKeyboardKey> _pressedKeys = {};
@@ -16,6 +16,10 @@ class ShortcutsService extends IService {
 
   void registerShortcuts(Set<CustomShortcut> shortcuts) {
     _shortcuts = shortcuts;
+  }
+
+  void clearPressedKeys() {
+    _pressedKeys.clear();
   }
 
   bool accepts(RawKeyEvent event, SingleActivator activator) {
