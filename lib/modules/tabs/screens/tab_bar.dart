@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/components/tabbar_filers.dart';
 import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
@@ -12,7 +14,7 @@ import 'package:rx_flow/rx_flow.dart';
 class KlinTabBar extends RxConsumer {
   KlinTabBar({super.key});
 
-  final RxState<bool> _isHover$ = RxState(false);
+  final _isHover$ = RxState(false);
 
   @override
   Widget build(BuildContext context, watcher) {

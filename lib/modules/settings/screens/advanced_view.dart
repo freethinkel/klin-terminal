@@ -1,4 +1,8 @@
+import 'package:klin/modules/settings/components/input_control_number.dart';
+import 'package:klin/modules/settings/components/scope_card.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
+import 'package:klin/modules/settings/components/slider_control.dart';
+import 'package:klin/modules/settings/components/switch_control.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/shared/components/checkbox/checkbox.dart';
 import 'package:flutter/material.dart';
@@ -29,62 +33,67 @@ class AdvancedSettingsView extends RxConsumer {
         watcher.watch(settingsController.customVerticalLineOffset$) ?? 0.0;
 
     return SettingsPage(
-      title: 'Advanced',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 200,
-            child: ControlledKlinInput(
-              label: "Vertical line offset",
-              placeholder: "Enter custom vertical line offset",
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp('[0-9]*.[0-9]*'))
-              ],
-              onInput: (value) => settingsController.customVerticalLineOffset$
-                  .next(double.tryParse(value) ?? 0.0),
-              value: customVerticalLineOffset.toString(),
+      // title: 'Advanced',
+      children: [
+        ScopeCard(
+          title: "Cells modification",
+          children: [
+            SwitchControl(
+                title: "Enable custom glyph render",
+                value: enableCustomGlyphs,
+                onChanged: (value) {
+                  settingsController.enableCustomGlyphs$.next(value);
+                }),
+            InputControlNumber(
+              title: "Vertical line offset",
+              value: customVerticalLineOffset,
+              min: -5,
+              max: 5,
+              step: 0.1,
+              onChanged: (value) {
+                settingsController.customVerticalLineOffset$.next(value);
+              },
             ),
-          ),
-          KlinCheckBox(
-            description: "Enabled custom glyphs render",
-            checked: enableCustomGlyphs,
-            onChanged: (checked) {
-              settingsController.enableCustomGlyphs$.next(checked);
-            },
-          ),
-          KlinCheckBox(
-            description: "Enabled context menu",
-            checked: enableContextMenu,
-            onChanged: (checked) {
-              settingsController.enableContextMenu$.next(checked);
-            },
-          ),
-          const SizedBox(height: 12),
-          KlinSlider(
-            label: "Cells background opacity",
-            value: cellBackgroundOpacity,
-            onChanged: (value) {
-              settingsController.cellBackgroundOpacity$.next(value);
-            },
-          ),
-          KlinCheckBox(
-            description: "Transparent background cells",
-            checked: transparentBackgroundCells,
-            onChanged: (checked) {
-              settingsController.transparentBackgroundCells$.next(checked);
-            },
-          ),
-          const SizedBox(height: 0),
-          KlinCheckBox(
-            description: "Autohide toolbar",
-            checked: autohideToolbar,
-            onChanged: (checked) {
-              settingsController.autoHideToolbar$.next(checked);
-            },
-          )
-        ],
-      ),
+            SliderControl(
+              value: cellBackgroundOpacity,
+              title: "Cell background opacity",
+              showValue: (cellBackgroundOpacity * 100).toInt().toString(),
+              onChanged: (value) {
+                settingsController.cellBackgroundOpacity$.next(value);
+              },
+            ),
+            SwitchControl(
+              title: "Transparent background cells",
+              description:
+                  "Transparent cell background if the theme background is the same as the cell background",
+              value: transparentBackgroundCells,
+              onChanged: (value) {
+                settingsController.transparentBackgroundCells$.next(value);
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        ScopeCard(
+          title: "Other",
+          children: [
+            SwitchControl(
+              title: "Autohide headerbar",
+              value: autohideToolbar,
+              onChanged: (value) {
+                settingsController.autoHideToolbar$.next(value);
+              },
+            ),
+            SwitchControl(
+              title: "Enable context menu",
+              value: enableContextMenu,
+              onChanged: (value) {
+                settingsController.enableContextMenu$.next(value);
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

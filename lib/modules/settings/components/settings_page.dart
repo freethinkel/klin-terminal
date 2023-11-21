@@ -1,30 +1,25 @@
-import 'package:klin/shared/components/title/title.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({
-    required this.child,
-    required this.title,
+    required this.children,
     super.key,
   });
-  final String title;
-  final Widget child;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: FractionallySizedBox(
-          widthFactor: 1,
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 600),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              KlinTitle(
-                title,
-              ),
-              child
-            ],
+            children: children
+                .map(
+                  (item) => FractionallySizedBox(widthFactor: 1, child: item),
+                )
+                .toList(),
           ),
         ),
       ),

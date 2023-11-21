@@ -32,16 +32,11 @@ class Toolbar extends RxConsumer {
     return DraggableWindow(
       child: Container(
         height: 38,
-        decoration: BoxDecoration(
-          boxShadow: [BoxShadow(offset: Offset.zero, color: bgColor)],
-        ),
+        color: bgColor,
         child: Row(
           children: [
             Container(
               width: isFullscreen || isAutoHideToolbar ? 2 : 78,
-              decoration: BoxDecoration(
-                color: bgColor,
-              ),
             ),
             Expanded(
               child: Row(

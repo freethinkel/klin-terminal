@@ -43,10 +43,14 @@ class _SelectState<T> extends State<Select<T>> {
   }
 
   Widget _buildValue() {
-    return widget.items
-            .firstWhereOrNull((element) => widget.value == element.value)
-            ?.child ??
-        Container();
+    return DefaultTextStyle(
+      style: const TextStyle(),
+      softWrap: false,
+      child: widget.items
+              .firstWhereOrNull((element) => widget.value == element.value)
+              ?.child ??
+          Container(),
+    );
   }
 
   @override

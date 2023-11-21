@@ -15,21 +15,45 @@ Future<void> openModal(BuildContext context, Widget child) async {
 class __ModalState extends State<_Modal> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppTheme.of(context).primary,
+    return Stack(
+      children: [
+        IgnorePointer(
+          child: Container(
+            color: AppTheme.of(context).selection.withOpacity(0.2),
+          ),
+        ),
+        Material(
+          type: MaterialType.transparency,
+          child: Container(
+            alignment: Alignment.center,
+            child: IntrinsicHeight(
+              child: Container(
+                constraints:
+                    const BoxConstraints(maxWidth: 600, minHeight: 700),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: AppTheme.of(context).selection.withOpacity(0.1)),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: const Offset(0, 10),
+                      color: AppTheme.of(context).primary.withOpacity(0.24),
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppTheme.of(context).primary,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: widget.child,
+                ),
               ),
-              child: widget.child,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

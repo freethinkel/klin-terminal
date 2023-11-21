@@ -11,7 +11,7 @@ class KlinTerminalAppView extends StatefulWidget {
 class _KlinTerminalAppViewState extends State<KlinTerminalAppView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.transparent,
       body: FractionallySizedBox(
         widthFactor: 1,

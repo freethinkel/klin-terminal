@@ -5,6 +5,7 @@ import 'package:klin/shared/components/tappable/tappable.dart';
 enum KlinButtonKind {
   raised,
   delete,
+  clean,
 }
 
 enum KlinButtonSize {
@@ -31,16 +32,22 @@ class KlinButton extends StatefulWidget {
 }
 
 class _KlinButtonState extends State<KlinButton> {
+  bool isHover = false;
+
   @override
   Widget build(BuildContext context) {
     final color = switch (widget.kind) {
-      KlinButtonKind.raised => AppTheme.of(context).selection.withOpacity(0.1),
+      KlinButtonKind.raised =>
+        AppTheme.of(context).selection.withOpacity(isHover ? 0.2 : 0.1),
+      KlinButtonKind.clean =>
+        AppTheme.of(context).selection.withOpacity(isHover ? 0.2 : 0),
       KlinButtonKind.delete =>
         AppTheme.of(context).terminalTheme.red.withOpacity(0.8),
     };
 
     return Tappable(
       onTap: widget.onTap,
+      onHover: (state) => setState(() => isHover = state),
       child: Container(
         padding: switch (widget.size) {
           KlinButtonSize.normal => const EdgeInsets.all(6),
@@ -52,7 +59,8 @@ class _KlinButtonState extends State<KlinButton> {
           border: Border.all(
             color: color,
           ),
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(
+              widget.kind == KlinButtonKind.clean ? 0 : 6),
         ),
         child: widget.child,
       ),
