@@ -98,7 +98,7 @@ class KlinAppTheme {
   }
 
   ThemeData toMaterialDarkTheme() {
-    return ThemeData.dark().copyWith(
+    return ThemeData.dark(useMaterial3: true).copyWith(
       colorScheme: ColorScheme.dark(
         primary: selection,
       ),

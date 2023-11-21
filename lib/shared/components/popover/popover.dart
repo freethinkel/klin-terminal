@@ -51,10 +51,11 @@ class _PopoverState extends State<Popover> {
         final points = button.localToGlobal(Offset.zero);
         final top = points.dy + button.size.height;
         final left = points.dx + 10;
-        final maxHeight = MediaQuery.of(context).size.height -
-            top -
-            MediaQuery.of(context).viewPadding.bottom -
-            10;
+        final maxHeight = (MediaQuery.of(context).size.height -
+                top -
+                MediaQuery.of(context).viewPadding.bottom -
+                10)
+            .clamp(0.0, 210.0);
         final maxWidth = MediaQuery.of(context).size.width -
             left -
             MediaQuery.of(context).viewPadding.left;
@@ -66,7 +67,7 @@ class _PopoverState extends State<Popover> {
           ),
           maxHeight: maxHeight,
           maxWidth: maxWidth,
-          width: widget.width,
+          width: button.size.width,
           child: widget.popover,
         );
       },
@@ -119,7 +120,7 @@ class PopoverBody extends StatelessWidget {
                 minHeight: 0,
                 maxHeight: maxHeight ?? double.infinity,
               ),
-              child: child,
+              child: SizedBox(width: width, child: child),
             ),
           ),
         ),

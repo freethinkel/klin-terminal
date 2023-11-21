@@ -1,8 +1,8 @@
-import 'package:klin/modules/settings/components/image_picker.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/components/theme_preview.dart';
 import 'package:klin/modules/theme/controllers/theme.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:klin/shared/components/image_picker/image_picker.dart';
 import 'package:rx_flow/rx_flow.dart';
 
 class ThemesSettingsView extends RxConsumer {
@@ -15,43 +15,53 @@ class ThemesSettingsView extends RxConsumer {
     final currentTheme = watcher.watch(themeController.theme$);
     final backgroundImage = watcher.watch(themeController.backgroundImage$);
 
+    final width = MediaQuery.of(context).size.width;
+
     return SettingsPage(
-      title: "Themes",
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FractionallySizedBox(
-            widthFactor: 1,
-            child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                clipBehavior: Clip.none,
-                child: Row(
-                  children: themes
-                      .map(
-                        (theme) => Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
-                          child: ThemePreview(
-                            theme: theme,
-                            isActive: theme == currentTheme,
-                            onSelect: () => themeController.setTheme(theme),
-                          ),
-                        ),
-                      )
-                      .toList(),
-                )),
+      children: [
+        Text(
+          "Themes",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: DefaultTextStyle.of(context).style.color?.withOpacity(0.8),
           ),
-          const SizedBox(
-            height: 20,
+        ),
+        FractionallySizedBox(
+          widthFactor: 1,
+          child: Wrap(
+            direction: Axis.horizontal,
+            children: themes
+                .map(
+                  (theme) => FractionallySizedBox(
+                    widthFactor: switch (width) {
+                      < 350 => 1,
+                      < 500 => 1 / 2,
+                      _ => 1 / 3,
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ThemePreview(
+                        theme: theme,
+                        isActive: theme == currentTheme,
+                        onSelect: () => themeController.setTheme(theme),
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
-          ImagePicker(
-            label: "Background Image",
-            image: backgroundImage,
-            onSelect: (file) {
-              themeController.setBackgroundImage(file);
-            },
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        ImagePicker(
+          label: "Background Image",
+          image: backgroundImage,
+          onSelect: (file) {
+            themeController.setBackgroundImage(file);
+          },
+        ),
+      ],
     );
   }
 }
