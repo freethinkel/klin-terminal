@@ -1,4 +1,5 @@
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
 import 'package:klin/modules/tabs/models/tab.dart';
 import 'package:klin/modules/tabs/screens/context_menu_connector.dart';
 import 'package:klin/modules/terminal/models/terminal_node.dart';
@@ -32,12 +33,16 @@ class _TabViewTreeState extends State<TabViewTree> {
 
   TerminalNode get terminalNode => _terminalNode;
 
-  void _onSplit(Axis axis) {
+  void _onSplit(Axis axis) async {
+    final tabsController = ControllerConnector.of<TabsController>(context);
+
     var parent = terminalNode.parent;
     var newNode = TerminalNode(
       children: [
         terminalNode,
-        TerminalNode(),
+        TerminalNode(
+            initialWorkingDirectory:
+                await tabsController.getWorkingDirectory()),
       ],
       parent: parent,
       splitAxis: axis,

@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:klin/modules/terminal/models/shell.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pty/flutter_pty.dart';
@@ -8,6 +10,12 @@ import 'package:uuid/uuid.dart';
 import 'package:xterm/xterm.dart';
 
 class TerminalNodePty {
+  TerminalNodePty({
+    required this.initialWorkingDirectory,
+  });
+
+  final String? initialWorkingDirectory;
+
   final FocusNode focusNode = FocusNode();
   late final terminalController = TerminalController();
   late final terminal = Terminal();
@@ -18,31 +26,49 @@ class TerminalNodePty {
   Function(String)? onChangeTitle;
   Function()? onExit;
 
-  final _shell = platformShell;
-  late final _pty = Pty.start(
-    _shell.command,
-    arguments: _shell.args,
-    columns: terminal.viewWidth,
-    rows: terminal.viewHeight,
-    workingDirectory: "/",
-    environment: {
-      ...Platform.environment,
-      "TERM": "xterm-256color",
-    },
-  );
+  Pty? _pty;
+  ShellCommand? _shell;
 
-  Pty get pty => _pty;
+  Pty get pty => _pty!;
 
   var _initialized = false;
 
-  void init() {
+  Future<String?> getCwd() async {
+    try {
+      final process = await Process.run("lsof", ["-p", (pty.pid).toString()]);
+      final lines = process.stdout.toString().trim().split(RegExp("\\n"));
+      final line = lines.firstWhereOrNull((line) => line.contains("cwd"));
+      final path = line?.split(RegExp("\\s+")).last;
+
+      return path;
+    } catch (_) {
+      print(_);
+      return null;
+    }
+  }
+
+  void init() async {
     if (_initialized) {
       return;
     }
 
+    _shell = platformShell();
+    _pty = Pty.start(
+      _shell!.command,
+      arguments: _shell!.args,
+      columns: terminal.viewWidth,
+      rows: terminal.viewHeight,
+      workingDirectory: initialWorkingDirectory,
+      environment: {
+        ...Platform.environment,
+        "TERM": "xterm-256color",
+      },
+    );
+
     _initialized = true;
 
     focusNode.requestFocus();
+
     pty.output
         .cast<List<int>>()
         .transform(const Utf8Decoder())

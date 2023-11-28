@@ -608,11 +608,9 @@ packages:
   xterm:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "1c98f41ef95d7327036a3689d5ee68e3f710883d"
-      url: "https://github.com/freethinkel/xterm.dart.git"
-    source: git
+      path: "../xterm.dart"
+      relative: true
+    source: path
     version: "3.7.0"
   yaml:
     dependency: "direct main"

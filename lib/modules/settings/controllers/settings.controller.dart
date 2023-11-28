@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:klin/modules/settings/models/settings.dart';
 import 'package:klin/modules/settings/screens/advanced_view.dart';
@@ -102,6 +103,18 @@ class SettingsController extends IController {
     "autohide_toolbar",
     mapper: (value) => value == "true",
     initialValue: false,
+  );
+
+  final workingDirectory$ = RxStateStorage(
+    "working_directory",
+    initialValue: WorkingDirectory.home,
+    mapper: (value) => WorkingDirectory.values
+        .firstWhereOrNull((element) => element.key == value),
+  );
+  final customWorkginDirectoryPath$ = RxStateStorage(
+    "custom_working_directory",
+    initialValue: const String.fromEnvironment("HOME"),
+    mapper: (value) => value,
   );
 
   BuildContext? _context;

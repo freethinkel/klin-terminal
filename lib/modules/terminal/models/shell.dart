@@ -8,9 +8,18 @@ class ShellCommand {
   ShellCommand(this.command, this.args);
 }
 
-ShellCommand get platformShell {
+ShellCommand platformShell({
+  String? workingDirectory,
+}) {
   if (Platform.isMacOS) {
     final user = Platform.environment['USER'];
+
+    // if (workingDirectory != null) {
+    //   return ShellCommand(
+    //       "sh", ['-c', 'cd $workingDirectory; login -fpl $user']);
+    // }
+
+    return ShellCommand("/bin/zsh", []);
     return ShellCommand('login', ['-fp', user!]);
   }
 

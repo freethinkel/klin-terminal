@@ -8,16 +8,20 @@ import 'package:rx_flow/rx_flow.dart';
 void setup(Locator locator) {
   locator
     ..register(ThemeController())
-    ..register(TabsController())
     ..register(
       WindowManagerController(
-        tabsController: locator.get(),
         shortcutsService: locator.get(),
         channelService: locator.get(),
       ),
     )
     ..register(
       SettingsController(
+        windowManagerController: locator.get(),
+      ),
+    )
+    ..register(
+      TabsController(
+        settingsController: locator.get(),
         windowManagerController: locator.get(),
       ),
     )
