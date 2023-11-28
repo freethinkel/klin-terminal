@@ -117,6 +117,12 @@ class SettingsController extends IController {
     mapper: (value) => value,
   );
 
+  final zoomLevel$ = RxStateStorage(
+    "zoom_level",
+    mapper: (value) => double.tryParse(value),
+    initialValue: 1.0,
+  );
+
   BuildContext? _context;
   setContext(BuildContext context) {
     _context = context;

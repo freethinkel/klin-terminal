@@ -22,7 +22,7 @@ class KlinTerminalView extends StatelessWidget {
   final Terminal terminal;
   final TerminalController? controller;
   final FocusNode? focusNode;
-  final int? fontSize;
+  final double? fontSize;
   final String? fontFamily;
   final double? lineHeight;
   final double? opacity;

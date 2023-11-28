@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/services.dart';
 import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/mappings/models/intents.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
@@ -42,9 +43,36 @@ class MenuBar extends RxConsumer {
             ),
           ],
         ),
-        const PlatformMenu(
+        PlatformMenu(
           label: "View",
-          menus: [],
+          menus: [
+            PlatformMenuItem(
+              label: "Reset zoom level",
+              shortcut:
+                  const SingleActivator(LogicalKeyboardKey.digit0, meta: true),
+              onSelected: () {
+                settingsController.zoomLevel$.next(1.0);
+              },
+            ),
+            PlatformMenuItem(
+              label: "Zoom in",
+              shortcut:
+                  const SingleActivator(LogicalKeyboardKey.equal, meta: true),
+              onSelected: () {
+                settingsController.zoomLevel$.next(
+                    (settingsController.zoomLevel$.value! + 0.1).clamp(0.1, 5));
+              },
+            ),
+            PlatformMenuItem(
+              label: "Zoom out",
+              shortcut:
+                  const SingleActivator(LogicalKeyboardKey.minus, meta: true),
+              onSelected: () {
+                settingsController.zoomLevel$.next(
+                    (settingsController.zoomLevel$.value! - 0.1).clamp(0.1, 5));
+              },
+            ),
+          ],
         )
       ],
       child: child,

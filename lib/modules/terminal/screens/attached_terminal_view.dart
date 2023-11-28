@@ -43,6 +43,7 @@ class AttachedTerminalView extends RxConsumer {
     final settingsController = watcher.controller<SettingsController>();
 
     final fontSize = watcher.watch(settingsController.fontSize$);
+    final zoomLevel = watcher.watch(settingsController.zoomLevel$) ?? 1.0;
     final fontFamily = watcher.watch(settingsController.fontFamily$);
     final lineHeight = watcher.watch(settingsController.lineHeight$);
     final opacity = watcher.watch(settingsController.opacity$);
@@ -64,7 +65,7 @@ class AttachedTerminalView extends RxConsumer {
       padding: padding,
       opacity: opacity,
       fontFamily: fontFamily,
-      fontSize: fontSize,
+      fontSize: fontSize!.toDouble() * zoomLevel,
       lineHeight: lineHeight,
       enableCustomGlyphs: enableCustomGlyphs,
       verticalLineOffset: verticalLineOffset,
