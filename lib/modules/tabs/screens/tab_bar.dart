@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/tabs/components/tabbar_filers.dart';
 import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
 import 'package:klin/modules/tabs/models/constants.dart';
 import 'package:klin/modules/tabs/screens/toolbar.dart';
 import 'package:klin/modules/tabs/screens/view_tree.dart';
-import 'package:klin/modules/terminal/models/terminal_node.dart';
 import 'package:flutter/material.dart';
 import 'package:klin/shared/components/tappable/tappable.dart';
 import 'package:rx_flow/rx_flow.dart';
@@ -15,6 +12,15 @@ class KlinTabBar extends RxConsumer {
   KlinTabBar({super.key});
 
   final _isHover$ = RxState(false);
+
+  @override
+  void onInit(BuildContext context) {
+    ControllerConnector.getAsync<TabsController>(context)
+        .then((tabsController) {
+      tabsController.init();
+    });
+    super.onInit(context);
+  }
 
   @override
   Widget build(BuildContext context, watcher) {
@@ -45,10 +51,9 @@ class KlinTabBar extends RxConsumer {
                   .map(
                     (tab) => Offstage(
                       offstage: currentTab != tab,
-                      key: Key(tab.uuid),
                       child: TabViewTree(
                         key: Key(tab.uuid),
-                        terminalNode: TerminalNode(),
+                        terminalNode: tab.terminalNode,
                         tabNode: tab,
                         onClose: (node) {
                           tabsController.closeTab(tab);

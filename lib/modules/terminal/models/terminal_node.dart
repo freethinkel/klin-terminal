@@ -4,10 +4,11 @@ import 'package:xterm/xterm.dart';
 
 class TerminalNode extends TerminalNodePty {
   TerminalNode({
+    String? initialWorkingDirectory,
     this.children = const [],
     this.parent,
     this.splitAxis = Axis.vertical,
-  });
+  }) : super(initialWorkingDirectory: initialWorkingDirectory);
 
   Axis splitAxis;
   TerminalNode? parent;

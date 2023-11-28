@@ -1,11 +1,13 @@
 import 'package:klin/modules/settings/components/input_control.dart';
 import 'package:klin/modules/settings/components/input_control_number.dart';
 import 'package:klin/modules/settings/components/scope_card.dart';
+import 'package:klin/modules/settings/components/select_control.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
 import 'package:klin/modules/settings/components/slider_control.dart';
-import 'package:klin/modules/settings/components/switch_control.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
+import 'package:klin/modules/settings/models/settings.dart';
 import 'package:klin/shared/components/input/controlled_input.dart';
+import 'package:klin/shared/components/select/select.dart';
 import 'package:klin/shared/components/slider/rx_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,11 @@ class GeneralSettingsView extends RxConsumer {
           settingsController.opacity$,
         ) ??
         1.0;
+
+    final workingDirectory =
+        watcher.watch(settingsController.workingDirectory$);
+    final customWorkingDirectory =
+        watcher.watch(settingsController.customWorkginDirectoryPath$) ?? "";
 
     return SettingsPage(
       children: [
@@ -88,85 +95,32 @@ class GeneralSettingsView extends RxConsumer {
             ),
           ],
         ),
-      ],
-    );
-
-    return SettingsPage(
-      children: [
-        FractionallySizedBox(
-          widthFactor: 1,
-          child: Wrap(
-              spacing: 10,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              alignment: WrapAlignment.start,
-              runSpacing: 10,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 240),
-                  child: ControlledKlinInput(
-                    value: fontFamily,
-                    label: "Font family",
-                    placeholder: "Enter font family",
-                    onInput: (value) =>
-                        settingsController.fontFamily$.next(value),
-                  ),
-                ),
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 100),
-                  child: ControlledKlinInput(
-                    value: fontSize.toString(),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]*'))
-                    ],
-                    onInput: (value) => settingsController.fontSize$.next(
-                        int.tryParse(value) ??
-                            settingsController.fontSize$.value ??
-                            13),
-                    label: "Font size",
-                    placeholder: "Enter font size",
-                  ),
-                ),
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 100),
-                  child: ControlledKlinInput(
-                    value: lineHeight.toString(),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]*.[0-9]*'))
-                    ],
-                    onInput: (value) => settingsController.lineHeight$
-                        .next(double.tryParse(value) ?? 1),
-                    label: "Line height",
-                    placeholder: "Enter line height",
-                  ),
-                ),
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 100),
-                  child: ControlledKlinInput(
-                    value: padding.toString(),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp('[0-9]*'))
-                    ],
-                    onInput: (value) => settingsController.padding$
-                        .next(int.tryParse(value) ?? 0),
-                    label: "Padding",
-                    placeholder: "Enter terminal inner padding",
-                  ),
-                ),
-              ]),
+        const SizedBox(height: 20),
+        ScopeCard(
+          title: "Session",
+          children: [
+            SelectControl<WorkingDirectory>(
+              title: "Working directory",
+              value: workingDirectory,
+              onChanged: (value) {
+                settingsController.workingDirectory$.next(value);
+              },
+              items: WorkingDirectory.values
+                  .map((value) =>
+                      SelectItem(value: value, child: Text(value.label)))
+                  .toList(),
+            ),
+            if (workingDirectory == WorkingDirectory.custom)
+              InputControlText(
+                title: "Custom working directory path",
+                value: customWorkingDirectory,
+                onChanged: (value) {
+                  settingsController.customWorkginDirectoryPath$.next(value);
+                },
+              )
+          ],
         ),
-        FractionallySizedBox(
-          widthFactor: 0.5,
-          child: RxSlider(
-            label: "Opacity",
-            state: settingsController.opacity$,
-          ),
-        )
-      ]
-          .map((child) => Container(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: child,
-              ))
-          .toList(),
+      ],
     );
   }
 }

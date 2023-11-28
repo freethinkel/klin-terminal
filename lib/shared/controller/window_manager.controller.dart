@@ -1,16 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:klin/modules/channel/services/channel.service.dart';
 import 'package:klin/modules/mappings/services/shortcuts.service.dart';
-import 'package:klin/modules/tabs/controllers/tabs.controller.dart';
 import 'package:rx_flow/rx_flow.dart';
 
 class WindowManagerController extends IController {
   WindowManagerController({
-    required TabsController tabsController,
     required ShortcutsService shortcutsService,
     required ChannelService channelService,
-  })  : _tabsController = tabsController,
-        _shortcutsService = shortcutsService,
+  })  : _shortcutsService = shortcutsService,
         _channelService = channelService {
     _channelService.focused$.stream
         .listen((event) => event ? _onWindowFocus() : _onWindowBlur());
@@ -18,20 +15,20 @@ class WindowManagerController extends IController {
 
   late final fullscreened$ = _channelService.fullscreened$;
   late final maximized$ = _channelService.maximized$;
+  final focus$ = RxState(true);
 
   final ShortcutsService _shortcutsService;
-  final TabsController _tabsController;
   final ChannelService _channelService;
 
   void _onWindowBlur() {
     FocusManager.instance.primaryFocus?.unfocus();
     _shortcutsService.clearPressedKeys();
+    focus$.next(false);
   }
 
   void _onWindowFocus() {
     FocusManager.instance.primaryFocus?.requestFocus();
-    _tabsController.currentTab$.value?.lastFocusedNode?.focusNode
-        .requestFocus();
+    focus$.next(true);
   }
 
   Future<void> startDragging() async {
