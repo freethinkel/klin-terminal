@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:klin/modules/settings/models/settings.dart';
@@ -114,7 +116,7 @@ class SettingsController extends IController {
   );
   final customWorkginDirectoryPath$ = RxStateStorage(
     "custom_working_directory",
-    initialValue: const String.fromEnvironment("HOME"),
+    initialValue: Platform.environment["HOME"],
     mapper: (value) => value,
   );
 

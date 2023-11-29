@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:klin/modules/terminal/models/shell.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pty/flutter_pty.dart';
@@ -44,7 +45,9 @@ class TerminalNodePty {
 
       return path;
     } catch (_) {
-      print(_);
+      if (kDebugMode) {
+        print(_);
+      }
       return null;
     }
   }
@@ -60,7 +63,7 @@ class TerminalNodePty {
       arguments: _shell!.args,
       columns: terminal.viewWidth,
       rows: terminal.viewHeight,
-      workingDirectory: initialWorkingDirectory,
+      workingDirectory: initialWorkingDirectory ?? Platform.environment["HOME"],
       environment: {
         ...Platform.environment,
         "TERM": "xterm-256color",

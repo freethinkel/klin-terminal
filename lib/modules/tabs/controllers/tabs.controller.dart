@@ -39,7 +39,7 @@ class TabsController extends IController {
 
   Future<String?> getWorkingDirectory() async {
     final cwd = switch (_settingsController.workingDirectory$.value!) {
-      WorkingDirectory.home => const String.fromEnvironment("HOME"),
+      WorkingDirectory.home => Platform.environment["HOME"],
       WorkingDirectory.custom =>
         _settingsController.customWorkginDirectoryPath$.value,
       WorkingDirectory.previousTerminal =>
