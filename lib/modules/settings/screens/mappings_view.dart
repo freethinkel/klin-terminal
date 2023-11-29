@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/mappings/models/intents.dart';
 import 'package:klin/modules/mappings/models/shortcuts.dart';
+import 'package:klin/modules/settings/components/scope_card.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
+import 'package:klin/modules/settings/components/switch_control.dart';
 import 'package:klin/shared/components/button/button.dart';
 import 'package:klin/shared/components/hotkey_recorder/hotkey_recorder.dart';
 import 'package:klin/shared/components/icon/icon.dart';
@@ -18,11 +20,24 @@ class MappingsView extends RxConsumer {
   Widget build(BuildContext context, watcher) {
     final mappingsController = watcher.controller<MappingController>();
     final mappings = watcher.watch(mappingsController.mappings) ?? [];
+    final macOptionAsMeta =
+        watcher.watch(mappingsController.macOptionAsMeta$) == true;
 
     return SettingsPage(
-      // title: "Mappings",
       children: [
-        const SizedBox(height: 20),
+        ScopeCard(
+          title: "",
+          children: [
+            SwitchControl(
+              title: "Mac option as meta",
+              value: macOptionAsMeta,
+              onChanged: (value) {
+                mappingsController.macOptionAsMeta$.next(value);
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
         Row(
           children: [
             KlinButton(

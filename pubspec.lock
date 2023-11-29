@@ -610,10 +610,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "1c98f41ef95d7327036a3689d5ee68e3f710883d"
+      resolved-ref: "2389a8991a37f4a1456b317accfa3132e4a3d898"
       url: "https://github.com/freethinkel/xterm.dart.git"
     source: git
-    version: "3.7.0"
+    version: "3.8.0"
   yaml:
     dependency: "direct main"
     description:
