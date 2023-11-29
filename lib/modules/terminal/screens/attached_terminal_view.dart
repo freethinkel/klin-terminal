@@ -1,9 +1,11 @@
+import 'package:klin/modules/mappings/controllers/mappings.controller.dart';
 import 'package:klin/modules/settings/controllers/settings.controller.dart';
 import 'package:klin/modules/terminal/components/terminal.dart';
 import 'package:klin/modules/terminal/models/terminal_node.dart';
 
 import 'package:flutter/material.dart';
 import 'package:rx_flow/rx_flow.dart';
+import 'package:xterm/xterm.dart';
 
 class AttachedTerminal extends StatefulWidget {
   const AttachedTerminal({
@@ -41,6 +43,7 @@ class AttachedTerminalView extends RxConsumer {
   @override
   Widget build(BuildContext context, watcher) {
     final settingsController = watcher.controller<SettingsController>();
+    final mappingController = watcher.controller<MappingController>();
 
     final fontSize = watcher.watch(settingsController.fontSize$);
     final zoomLevel = watcher.watch(settingsController.zoomLevel$) ?? 1.0;
@@ -57,6 +60,14 @@ class AttachedTerminalView extends RxConsumer {
         watcher.watch(settingsController.cellBackgroundOpacity$) ?? 1.0;
     final transparentBackgroundCells =
         watcher.watch(settingsController.transparentBackgroundCells$) == true;
+    final macOptionIsMeta =
+        watcher.watch(mappingController.macOptionAsMeta$) == true;
+
+    if (terminalNode.terminal.macOptionIsMeta != macOptionIsMeta) {
+      terminalNode.terminal.macOptionIsMeta = macOptionIsMeta;
+      terminalNode.terminal.inputHandler =
+          defaultInputHandler(macOptionIsMeta: macOptionIsMeta);
+    }
 
     return KlinTerminalView(
       terminal: terminalNode.terminal,

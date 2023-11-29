@@ -18,7 +18,9 @@ class TerminalNodePty {
 
   final FocusNode focusNode = FocusNode();
   late final terminalController = TerminalController();
-  late final terminal = Terminal();
+  late final terminal = Terminal(
+    macOptionIsMeta: true,
+  );
   final uuid = const Uuid().v4();
 
   String title = "";

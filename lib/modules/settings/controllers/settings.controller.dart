@@ -99,6 +99,7 @@ class SettingsController extends IController {
     mapper: (value) => value == "true",
     initialValue: false,
   );
+
   final autoHideToolbar$ = RxStateStorage(
     "autohide_toolbar",
     mapper: (value) => value == "true",

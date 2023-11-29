@@ -30,6 +30,12 @@ class MappingController extends IController {
         .toList(),
   );
 
+  final macOptionAsMeta$ = RxStateStorage(
+    "mac_option_as_meta",
+    mapper: (value) => value == "true",
+    initialValue: true,
+  );
+
   @override
   void init() {
     _shortcutsService.registerShortcuts({...mappings.value ?? []});
