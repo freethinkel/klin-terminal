@@ -1,4 +1,6 @@
+import 'package:klin/modules/settings/components/scope_card.dart';
 import 'package:klin/modules/settings/components/settings_page.dart';
+import 'package:klin/modules/settings/components/switch_control.dart';
 import 'package:klin/modules/settings/components/theme_preview.dart';
 import 'package:klin/modules/theme/controllers/theme.controller.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +16,26 @@ class ThemesSettingsView extends RxConsumer {
     final themes = watcher.watch(themeController.themes$) ?? [];
     final currentTheme = watcher.watch(themeController.theme$);
     final backgroundImage = watcher.watch(themeController.backgroundImage$);
+    final glowEffectEnabled =
+        watcher.watch(themeController.glowEffectEnabled$) == true;
 
     final width = MediaQuery.of(context).size.width;
 
     return SettingsPage(
       children: [
+        ScopeCard(
+          title: "",
+          children: [
+            SwitchControl(
+              title: "Enable glow effect",
+              value: glowEffectEnabled,
+              onChanged: (value) {
+                themeController.glowEffectEnabled$.next(value);
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
         Text(
           "Themes",
           style: TextStyle(

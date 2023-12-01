@@ -25,13 +25,20 @@ class ThemeController extends IController {
   late final theme$ = currentThemeName$.map((themeName) =>
       themes$.value?.firstWhereOrNull((theme) => theme.name == themeName));
 
-  final themes$ = RxState<List<KlinAppTheme>>([]);
   final _backgroundImagePath = RxStateStorage(
     "theme_background_image_path",
     mapper: (value) => value,
   );
+
+  final themes$ = RxState<List<KlinAppTheme>>([]);
   late final backgroundImage$ =
       _backgroundImagePath.map((path) => path.isNotEmpty ? File(path) : null);
+
+  final glowEffectEnabled$ = RxStateStorage(
+    "theme_background_image_path",
+    initialValue: false,
+    mapper: (value) => value == "true",
+  );
 
   @override
   Future<void> init() async {
