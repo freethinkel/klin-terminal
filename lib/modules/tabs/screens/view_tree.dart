@@ -35,14 +35,15 @@ class _TabViewTreeState extends State<TabViewTree> {
 
   void _onSplit(Axis axis) async {
     final tabsController = ControllerConnector.of<TabsController>(context);
+    final dir = await tabsController.getWorkingDirectory();
 
     var parent = terminalNode.parent;
     var newNode = TerminalNode(
       children: [
         terminalNode,
         TerminalNode(
-            initialWorkingDirectory:
-                await tabsController.getWorkingDirectory()),
+          initialWorkingDirectory: dir,
+        ),
       ],
       parent: parent,
       splitAxis: axis,

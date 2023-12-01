@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
@@ -38,7 +39,12 @@ class TerminalNodePty {
 
   Future<String?> getCwd() async {
     try {
-      final process = await Process.run("lsof", ["-p", (pty.pid).toString()]);
+      var process = await Process.run("lsof", ["-p", (pty.pid).toString()]);
+
+      if ((process.stdout ?? "").toString().isEmpty) {
+        process = await Process.run("lsof", ["-p", (pty.pid + 1).toString()]);
+      }
+
       final lines = process.stdout.toString().trim().split(RegExp("\\n"));
       final line = lines.firstWhereOrNull((line) => line.contains("cwd"));
       final path = line?.split(RegExp("\\s+")).last;
@@ -101,6 +107,10 @@ class TerminalNodePty {
   }
 
   void dispose() {
-    pty.kill();
+    try {
+      pty.kill(ProcessSignal.sigkill);
+    } catch (err) {
+      print(err);
+    }
   }
 }

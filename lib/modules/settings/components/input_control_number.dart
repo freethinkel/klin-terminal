@@ -35,7 +35,6 @@ class _InputControlState extends State<InputControlNumber> {
   void changeValue(double? value) {
     double newValue = widget.min;
     if (value == null) {
-      // widget.onChanged?.call(widget.min);
       newValue = widget.min;
     } else {
       newValue = (value!.clamp(widget.min, widget.max));

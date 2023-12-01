@@ -8,19 +8,18 @@ class ShellCommand {
   ShellCommand(this.command, this.args);
 }
 
-ShellCommand platformShell({
-  String? workingDirectory,
-}) {
+ShellCommand platformShell() {
   if (Platform.isMacOS) {
     final user = Platform.environment['USER'];
 
-    // if (workingDirectory != null) {
-    //   return ShellCommand(
-    //       "sh", ['-c', 'cd $workingDirectory; login -fpl $user']);
-    // }
-
-    return ShellCommand("/bin/zsh", []);
-    return ShellCommand('login', ['-fp', user!]);
+    return ShellCommand("/bin/zsh", ['-il']);
+    // return ShellCommand('/usr/bin/login', [
+    //   '-fpl',
+    //   user!,
+    //   "/Applications/iTerm.app/Contents/MacOS/ShellLauncher",
+    //   "--launch_shell",
+    //   "'SHELL=/bin/zsh'"
+    // ]);
   }
 
   if (Platform.isWindows) {
